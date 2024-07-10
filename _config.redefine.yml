@@ -414,7 +414,7 @@ plugins:
     enable: false # Whether to enable
   # Aplayer. See https://github.com/DIYgod/APlayer
   aplayer:
-    enable: false # Whether to enable
+    enable: true # Whether to enable
     type: fixed # fixed, mini
     audios:
       - name: # audio name
@@ -430,7 +430,7 @@ plugins:
       # .... you can add more audios here
   # Mermaid JS. Requires hexo-filter-mermaid-diagrams (npm i hexo-filter-mermaid-diagrams). See https://mermaid.js.org/
   mermaid:
-    enable: false # enable mermaid or not
+    enable: true # enable mermaid or not
     version: "9.3.0" # default v9.3.0
 # PLUGINS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
