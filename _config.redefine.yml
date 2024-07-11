@@ -206,10 +206,12 @@ navbar:
     #     Github: https://github.com/EvanNotFound/hexo-theme-redefine
     #     Blog: https://ohevan.com
     #     Friends: /friends
-    #Links: 
-    #  icon: fa-regular fa-link
-    #  submenus:
-    #    About: /about
+    links: 
+      icon: fa-regular fa-link
+      submenus:
+        About: /about
+        Essay: /essays
+        Gallery: /masonry
     #    Categories: /categories
     #     Link2: /link2
     #     Link3: /link3
