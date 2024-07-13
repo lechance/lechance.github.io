@@ -277,261 +277,313 @@
 
 
         <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+            $logo-title-font-size = 1.7rem
+$desktop-search-icon-font-size = 1.5rem
+$navbar-bar-line-height = 2.5px
+$logo-image-box-width = 34px
 
-    <div class="navbar-content ">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Lechance&#39;s Blog
-                
-            </a>
-        </div>
+@import '../../common/variables'
 
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
+.navbar-container
+  font-family 'Chillax-Variable', sans-serif
+  width 100%
+  height 100%
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  background $nav-color-bg
+  -webkit-backdrop-filter blur(10px)
+  backdrop-filter blur(10px)
+  padding-top $scroll-progress-bar-height
+  hover-style(
+    false,
+    0,
+    0
+  )
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    HOME
-                                    
-                                </a>
+  .navbar-content
+    position relative
+    height 100%
+    width 100%
+    max-width $navbar-width-pages
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    z-index $z-index-5
+    transition max-width 0.3s ease
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+    &.has-home-banner
+      max-width $navbar-width-home
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/archives"
-                                        >
-                                    <i class="fa-regular fa-archive fa-fw"></i>
-                                    ARCHIVES
-                                    
-                                </a>
+    .left
+      display flex
+      align-items center
+      //transform-origin bottom
+      //transition-t('transform', '0', '0.15', 'ease')
+      //
+      //.navbar-shrink &
+      //  transform scale(0.9)
+      //  transform-origin bottom
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
+        .logo-image
+          width $logo-image-box-width
+          height $logo-image-box-width
+          margin-right 12px
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/categories"
-                                        >
-                                    <i class="fa-solid fa-table-list fa-fw"></i>
-                                    CATEGORIES
-                                    
-                                </a>
+          +redefine-tablet()
+            width: $logo-image-box-width * 0.9
+            height: $logo-image-box-width * 0.9
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+          +redefine-mobile()
+            width: $logo-image-box-width * 0.8
+            height: $logo-image-box-width * 0.8
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="has-dropdown"
-                                   href="#"
-                                        onClick=&#34;return false;&#34;>
-                                    <i class="fa-regular fa-link fa-fw"></i>
-                                    LINKS
-                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
-                                </a>
+          img
+            border-radius 6px
+            width 100%
 
-                                <!-- Submenu -->
-                                
-                                    <ul class="sub-menu">
-                                        
-                                            <li>
-                                                <a href="/about">
-                                                    ABOUT
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/essays">
-                                                    ESSAY
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/masonry">
-                                                    GALLERY
-                                                </a>
-                                            </li>
-                                        
-                                    </ul>
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+      .logo-title
+        font-size $logo-title-font-size
+        font-weight 520
+        //letter-spacing 1px
+        line-height 1
+        color var(--first-text-color)
+        transform translateY(1px)
 
-    <!-- Mobile sheet -->
-    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
-                
-                    
+        h1
+          margin 0
+          font-size $logo-title-font-size
+          font-weight 520
+          //letter-spacing 1px
+          line-height 1
+          color var(--first-text-color)
+          transform translateY(1px)
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/"
-                        >
-                            <span>
-                                HOME
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+          +redefine-tablet()
+            font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-mobile()
+            font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/archives"
-                        >
-                            <span>
-                                ARCHIVES
-                            </span>
-                            
-                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+        +redefine-tablet()
+          font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+        +redefine-mobile()
+          font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories"
-                        >
-                            <span>
-                                CATEGORIES
-                            </span>
-                            
-                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+    .right
+      .desktop
+        .navbar-list
+          display flex
+          gap 24px
+          align-items center
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-tablet()
+            display none
 
-                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
-                        
-                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                             navbar-data-toggle="submenu-links"
-                        >
-                            <span>
-                                LINKS
-                            </span>
-                            
-                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
-                            
-                        </div>
-                        
+          .navbar-item
+            float left
+            // padding 5px
+            position relative
+            font-size 1rem
+            font-weight 500
+            cursor pointer
+            color var(--default-text-color)
 
-                        
-                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/about">ABOUT</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/essays">ESSAY</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/masonry">GALLERY</a>
-                                    </div>
-                                
-                            </div>
-                        
-                    </li>
-            
+            a
+              display block
+              padding 5px
 
-            
-            
-        </ul>
+            a .fa-chevron-down
+              transform rotate(0deg)
+              transition transform 0.3s ease
 
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">70</div>
-        <div class="label text-third-text-color text-sm">Tags</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
-        <div class="label text-third-text-color text-sm">Categories</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
-        <div class="label text-third-text-color text-sm">Posts</div>
-    </a>
-</div>
-    </div>
+            a, .active
+              &::after
+                content ''
+                position absolute
+                bottom -5px
+                left 50%
+                width 100%
+                height 2px
+                transform translate3d(-50%, -5px, 0)
+                border-radius $redefine-border-radius-large
+                background var(--primary-color)
+                opacity 0
+                transition-t('transform, bottom, opacity', '0.2, 0.2, 0.2', '0.2, 0.2, 0.2', 'ease, ease, ease')
 
-    <div class="window-mask"></div>
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
 
-</header>
+            &:hover a .fa-chevron-down
+              transform rotate(180deg)
 
+            &:hover .has-dropdown
+              &::after
+                display none !important
+
+            &:hover a, .active
+              &::after
+                transform translate3d(-50%, 0, 0)
+                opacity 1
+                transition-t('transform, bottom, opacity', '0, 0, 0', '0.2, 0.2, 0.2', 'ease, ease, ease')
+
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
+
+            &.search
+              font-size $desktop-search-icon-font-size
+              margin-left 26px
+
+              i
+                color var(--default-text-color)
+
+            .sub-menu
+              position absolute
+              right auto
+              left 50%
+              -webkit-transform translate(-50%, 0)
+              -o-transform translate(-50%, 0)
+              transform translate(-50%, 0)
+              margin-top 0px
+              width auto
+              text-align center
+              list-style none
+              padding 0 10px
+              border-radius $redefine-border-radius-large
+              // visibility hidden
+              max-height 0px
+              overflow hidden
+              transition-t('all', '0', '0.2', 'linear')
+
+              li a
+                white-space nowrap
+                color var(--default-text-color)
+                font-size 1rem
+                padding 3px 15px
+                display block
+                text-align center
+                border-radius 8px
+                transition-t('all', '0', '0.2', 'linear')
+
+                &:hover
+                  color var(--primary-color)
+                  background-color var(--third-background-color)
+
+        .navbar-list .navbar-item:hover .sub-menu
+          // visibility visible
+          max-height 500px
+          transition-t('all', '0', '0.2', 'ease')
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            5px
+          )
+
+      .mobile
+        display flex
+        justify-content space-between
+        align-items center
+
+        .icon-item
+          display none
+          position relative
+          cursor pointer
+          font-size 18px
+          margin-left 12px
+          width 20px
+          height 20px
+          color var(--default-text-color)
+
+          i
+            color var(--default-text-color)
+
+          &:first-child
+            margin-left 0
+
+          +redefine-tablet()
+            display flex
+            justify-content center
+            align-items center
+
+        .navbar-bar
+          .navbar-bar-middle
+            width 18px
+            height $navbar-bar-line-height
+            position relative
+            background var(--default-text-color)
+
+            .navbar-drawer-show &
+              background transparent
+
+            &::before, &::after
+              content ''
+              position absolute
+              left 0
+              width 100%
+              height $navbar-bar-line-height
+              background var(--default-text-color)
+              transition-t('transform', '0', '0.38', 'ease')
+
+            &::before
+              top -6px
+
+              .navbar-drawer-show &
+                transform translateY(6px) rotate(45deg)
+
+            &::after
+              bottom -6px
+
+              .navbar-drawer-show &
+                transform translateY(-6px) rotate(-45deg)
+
+  .navbar-drawer
+    padding $navbar-height 0 20px 0
+    transform translateX(100%)
+    transform-origin top
+    z-index $z-index-2
+    height 100vh
+    overflow-y auto
+    transition-t('transform', '0', '0.38', 'ease')
+
+    .navbar-drawer-show &
+      transform translateX(0)
+
+  .window-mask
+    position absolute
+    top 0
+    width 100%
+    height 100vh
+    background rgba(0, 0, 0, 0.4)
+    z-index $z-index-1
+    visibility hidden
+    opacity 0
+    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
+
+    .navbar-drawer-show &
+      visibility visible
+      opacity 1
+
+.navbar-drawer-show
+  overflow hidden
+
+[data-target] {
+  display: block; /* or flex, depending on your layout */
+  overflow: hidden;
+}
+
+[data-target] .submenu-item {
+  opacity: 0;
+}
+
+.icon-rotated {
+  transform: rotate(90deg);
+}
 
         </div>
 
@@ -542,270 +594,263 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
+                    @import '../common/variables'
 
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</h1>
-                </div>
-            
-            </div>
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/redefine-avatar.svg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2016-04-15 23:05</span>
-        <span class="mobile">2016-04-15 23:05</span>
-        <span class="hover-info">Created</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-13 08:20:47</span>
-            <span class="mobile">2024-07-13 08:20:47</span>
-            <span class="hover-info">Updated</span>
-        </span>
-    
+.post-page-container
+  gap 0px
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/Android/">Android</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/Android/Network/">Network</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/android/">android</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/http/">http</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/HttpURLConnection/">HttpURLConnection</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>24k Words</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:26 Mins</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        
+  +redefine-mobile()
+    overflow-x hidden
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>通常Android应用程序要与远程服务器进行信息交换．最简单的方式是以HTTP协议作为基础来传输信息．在某些环境下使用HTTP协议是非常有用的，比如从远程服务器下载图片或者上传二进制数据到服务器．Android应用程序通过执行GET和POST请求(request)来发送数据．在这篇帖子，我想要分析分析一下如何使用<code>HttpURLConnection</code>与远程服务器进行通信．</p>
-<h3 id="GET和POST请求"><a href="#GET和POST请求" class="headerlink" title="GET和POST请求"></a>GET和POST请求</h3><p>GET和POST请求在HTTP协议中是基块(the base blocks)。为了生成这类请求我们首先需要打开一个指向远程服务器的链接:</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HttpURLConnection</span> <span class="variable">con</span> <span class="operator">=</span> (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">con.connect();</span><br></pre></td></tr></table></figure></div>
+  &.show-toc
+    gap 30px
 
-<p>首先，我门通过<code>url</code>参数构建一个<code>Url</code>对象，通过这个对象的<code>openConnection</code>方法得到<code>HttpURLConnection</code>,代码第二行我们设置请求的方式为Post，最后connect到服务器。</p>
-<p>一旦我们持有一个打开了的链接我们就可以使用<code>OutputStream</code>进行写入我们的数据了。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">con.getOutputStream().wirte((<span class="string">&quot;name=&quot;</span>+name).getBytes());</span><br></pre></td></tr></table></figure></div>
-<p>对于我们已经知道的参数我们可以使用键值对来写入。</p>
-<p>最后一步是使用<code>InputStream</code>读取响应数据。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">ins</span> <span class="operator">=</span> con.getInputStream();</span><br><span class="line"><span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span>(ins.read(b) != -<span class="number">1</span>)</span><br><span class="line">    buffer.append(<span class="keyword">new</span> <span class="title class_">String</span>(b));</span><br><span class="line">con.disconnect();</span><br></pre></td></tr></table></figure></div>
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-<p>到目前为止所有的工作都非常简单，但是需要记住的一点是：使用<code>HTTP</code>链接是一个耗时的操作，有时它可能需要很长的时间，因此我们不能把它放在UI线程里运行，否则我们会得到一个ANR(Application Not Responding)对话框。</p>
-<p>解决这个问题的方法是我们可以使用<code>AsyncTask</code></p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">doInBackground</span><span class="params">(String... params)</span>&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> sendHttpRequest(url, name);</span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(String result)</span>&#123;</span><br><span class="line">	edtResp.setText(result);</span><br><span class="line">	item.setActionView(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-<h3 id="从服务器下载数据"><a href="#从服务器下载数据" class="headerlink" title="从服务器下载数据"></a>从服务器下载数据</h3><p>一个最普遍的情景是应用程序从远程服务器下载一些数据。我们假设要从服务器下载一张图片，在这例子里我们依旧使用<code>AsyncTask</code>来完成我们的操作，代码如下：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">byte</span>[] downloadImage(String imgName)&#123;</span><br><span class="line">    <span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;URL [&quot;</span>+url+<span class="string">&quot;] - Name [&quot;</span>+imgName+<span class="string">&quot;]&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">HttpURLConnection</span> <span class="variable">con</span> <span class="operator">=</span> (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">	con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">	con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">	con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">	con.connect();</span><br><span class="line">	con.getOutputStream.write((<span class="string">&quot;name=&quot;</span> + imgName).getBytes());</span><br><span class="line"></span><br><span class="line">	<span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> con.getInputStream();</span><br><span class="line">	<span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>( is.read(b) != -<span class="number">1</span>)</span><br><span class="line">	    baos.write(b);</span><br><span class="line"></span><br><span class="line">	con.disconnect();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Throwable t)&#123;</span><br><span class="line">	t.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> baos.toByteArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>这个方法以下面这样的方式调用：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">byte</span>[] doInBackground(String...params)&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	<span class="type">HttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpClient</span>(url);</span><br><span class="line">	<span class="type">byte</span>[] data = client.downloadImage(name);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(<span class="type">byte</span>[] result)</span>&#123;</span><br><span class="line">	<span class="type">Bitmap</span> <span class="variable">img</span> <span class="operator">=</span> BitmapFactory.decodeByteArray(result, <span class="number">0</span>, result.length);</span><br><span class="line">	imgView.setImageBitmap(img);</span><br><span class="line">	item.setActionView(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-<h3 id="使用MultipartRequest上传数据到服务器"><a href="#使用MultipartRequest上传数据到服务器" class="headerlink" title="使用MultipartRequest上传数据到服务器"></a>使用MultipartRequest上传数据到服务器</h3><p>这是在处理<code>http</code>链接里最复杂的部分，本地的<code>HttpUrlConnection</code>不处理这类请求,一个Android应用程序上传一些二进制数据到服务器时它会发生。<code>MultipartRequest</code>类主要对文件上传进行操作，在上传时，编码格式为<code>enctype=&quot;multipart/form-data&quot;格式，以二进制方式提交，提交方式为post方式。以上传一张图片为例子，在种情况下请求会有点复杂，因为一个“一般”的请求满足不了我门的需求，因此我们创建一个</code>MultipartRequest&#96;.</p>
-<p><code>MultipartRequest</code> 是一个通过像参数和二进制数据这样不同的部分构造的请求。</p>
-<p>首先第一步是打开一个链接，通知(informing)服务器我们要发一些二进制数据。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connectForMultipart</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    con = (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">    con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">    con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">    con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">    con.setRequestProperty(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;Keep-Alive&quot;</span>);</span><br><span class="line">    con.setRequestProperty(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;multipart/form-data&quot;</span>; boundary=<span class="string">&quot; + boundary);</span></span><br><span class="line"><span class="string">    con.connect();</span></span><br><span class="line"><span class="string">    os = con.getOutputStream();</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></div>
+    .article-content-container
+      width calc(100% - 210px) !important
 
-<p>在第７行我们指定了请求的<code>content-type</code>和另一个字段<em>boundary</em>,　这个字段是一个字符序列用于分隔不同的部分。</p>
-<p>对于每个部分，如果它是一个文本像提交的参数或者是一个文件（二进制数据）就需要指定想要添加的部分。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFormPart</span><span class="params">(String paramName, String value)</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    writeParamData(paramName, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">writeParamData</span><span class="params">(String paramName, String value)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    os.wirte( (delimiter + boundary + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( <span class="string">&quot;Content-Type: text/plain\r\n&quot;</span>.getBytes());</span><br><span class="line">    os.wirte( (<span class="string">&quot;Content-Disposition: form-data; name=\&quot;&quot;</span> +paramName + <span class="string">&quot;\&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;\r\n&quot;</span> + value + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-<p>这里：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">delimiter</span> <span class="operator">=</span> <span class="string">&quot;--&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">boundary</span> <span class="operator">=</span> <span class="string">&quot;SwA&quot;</span>+ Long.toString(System.currentTimeMillis())+<span class="string">&quot;SwA&quot;</span>;</span><br></pre></td></tr></table></figure></div>
-<p>使用下面的方式添加文件部分：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFilePart</span><span class="params">(String paramName, String fileName, <span class="type">byte</span>[] data)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    os.write( (delimiter + boundary + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Disposition: form-data; name=\&quot;&quot;</span>+ paramName + <span class="string">&quot;\&quot;; filename=\&quot;&quot;</span> + fileName + <span class="string">&quot;\&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Type: application/octet-stream\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Transfer-Encoding: binary\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">    os.write(data);</span><br><span class="line">    os.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>因此，使用在我们的例子里：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">doInBackground</span><span class="params">(String... params)</span>&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">param1</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">param2</span> <span class="operator">=</span> params[<span class="number">2</span>];</span><br><span class="line">	<span class="type">Bitmap</span> <span class="variable">b</span> <span class="operator">=</span> BitmapFactory.decodeResource(UploadActivity.<span class="built_in">this</span>.getResources(), R.drawable.logo);</span><br><span class="line"></span><br><span class="line">	<span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">	b.compress(CompressFormat.PNG, <span class="number">0</span>, baos);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">	    <span class="type">HttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpClient</span>(url);</span><br><span class="line">	    client.connectForMulitipart();</span><br><span class="line">	    client.addFormPart(<span class="string">&quot;param1&quot;</span>, param1);</span><br><span class="line">	    client.addFormPart(<span class="string">&quot;param2&quot;</span>, param2);</span><br><span class="line">	    client.addFilePart(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;logo.png&quot;</span>, baos.toByteArray());</span><br><span class="line">	    client.finishMultipart();</span><br><span class="line">	    <span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> client.getResponse();</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Throwable t)&#123;</span><br><span class="line">	    t.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(String data)</span>&#123;</span><br><span class="line">	    item.setActionView(<span class="literal">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+    .article-content-container
+      width 100% !important
 
-        </div>
+    &.show-toc
+      .toc-content-container
+        display none
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>Title:</strong> ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</li>
-        <li><strong>Author:</strong> Lechance</li>
-        <li><strong>Created at
-                :</strong> 2016-04-15 23:05:00</li>
-        
-            <li>
-                <strong>Updated at
-                    :</strong> 2024-07-13 08:20:47
-            </li>
-        
-        <li>
-            <strong>Link:</strong> https://lechance.github.io/2016/04/15/android-http-client-get-post-download-upload-multipart-request/
-        </li>
-        <li>
-            <strong>
-                License:
-            </strong>
-            
+      .article-content-container
+        width 100% !important
 
-            
-                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
-            
-        </li>
-    </ul>
-</div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      0,
+      30px
+    )
 
-            </div>
-        
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
+      max-width 100vw
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/android/">#android</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/http/">#http</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/HttpURLConnection/">#HttpURLConnection</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+    .article-header .avatar img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
 
-        
+    .article-header, .article-header-meta-info
+      margin-top 16px
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2016/04/20/Simple-Usage-of-Gson-Library/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Gson 库的使用</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2016/04/08/least-recently-used-cache/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Least-Recently-Used Cache</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
 
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
 
-        
-    </div>
+      &>:first-child
+        margin-top 0 !important
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET%E5%92%8CPOST%E8%AF%B7%E6%B1%82"><span class="nav-text">GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE"><span class="nav-text">从服务器下载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8MultipartRequest%E4%B8%8A%E4%BC%A0%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">使用MultipartRequest上传数据到服务器</span></a></li></ol>
+    .article-prev, .article-next
 
-    </div>
-</div>
-        </div>
-    
-</div>
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
 
+          &.prev
+            padding-left $arrow-icon-width
 
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    //margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
 
                 
 
@@ -816,58 +861,66 @@
         </div>
 
         <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
-        
-        <div class="text-center">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        45 posts in total
-                    </span>
-                    
-                        <span>
-                            26k words in total
-                        </span>
-                    
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">VISITOR COUNT</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">TOTAL PAGE VIEWS</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
-        </div>
-        
-        
-        
-        
-        
-    </div>  
-</footer>
+            @import '../../common/variables'
+
+.footer
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
+    display inline-block
+    vertical-align baseline
+    visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
+    text-align left
+    display block
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    overflow hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
+    display block
+    -webkit-backface-visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
+    position absolute
+
+  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
+    transition transform 999ms
+
+  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
+    transition transform 999ms
+    transform translateY(0)
+
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    line-height 1.1em
+
+  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
+    text-align center
+
         </div>
     </div>
 
