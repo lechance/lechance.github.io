@@ -233,7 +233,7 @@ home:
     enable: true # Whether to enable sidebar
     position: left # Sidebar position. left, right
     first_item: menu # First item in sidebar. menu, info
-    announcement: # Announcement text
+    announcement: stay hungry stay foolish # Announcement text
     show_on_mobile: true # Whether to show sidebar navigation on mobile sheet menu
     links:
  #     Archives: 
@@ -287,7 +287,7 @@ articles:
   author_label: 
     enable: true # Whether to enable
     auto: false # Whether to automatically add author label, e.g. Lv1, Lv2, Lv3...
-    list: [MVP++]
+    list: [MVP]
   # Code block settings
   code_block:
     copy: true # Whether to enable code block copy button
