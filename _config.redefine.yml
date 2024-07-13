@@ -11,7 +11,7 @@
 # Docs: https://redefine-docs.ohevan.com/basic/info
 info:
   # Site title
-  title: Lechance
+  title: Lechance's Blog
   # Author name
   author: Lechance
   # Site URL
@@ -116,7 +116,7 @@ home_banner:
     light: /images/wallhaven-wqery6-light.webp # light mode
     dark: /images/wallhaven-wqery6-dark.webp # dark mode
   # Home banner title
-  title: Lechance
+  title: ...
   # Home banner subtitle
   subtitle:
     text: ["Loading..."] # subtitle text, array
@@ -198,9 +198,9 @@ navbar:
     # Status: 
     #   path: https://status.ohevan.com/
     #   icon: fa-regular fa-chart-bar
-    About: 
-      icon: fa-regular fa-user
-      path: /about
+    #About: 
+    #  icon: fa-regular fa-user
+    #  path: /about
         #submenus:
         #    Me: /about
     #     Github: https://github.com/EvanNotFound/hexo-theme-redefine
