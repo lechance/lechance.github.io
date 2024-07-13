@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lechance">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lechance.github.io/2016/03/07/unified-modeling-language-tutorial/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="What is UML  The Unified Modeling Language(UML) is a general-purpose, developmental, modeling language in the field of software engineering, that is intended to provide a standard way to visualize the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding UML">
+<meta property="og:url" content="https://lechance.github.io/2016/03/07/unified-modeling-language-tutorial/index.html">
+<meta property="og:site_name" content="Lechance&#39;s Blog">
+<meta property="og:description" content="What is UML  The Unified Modeling Language(UML) is a general-purpose, developmental, modeling language in the field of software engineering, that is intended to provide a standard way to visualize the">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_usecase.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_component.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_node.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_message.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_state.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_package.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_note.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_dependency.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_association.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_generalization.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/uml_realization.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_class.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_object.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_interface.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_collaboration.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_usecase.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_actor.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_initialstate.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_finalstate.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_activeclass.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_component.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_node.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_interaction.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_statemachine.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_package.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_note.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_dependency.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_association.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_generalization.jpg">
+<meta property="og:image" content="https://lechance.github.io/images/uml/notation_extensibility.jpg">
+<meta property="article:published_time" content="2016-03-07T05:15:42.000Z">
+<meta property="article:modified_time" content="2024-07-13T00:20:47.833Z">
+<meta property="article:author" content="Lechance Cheung">
+<meta property="article:tag" content="uml">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lechance.github.io/images/uml/uml_usecase.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Understanding UML -
+        
+        Lechance&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"lechance.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["MVP"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"Suggestion","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"...","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=i&c=h&c=d&c=e&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-solid fa-table-list"},"links":{"icon":"fa-regular fa-link","submenus":{"About":"/about","Essay":"/essays","Gallery":"/masonry"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"stay hungry stay foolish","show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/28 13:14:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Lechance&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Lechance&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-solid fa-table-list fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ABOUT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/essays">
+                                                    ESSAY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/masonry">
+                                                    GALLERY
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ABOUT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">ESSAY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/masonry">GALLERY</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">70</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Understanding UML</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-03-07 13:15:42</span>
+        <span class="mobile">2016-03-07 13:15:42</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Design/">Design</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/uml/">uml</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>13k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>48 mins. Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h3 id="What-is-UML"><a href="#What-is-UML" class="headerlink" title="What is UML"></a>What is UML</h3><blockquote>
+</blockquote>
+<p>The <strong>Unified Modeling Language(UML)</strong> is a general-purpose, developmental, <em>modeling language</em> in the field of <em>software engineering</em>, that is intended to provide a standard way to visualize the design of a system.</p>
+<h3 id="UML的目标"><a href="#UML的目标" class="headerlink" title="UML的目标"></a>UML的目标</h3><p>一张图片胜过千言万语,这样的结论绝对也适用于UML.面向对象的概念要比UML出现的更早,因此当时没有标准的方法来组织和巩固面向对象开发.而且UML图表并不仅仅面向开发人员,它同样也应用到企业用户,以及其他任何对想要理解此系统的人.总之UML语言的目标是定义一个简单的建模机制来对所有当今复杂环境下系统进行建模.</p>
+<h3 id="面向对象概念"><a href="#面向对象概念" class="headerlink" title="面向对象概念"></a>面向对象概念</h3><p>一个对象包含数据和控制数据的方法,数据通常也称为属性,它用来描述对象(Object)的状态.类(Class)用来描述对象(Object)以及它们还建立了层次结构模拟真实世界系统.层次结构被表示为继承以及类也可以按照要求以不同的方式被关联起来.<br>对象是存在与我们身边的真实世界实体,面向对象里的基本概念比如抽象,封装,继承和多态都能够用UML语言表示.<br>下面是面向对象里一些基本概念.</p>
+<ul>
+<li>Objects: 对象代表一个实体,它也是UML里基本的构建块.</li>
+<li>Class: 表示现实世界里一类具有共同特征的事物的抽象.</li>
+<li>Abstraction: 抽象在Java语言里表现为一种过程的抽象,它隐藏程序的某些细节而只展示程序基本的功能.换句话说,抽象只描述了一个对象的基本特征.</li>
+<li>Encapsulation: 封装是这样一种机制,它把数据封装起来,对于外面的对象来说这些数据(属性)是隐藏的.</li>
+<li>Inheritance: 继承是从一个存在的基类派生出新类的机制.</li>
+<li>Polymorphism: 一个基类的引用,可以指向多种派生类对象,具有多种不同的形态,这种现象就叫多态性.</li>
+</ul>
+<h3 id="UML的构建块"><a href="#UML的构建块" class="headerlink" title="UML的构建块"></a>UML的构建块</h3><p>UML的构建块由以下三个主要元素构成：</p>
+<h4 id="事物-Things"><a href="#事物-Things" class="headerlink" title="事物(Things)"></a>事物(Things)</h4><p>事物是实体抽象化的最终结果,是模型中的基本成员,UML中包含结构事物,行为事物,分组事物和注释事物.</p>
+<h5 id="结构事物"><a href="#结构事物" class="headerlink" title="结构事物"></a>结构事物</h5><p>结构事物是模型中的静态部分,用来呈现概念和实体的表现元素,以下是软件建模中最常见的七种元素.</p>
+<ul>
+<li>Class: 是指具有相同属性,方法,关系和语义的对象的集合.<br>![img uml_class] (&#x2F;images&#x2F;uml&#x2F;uml_class.jpg )</li>
+<li>Interface: 接口是指类或组件所提供的服务（操作）,描述了类或组件对外可见的动作.<br>![ img uml_interface &#x2F;images&#x2F;uml&#x2F;uml_interface.jpg )</li>
+<li>Collaboration: 协作描述完成某个特定任务的一组类及其关联的集合,用于对使用情形的实现建模.<br>![ img uml_collaboration &#x2F;images&#x2F;uml&#x2F;uml_collaboration.jpg )</li>
+<li>Use Case: 用于表示系统所提供的服务,它定义了系统是如何被参与者所使用的,它描述的是参与者为了使用系统提供的某一完整功能而与系统之间发生一段对话.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_usecase.jpg"
+                      alt=" img use_case "
+                ></li>
+<li>Component: 组件是物理的,可替换的部分,包含接口的集合,例如COM+,JAVA BEANS等.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_component.jpg"
+                      alt=" img component "
+                ></li>
+<li>Node: 节点是系统在运行时存在的物理元素,代表一个可计算的资源,通常占用一些内存和具有处理能力.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_node.jpg"
+                      alt=" img Node "
+                ></li>
+</ul>
+<h5 id="行为事物"><a href="#行为事物" class="headerlink" title="行为事物"></a>行为事物</h5><p>行为事物指的是UML模型中的动态部分,如下：</p>
+<ul>
+<li>Interaction: 交互是在特定上下文中的一组对象,为了达到特定的目的而进行的一系列消息交换而组成的动作.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_message.jpg"
+                      alt=" img interaction "
+                ></li>
+<li>State machine: 它定义的状态序列对象通过事件进行响应,而事件是负责(responsible)状态变化的外部因素.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_state.jpg"
+                      alt=" img state_machine "
+                ></li>
+</ul>
+<h5 id="分组事物"><a href="#分组事物" class="headerlink" title="分组事物"></a>分组事物</h5><p>分组事物被定义为这样一种机制,即它能对UML模型元素进行分组,目前只有一种可用的分组事物：</p>
+<ul>
+<li><strong>Package</strong>: 结构事物,行为事物甚至分组事物都有可能放在一个包中.包纯粹是概念上的,只存在与开发阶段,而组件在运行时存在.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_package.jpg"
+                      alt=" img uml_package "
+                ></li>
+</ul>
+<h5 id="注释事物"><a href="#注释事物" class="headerlink" title="注释事物"></a>注释事物</h5><ul>
+<li><strong>Note</strong>: 用于UML元素的解释部分.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_note.jpg"
+                      alt=" img Note "
+                ></li>
+</ul>
+<h4 id="关系-Relationship"><a href="#关系-Relationship" class="headerlink" title="关系(Relationship)"></a>关系(Relationship)</h4><p>关系是UML的另一个重要构建块,它显示元素是任何彼此相互关联的.UML定义了四种可用的关系.</p>
+<h5 id="Dependencies-依赖-依赖描述了两个事物之间的语义关系-其中一个事物的变化会影响另一个事物"><a href="#Dependencies-依赖-依赖描述了两个事物之间的语义关系-其中一个事物的变化会影响另一个事物" class="headerlink" title="Dependencies(依赖): 依赖描述了两个事物之间的语义关系,其中一个事物的变化会影响另一个事物."></a>Dependencies(依赖): 依赖描述了两个事物之间的语义关系,其中一个事物的变化会影响另一个事物.</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_dependency.jpg"
+                      alt=" img dependency "
+                ></p>
+<h5 id="Association-关联-描述一组对象之间的连接的结构关系-如聚合关系-描述了整体和部分之间的结构关系"><a href="#Association-关联-描述一组对象之间的连接的结构关系-如聚合关系-描述了整体和部分之间的结构关系" class="headerlink" title="Association(关联): 描述一组对象之间的连接的结构关系,如聚合关系(描述了整体和部分之间的结构关系)."></a>Association(关联): 描述一组对象之间的连接的结构关系,如聚合关系(描述了整体和部分之间的结构关系).</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_association.jpg"
+                      alt=" img association "
+                ></p>
+<h5 id="Generalization-泛化-是一般化-特殊化的关系-在对象的世界里它描述了继承这类关系"><a href="#Generalization-泛化-是一般化-特殊化的关系-在对象的世界里它描述了继承这类关系" class="headerlink" title="Generalization(泛化): 是一般化- 特殊化的关系,在对象的世界里它描述了继承这类关系."></a>Generalization(泛化): 是一般化- 特殊化的关系,在对象的世界里它描述了继承这类关系.</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_generalization.jpg"
+                      alt=" img generalization "
+                ></p>
+<h5 id="Realization-实现-实现定义了两个相连的元素间的一种关系-其中一个元素描述了未被实现的责任-而另一则实现了这些责任-这种关系存在与接口的情况下"><a href="#Realization-实现-实现定义了两个相连的元素间的一种关系-其中一个元素描述了未被实现的责任-而另一则实现了这些责任-这种关系存在与接口的情况下" class="headerlink" title="Realization(实现): 实现定义了两个相连的元素间的一种关系,其中一个元素描述了未被实现的责任,而另一则实现了这些责任,这种关系存在与接口的情况下."></a>Realization(实现): 实现定义了两个相连的元素间的一种关系,其中一个元素描述了未被实现的责任,而另一则实现了这些责任,这种关系存在与接口的情况下.</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/uml_realization.jpg"
+                      alt=" img realization "
+                ></p>
+<h4 id="图-Diagrams"><a href="#图-Diagrams" class="headerlink" title="图(Diagrams)"></a>图(Diagrams)</h4><p>图是事物集合的分类,所有的元素(elements),关系都用来制造一个完整的UML图,图也表示一个系统.<br>UML包含了九种图：</p>
+<ul>
+<li>类图(Class Diagram): 类图描述系统包含的类,类的内部结构以及类之间的关系.</li>
+<li>对象图(Object Diagram): 对象图是类图的一个具体实例.</li>
+<li>包图(Package Diagram): 包图表示包及其之间的依赖类图.</li>
+<li>用例图(Usecase Diagram): 用例图从用户的角度出发描述系统的功能,需求,展示系统外部的各类角色与系统内部的各种用例之间的关系.</li>
+<li>顺序图(Sequence Diagram): 表示对象之间动态合作的关系.</li>
+<li>协作图(Collaboration Diagram): 描述对象之间的合作关系.</li>
+<li>活动图(Activity Diagram): 描述了系统中各种活动的执行顺序.</li>
+<li>状态图(Statechart Diagram): 状态图描述了一类对象的所有可能的状态以及事件发生时状态的转移条件.</li>
+<li>部署图(Deployment Diagram): 定义了系统中软硬件的物理体系结构.</li>
+<li>组件图(Compoment Diagram): 组件图也称构建图,它描述了代码部件的物理结构以及各部件之间的依赖关系.</li>
+</ul>
+<h4 id="符号-Notation"><a href="#符号-Notation" class="headerlink" title="符号(Notation)"></a>符号(Notation)</h4><p>UML符号在建模中是非常重要的一类元素,下面是一些基本的符号.</p>
+<h5 id="Structural-Things"><a href="#Structural-Things" class="headerlink" title="Structural Things"></a>Structural Things</h5><ul>
+<li>Classes Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_class.jpg"
+                      alt=" img notation_class "
+                ></li>
+<li>Object Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_object.jpg"
+                      alt=" img notation_object "
+                ></li>
+<li>Interface Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_interface.jpg"
+                      alt=" img notation_interface "
+                ></li>
+<li>Collaboration Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_collaboration.jpg"
+                      alt=" img notation_collaboration "
+                ></li>
+<li>Use case Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_usecase.jpg"
+                      alt=" img notation_usecase "
+                ></li>
+<li>Actor Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_actor.jpg"
+                      alt=" img notation_actor "
+                ></li>
+<li>Initial State Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_initialstate.jpg"
+                      alt=" img notation_initial_sate "
+                ></li>
+<li>Final State Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_finalstate.jpg"
+                      alt=" img notation_final_state "
+                ></li>
+<li>Active Class Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_activeclass.jpg"
+                      alt=" img notation_active_class "
+                ><br>Active class is used to represent concurrency in a system.</li>
+<li>Component Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_component.jpg"
+                      alt=" img notation_component "
+                ></li>
+<li>Node Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_node.jpg"
+                      alt=" img notation_node "
+                ></li>
+</ul>
+<h5 id="Behavioural-Things"><a href="#Behavioural-Things" class="headerlink" title="Behavioural Things"></a>Behavioural Things</h5><ul>
+<li>Interactions<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_interaction.jpg"
+                      alt=" img notation_interaction"
+                ></li>
+<li>State machines<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_statemachine.jpg"
+                      alt=" img notation_state_machine "
+                ></li>
+</ul>
+<h5 id="Grouping-Things"><a href="#Grouping-Things" class="headerlink" title="Grouping Things"></a>Grouping Things</h5><ul>
+<li>Package Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_package.jpg"
+                      alt=" img notation_package "
+                ></li>
+</ul>
+<h5 id="Annotational-Things"><a href="#Annotational-Things" class="headerlink" title="Annotational Things"></a>Annotational Things</h5><ul>
+<li>Note Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_note.jpg"
+                      alt=" img notation_note "
+                ></li>
+</ul>
+<h5 id="Relationships"><a href="#Relationships" class="headerlink" title="Relationships"></a>Relationships</h5><ul>
+<li>Dependency Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_dependency.jpg"
+                      alt=" img notation_dependency "
+                ></li>
+<li>Association Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_association.jpg"
+                      alt=" img notation_association "
+                ></li>
+<li>Generalizaion Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_generalization.jpg"
+                      alt=" img notation_generalization "
+                ></li>
+<li>Extensibility Notation<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/uml/notation_extensibility.jpg"
+                      alt=" img notation_extensibility "
+                ></li>
+</ul>
+<blockquote>
+<p>This aritcal refer <a class="link"   target="_blank" rel="noopener" href="http://www.tutorialspoint.com/uml" >here <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Understanding UML</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-03-07 13:15:42</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/03/07/unified-modeling-language-tutorial/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/uml/">#uml</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/03/08/html-encoding/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">HTML Encoding (Character Sets)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/02/28/design-pattern-observer-pattern/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Design Pattern - Observer Pattern</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Understanding UML</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-UML"><span class="nav-text">What is UML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="nav-text">UML的目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E5%BF%B5"><span class="nav-text">面向对象概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E7%9A%84%E6%9E%84%E5%BB%BA%E5%9D%97"><span class="nav-text">UML的构建块</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        45 posts in total
+                    </span>
+                    
+                        <span>
+                            26k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
