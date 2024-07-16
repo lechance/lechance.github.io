@@ -1851,54 +1851,6 @@ Total Cost: 85.5
       </tags>
   </entry>
   <entry>
-    <title>Using the Internal Storage</title>
-    <url>/2017/02/27/Using-the-Internal-Storage/</url>
-    <content><![CDATA[<h3 id="Using-the-Internal-Storage"><a href="#Using-the-Internal-Storage" class="headerlink" title="Using the Internal Storage"></a>Using the Internal Storage</h3><p><em>You can save files directly on the devices’s internal storage. By default, files saved to the internal storage are private to your application and other applications cannot access them (nor can the user). When the user uninstalls your application, these files are removed.</em></p>
-<ul>
-<li>To create and write a private file to the internal storage:<ol>
-<li>Call <em>openFileOutput()</em> with the name of the file and the operating mode. This retures a <em>FileOutputStream</mark>.</li>
-<li>Write to the file with <em>write()</em>.</li>
-<li>Close the stream with <em>close()</em>.</li>
-</ol>
-</li>
-</ul>
-<p>For example:</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">String</span>  <span class="variable">FILENAME</span> <span class="operator">=</span> <span class="string">&quot;hello_file&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> openFileOutput(FILENAME, Context.MODE_PRIVATE);</span><br><span class="line">fos.write(string.getBytes());</span><br><span class="line">fos.close();</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p><em>MODE_PRIVATE</em> will create the file (or replace a file of the same name) and make it private to your application. Other modes available are: <em>MODE_APPEND, MODE_WORLD_READABLE, and MODE_WORLD_WRITEABLE</em>.</p>
-<ul>
-<li>To create a file from internal storage:<ol>
-<li>Call <code>openFileInput()</code> and pass it the name of the file to read, This return a <code>FileInputStream</code>.</li>
-<li>Read bytes from the file with <code>read()</code>.</li>
-<li>Then close stream with <code>close()</code>.</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p><b>Tip:</b> If you want to save a static file in your applcation at compile time, save the file in your project <code>res/raw/</code> directory. You can open it with <code>openRawResource()</code>, passing the <code>R.raw.&lt;filename&gt;</code> resource ID. This method returns an <code>InputStream</code> that you can use to read the file (but you cannot write to the original file).</p>
-</blockquote>
-<h3 id="Saving-Cache-files"><a href="#Saving-Cache-files" class="headerlink" title="Saving Cache files"></a>Saving Cache files</h3><p>If you’d like to cache some data, rather than store it persistently, you should use <code>getCacheDir()</code> to open a <code>File</code> that represents the internal directory where your application should save temporary cache files.</p>
-<p>When the device is low on internal storage space, Android may delete these cache files to recover space. However, you should not rely on the system to clean up these files for you. You should always maintain the cache files yourself and stay within a reasonable limit of space consumed, such as 1MB. When the user uninstalls your application, these files are removed.</p>
-<h3 id="Other-useful-methods-of-Context-Object"><a href="#Other-useful-methods-of-Context-Object" class="headerlink" title="Other useful methods of Context Object"></a>Other useful methods of <ins>Context</ins> Object</h3><ul>
-<li><p><b> <code>getFilesDir()</code></b> - Gets the absolute path to the filesystem directory where your internal files are saved.</p>
-</li>
-<li><p><b> <code>getDir()</code></b> - Creates (or opens an existing) directory within your internal storage space.</p>
-</li>
-<li><p><b> <code>deleteFile()</code></b> - Deletes a file saved on the internal storage.</p>
-</li>
-<li><p><b> <code>fileList()</code></b> - Returns an array of files currently saved by your application.</p>
-</li>
-</ul>
-<p>Refer to : <a class="link"   href="https://developer.android.google.cn/" >https://developer.android.google.cn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> - Guide!</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
-        <tag>internal storage</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>test background image</title>
     <url>/2017/02/09/test-background-image/</url>
     <content><![CDATA[<h3 id="This-is-test-string"><a href="#This-is-test-string" class="headerlink" title="This is test string"></a>This is test string</h3><p><img  
@@ -2659,7 +2611,7 @@ void loop()
 <p>can u find library?</p>
 <p>if u find it, please send me.</p>
 <p>thanks</p>
-<p><a class="link"   href="mailto:&#x61;&#115;&#x61;&#x64;&#x69;&#x2e;&#x6d;&#111;&#x68;&#x61;&#109;&#109;&#x61;&#x64;&#97;&#109;&#105;&#110;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;" >&#x61;&#115;&#x61;&#x64;&#x69;&#x2e;&#x6d;&#111;&#x68;&#x61;&#109;&#109;&#x61;&#x64;&#97;&#109;&#105;&#110;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   href="mailto:&#97;&#115;&#97;&#100;&#105;&#46;&#x6d;&#111;&#104;&#x61;&#109;&#109;&#x61;&#x64;&#x61;&#x6d;&#105;&#x6e;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;" >&#97;&#115;&#97;&#100;&#105;&#46;&#x6d;&#111;&#104;&#x61;&#109;&#109;&#x61;&#x64;&#x61;&#x6d;&#105;&#x6e;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>Submitted by <a class="link"   href="https://circuitdigest.com/users/%E6%9E%97%E7%90%AE%E5%81%89" >林琮偉 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Fri, 07&#x2F;02&#x2F;2021 - 14:27</p>
 <p><a class="link"   href="https://circuitdigest.com/comment/34167#comment-34167" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h3 id="how-to-send-a-broadcast"><a href="#how-to-send-a-broadcast" class="headerlink" title="how to send a broadcast?"></a><a class="link"   href="https://circuitdigest.com/comment/34167#comment-34167" >how to send a broadcast? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>how to send a broadcast?</p>
@@ -2892,6 +2844,54 @@ ESXI2 --> iSCSI[iSCSI HW OceanStor]</pre>
       <tags>
         <tag>demo</tag>
         <tag>network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Using the Internal Storage</title>
+    <url>/2017/02/27/Using-the-Internal-Storage/</url>
+    <content><![CDATA[<h3 id="Using-the-Internal-Storage"><a href="#Using-the-Internal-Storage" class="headerlink" title="Using the Internal Storage"></a>Using the Internal Storage</h3><p><em>You can save files directly on the devices’s internal storage. By default, files saved to the internal storage are private to your application and other applications cannot access them (nor can the user). When the user uninstalls your application, these files are removed.</em></p>
+<ul>
+<li>To create and write a private file to the internal storage:<ol>
+<li>Call <em>openFileOutput()</em> with the name of the file and the operating mode. This retures a <em>FileOutputStream</mark>.</li>
+<li>Write to the file with <em>write()</em>.</li>
+<li>Close the stream with <em>close()</em>.</li>
+</ol>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">String</span>  <span class="variable">FILENAME</span> <span class="operator">=</span> <span class="string">&quot;hello_file&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> openFileOutput(FILENAME, Context.MODE_PRIVATE);</span><br><span class="line">fos.write(string.getBytes());</span><br><span class="line">fos.close();</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><em>MODE_PRIVATE</em> will create the file (or replace a file of the same name) and make it private to your application. Other modes available are: <em>MODE_APPEND, MODE_WORLD_READABLE, and MODE_WORLD_WRITEABLE</em>.</p>
+<ul>
+<li>To create a file from internal storage:<ol>
+<li>Call <code>openFileInput()</code> and pass it the name of the file to read, This return a <code>FileInputStream</code>.</li>
+<li>Read bytes from the file with <code>read()</code>.</li>
+<li>Then close stream with <code>close()</code>.</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><b>Tip:</b> If you want to save a static file in your applcation at compile time, save the file in your project <code>res/raw/</code> directory. You can open it with <code>openRawResource()</code>, passing the <code>R.raw.&lt;filename&gt;</code> resource ID. This method returns an <code>InputStream</code> that you can use to read the file (but you cannot write to the original file).</p>
+</blockquote>
+<h3 id="Saving-Cache-files"><a href="#Saving-Cache-files" class="headerlink" title="Saving Cache files"></a>Saving Cache files</h3><p>If you’d like to cache some data, rather than store it persistently, you should use <code>getCacheDir()</code> to open a <code>File</code> that represents the internal directory where your application should save temporary cache files.</p>
+<p>When the device is low on internal storage space, Android may delete these cache files to recover space. However, you should not rely on the system to clean up these files for you. You should always maintain the cache files yourself and stay within a reasonable limit of space consumed, such as 1MB. When the user uninstalls your application, these files are removed.</p>
+<h3 id="Other-useful-methods-of-Context-Object"><a href="#Other-useful-methods-of-Context-Object" class="headerlink" title="Other useful methods of Context Object"></a>Other useful methods of <ins>Context</ins> Object</h3><ul>
+<li><p><b> <code>getFilesDir()</code></b> - Gets the absolute path to the filesystem directory where your internal files are saved.</p>
+</li>
+<li><p><b> <code>getDir()</code></b> - Creates (or opens an existing) directory within your internal storage space.</p>
+</li>
+<li><p><b> <code>deleteFile()</code></b> - Deletes a file saved on the internal storage.</p>
+</li>
+<li><p><b> <code>fileList()</code></b> - Returns an array of files currently saved by your application.</p>
+</li>
+</ul>
+<p>Refer to : <a class="link"   href="https://developer.android.google.cn/" >https://developer.android.google.cn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> - Guide!</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+        <tag>internal storage</tag>
       </tags>
   </entry>
 </search>
