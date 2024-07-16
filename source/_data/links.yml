@@ -1,20 +1,30 @@
-- links_category: Elites
-  has_thumbnail: true
-  list: 
-    - name: EvanNotFound's Blog
-      link: https://ohevan.com
-      description: 用香港记者的速度更新文章
-      avatar: https://evan.beee.top/avatar.png
-      thumbnail: https://img1.imgtp.com/2023/06/19/Jegvz84P.png # has_thumbnail 为 true 时才需要
- 
 - links_category: Normal
   has_thumbnail: false
   list: 
-    - name: Example Site
-      link: https://example.com
-      description: Example Site Description
-      avatar: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-    - name: Example Site 2
-      link: https://example.com
-      description: Example Site Description
-      avatar: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    - name: rmlzy ebook
+      link: https://github.com/rmlzy/my-ebook/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.epub
+      
+
+- links_category: "Dev & OPS"
+  has_thumbnail: false
+  list:
+    - name: Google Developer
+      link: https://developer.android.google.cn/
+      description: Android Mobile App Developer Tools – Android Developers
+      avatar: https://developer.android.google.cn/static/topic/libraries/architecture/images/mad-arch-overview-data.png
+
+- links_category: Network
+  has_thumbnail: false
+  list:
+    - name: Huawei enterprise docs
+      link: https://support.huawei.com/enterprise/en/index.html
+      avatar: https://support.huawei.com/enterpriseindex/layout/v4/img/logo_huawei.png
+    - name: H3c Technical Documents
+      link: https://www.h3c.com/en/Support/Resource_Center/Technical_Documents/
+      avatar: https://resource.h3c.com/en/202001/20/20200120_4736072_Cloud Computing_1267200_294551_0.jpg
+    - name: Ruijie Docs
+      link: https://www.ruijie.com.cn/fw/wd/
+      avatar: https://www-file.ruijie.com.cn/chineseResources/UIA/news/images/logo.svg
+    - name: Fotinet Docs
+      link: https://docs.fortinet.com/
+      avatar: https://docs.fortinet.com/img/logo.svg
