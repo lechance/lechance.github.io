@@ -289,272 +289,313 @@
 
 
         <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+            $logo-title-font-size = 1.7rem
+$desktop-search-icon-font-size = 1.5rem
+$navbar-bar-line-height = 2.5px
+$logo-image-box-width = 34px
 
-    <div class="navbar-content ">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Lechance&#39;s Blog
-                
-            </a>
-        </div>
+@import '../../common/variables'
 
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
+.navbar-container
+  font-family 'Chillax-Variable', sans-serif
+  width 100%
+  height 100%
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  background $nav-color-bg
+  -webkit-backdrop-filter blur(10px)
+  backdrop-filter blur(10px)
+  padding-top $scroll-progress-bar-height
+  hover-style(
+    false,
+    0,
+    0
+  )
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    HOME
-                                    
-                                </a>
+  .navbar-content
+    position relative
+    height 100%
+    width 100%
+    max-width $navbar-width-pages
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    z-index $z-index-5
+    transition max-width 0.3s ease
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+    &.has-home-banner
+      max-width $navbar-width-home
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/archives"
-                                        >
-                                    <i class="fa-regular fa-archive fa-fw"></i>
-                                    ARCHIVES
-                                    
-                                </a>
+    .left
+      display flex
+      align-items center
+      //transform-origin bottom
+      //transition-t('transform', '0', '0.15', 'ease')
+      //
+      //.navbar-shrink &
+      //  transform scale(0.9)
+      //  transform-origin bottom
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
+        .logo-image
+          width $logo-image-box-width
+          height $logo-image-box-width
+          margin-right 12px
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/categories"
-                                        >
-                                    <i class="fa-solid fa-table-list fa-fw"></i>
-                                    CATEGORIES
-                                    
-                                </a>
+          +redefine-tablet()
+            width: $logo-image-box-width * 0.9
+            height: $logo-image-box-width * 0.9
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+          +redefine-mobile()
+            width: $logo-image-box-width * 0.8
+            height: $logo-image-box-width * 0.8
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="has-dropdown"
-                                   href="#"
-                                        onClick=&#34;return false;&#34;>
-                                    <i class="fa-regular fa-link fa-fw"></i>
-                                    LINKS
-                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
-                                </a>
+          img
+            border-radius 6px
+            width 100%
 
-                                <!-- Submenu -->
-                                
-                                    <ul class="sub-menu">
-                                        
-                                            <li>
-                                                <a href="/about">
-                                                    ABOUT
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/essays">
-                                                    ESSAY
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/masonry">
-                                                    GALLERY
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/links">
-                                                    BOOKMARK
-                                                </a>
-                                            </li>
-                                        
-                                    </ul>
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+      .logo-title
+        font-size $logo-title-font-size
+        font-weight 520
+        //letter-spacing 1px
+        line-height 1
+        color var(--first-text-color)
+        transform translateY(1px)
 
-    <!-- Mobile sheet -->
-    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
-                
-                    
+        h1
+          margin 0
+          font-size $logo-title-font-size
+          font-weight 520
+          //letter-spacing 1px
+          line-height 1
+          color var(--first-text-color)
+          transform translateY(1px)
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/"
-                        >
-                            <span>
-                                HOME
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+          +redefine-tablet()
+            font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-mobile()
+            font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/archives"
-                        >
-                            <span>
-                                ARCHIVES
-                            </span>
-                            
-                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+        +redefine-tablet()
+          font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+        +redefine-mobile()
+          font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories"
-                        >
-                            <span>
-                                CATEGORIES
-                            </span>
-                            
-                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+    .right
+      .desktop
+        .navbar-list
+          display flex
+          gap 24px
+          align-items center
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-tablet()
+            display none
 
-                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
-                        
-                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                             navbar-data-toggle="submenu-links"
-                        >
-                            <span>
-                                LINKS
-                            </span>
-                            
-                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
-                            
-                        </div>
-                        
+          .navbar-item
+            float left
+            // padding 5px
+            position relative
+            font-size 1rem
+            font-weight 500
+            cursor pointer
+            color var(--default-text-color)
 
-                        
-                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/about">ABOUT</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/essays">ESSAY</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/masonry">GALLERY</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/links">BOOKMARK</a>
-                                    </div>
-                                
-                            </div>
-                        
-                    </li>
-            
+            a
+              display block
+              padding 5px
 
-            
-            
-        </ul>
+            a .fa-chevron-down
+              transform rotate(0deg)
+              transition transform 0.3s ease
 
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">75</div>
-        <div class="label text-third-text-color text-sm">Tags</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
-        <div class="label text-third-text-color text-sm">Categories</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">47</div>
-        <div class="label text-third-text-color text-sm">Posts</div>
-    </a>
-</div>
-    </div>
+            a, .active
+              &::after
+                content ''
+                position absolute
+                bottom -5px
+                left 50%
+                width 100%
+                height 2px
+                transform translate3d(-50%, -5px, 0)
+                border-radius $redefine-border-radius-large
+                background var(--primary-color)
+                opacity 0
+                transition-t('transform, bottom, opacity', '0.2, 0.2, 0.2', '0.2, 0.2, 0.2', 'ease, ease, ease')
 
-    <div class="window-mask"></div>
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
 
-</header>
+            &:hover a .fa-chevron-down
+              transform rotate(180deg)
 
+            &:hover .has-dropdown
+              &::after
+                display none !important
+
+            &:hover a, .active
+              &::after
+                transform translate3d(-50%, 0, 0)
+                opacity 1
+                transition-t('transform, bottom, opacity', '0, 0, 0', '0.2, 0.2, 0.2', 'ease, ease, ease')
+
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
+
+            &.search
+              font-size $desktop-search-icon-font-size
+              margin-left 26px
+
+              i
+                color var(--default-text-color)
+
+            .sub-menu
+              position absolute
+              right auto
+              left 50%
+              -webkit-transform translate(-50%, 0)
+              -o-transform translate(-50%, 0)
+              transform translate(-50%, 0)
+              margin-top 0px
+              width auto
+              text-align center
+              list-style none
+              padding 0 10px
+              border-radius $redefine-border-radius-large
+              // visibility hidden
+              max-height 0px
+              overflow hidden
+              transition-t('all', '0', '0.2', 'linear')
+
+              li a
+                white-space nowrap
+                color var(--default-text-color)
+                font-size 1rem
+                padding 3px 15px
+                display block
+                text-align center
+                border-radius 8px
+                transition-t('all', '0', '0.2', 'linear')
+
+                &:hover
+                  color var(--primary-color)
+                  background-color var(--third-background-color)
+
+        .navbar-list .navbar-item:hover .sub-menu
+          // visibility visible
+          max-height 500px
+          transition-t('all', '0', '0.2', 'ease')
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            5px
+          )
+
+      .mobile
+        display flex
+        justify-content space-between
+        align-items center
+
+        .icon-item
+          display none
+          position relative
+          cursor pointer
+          font-size 18px
+          margin-left 12px
+          width 20px
+          height 20px
+          color var(--default-text-color)
+
+          i
+            color var(--default-text-color)
+
+          &:first-child
+            margin-left 0
+
+          +redefine-tablet()
+            display flex
+            justify-content center
+            align-items center
+
+        .navbar-bar
+          .navbar-bar-middle
+            width 18px
+            height $navbar-bar-line-height
+            position relative
+            background var(--default-text-color)
+
+            .navbar-drawer-show &
+              background transparent
+
+            &::before, &::after
+              content ''
+              position absolute
+              left 0
+              width 100%
+              height $navbar-bar-line-height
+              background var(--default-text-color)
+              transition-t('transform', '0', '0.38', 'ease')
+
+            &::before
+              top -6px
+
+              .navbar-drawer-show &
+                transform translateY(6px) rotate(45deg)
+
+            &::after
+              bottom -6px
+
+              .navbar-drawer-show &
+                transform translateY(-6px) rotate(-45deg)
+
+  .navbar-drawer
+    padding $navbar-height 0 20px 0
+    transform translateX(100%)
+    transform-origin top
+    z-index $z-index-2
+    height 100vh
+    overflow-y auto
+    transition-t('transform', '0', '0.38', 'ease')
+
+    .navbar-drawer-show &
+      transform translateX(0)
+
+  .window-mask
+    position absolute
+    top 0
+    width 100%
+    height 100vh
+    background rgba(0, 0, 0, 0.4)
+    z-index $z-index-1
+    visibility hidden
+    opacity 0
+    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
+
+    .navbar-drawer-show &
+      visibility visible
+      opacity 1
+
+.navbar-drawer-show
+  overflow hidden
+
+[data-target] {
+  display: block; /* or flex, depending on your layout */
+  overflow: hidden;
+}
+
+[data-target] .submenu-item {
+  opacity: 0;
+}
+
+.icon-rotated {
+  transform: rotate(90deg);
+}
 
         </div>
 
@@ -565,922 +606,263 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
+                    @import '../common/variables'
 
-        <div class="article-title relative w-full">
-            
-                
-                
-                <img src="https://circuitdigest.com/sites/default/files/projectimage_mic/RS-485-MODBUS-Serial-Communication-using-Arduino-UNO-as-Slave.jpg" alt="modbus rtu ascll tcp" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
-                
-                <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">modbus rtu ascll tcp</h1>
-                </div>
-            
-            </div>
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/redefine-avatar.svg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2021-10-10</span>
-        <span class="mobile">2021-10-10</span>
-        <span class="hover-info">Created</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-15 21:27:24</span>
-            <span class="mobile">2024-07-15 21:27:24</span>
-            <span class="hover-info">Updated</span>
-        </span>
-    
+.post-page-container
+  gap 0px
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/IOT/">IOT</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/modbus/">modbus</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/iot/">iot</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/rtu/">rtu</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/arduino/">arduino</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>52k Words</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3:10 Mins</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        
+  +redefine-mobile()
+    overflow-x hidden
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/projectimage_mic/RS-485-MODBUS-Serial-Communication-using-Arduino-UNO-as-Slave.jpg"
-                      alt="RS-485 MODBUS Serial Communication using Arduino UNO as Slave"
-                ></p>
-<p>RS-485 MODBUS Serial Communication using Arduino UNO as Slave</p>
-<p><strong>Modbus is a Serial Communication protocol</strong> which was discovered by Modicon in 1979 and it is used for transmitting data over serial lines between the industrial electronic devices. RS-485 Modbus uses <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/rs485" >RS-485 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for transmission lines. It should be noted that <strong>Modbus is a software protocol</strong> and <strong>not a hardware protocol</strong>. It is divided into two parts such as Modbus Master and Modbus Slave. In RS-485 Modbus network there is one Master and 127 Slaves each with unique address from 1 to 127. In this <strong>MAX485 Arduino</strong> project, we will use Arduino Uno as Slave for serial communication.</p>
-<p>Modbus are mostly used in <strong>PLCs</strong> (Programmable Logic Controllers). And apart from this, the Modbus is also used in Healthcare, Transportation, <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/home-automation-projects" >Home Automation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> etc. Modbus has 255 function codes and there are mainly three popular versions of Modbus:</p>
-<ul>
-<li>MODBUS RTU</li>
-<li>MODBUS ASCII</li>
-<li>MODBUS&#x2F;TCP</li>
-</ul>
-<p><strong>What is the difference between Modbus ASCII and Modbus RTU?</strong></p>
-<p><strong>Modbus RTU and Modbus ASCII</strong> talks the same protocol. The only difference is that the bytes being transmitted over the wire are presented as binary with RTU and as readable ASCII with Modbus RTU. <strong>Modbus RTU will be used in this tutorial</strong>.</p>
-<p>This tutorial is about using <strong>RS-485 Modbus communication with Arduino UNO as Slave.</strong> Here we install <strong>Simply Modbus Master Software</strong> in PC and control two LEDs and Servo Motor by using RS-485 as transmission line. These LEDs and servo motor are connected with Slave Arduino and controlled by sending values using Master Modbus Software. Since this tutorial uses RS-485, it is recommended to first go through <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/microcontroller-projects/rs485-serial-communication-between-arduino-uno-and-arduino-nano" >RS485 Serial Communication between Arduino Uno and Arduino Nano <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>. RS485 can also be used with other controllers for serial communication:</p>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/microcontroller-projects/rs485-serial-communication-between-arduino-and-raspberry-pi" >RS-485 Serial Communication between Raspberry Pi &amp; Arduino UNO <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/node/3490" >Serial Communication Between STM32F103C8 and Arduino UNO using RS-485 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-<p>Let’s begin by exploring some background about the RS-485 and Modbus. Also learn more about various <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tutorial/serial-communication-protocols" >Serial Communication protocols <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> here.</p>
-<h3 id="RS-485-Serial-Communication"><a href="#RS-485-Serial-Communication" class="headerlink" title="RS-485 Serial Communication"></a><strong>RS-485 Serial Communication</strong></h3><p><strong>RS-485 is an asynchronous serial communication protocol</strong> which doesn’t not require clock. It uses a technique called <strong>differential signal</strong> to transfer binary data from one device to another.</p>
-<p><strong>So what is this differential signal transfer method??</strong></p>
-<p>Differential signal method works by creating a differential voltage by using a positive and negative 5V. It provides a <strong>Half-Duplex</strong> communication when using <strong>two wires</strong> and <strong>Full-Duplex</strong> requires <strong>4 fours</strong> <strong>wires</strong>.</p>
-<p><strong>By using this method:</strong></p>
-<ul>
-<li>RS-485 supports higher data transfer rate of 30Mbps maximum.</li>
-<li>It also provides maximum data transfer distance compared to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/article/rs232-serial-communication-protocol-basics-specifications" >RS-232 protocol <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>. It transfers data up to 1200-meter maximum.</li>
-<li>The main advantage of RS-485 over RS-232 is the multiple slave with single Master while RS-232 supports only single slave.</li>
-<li>Can have a maximum of 32 devices connected to RS-485 protocol.</li>
-<li>Another advantage of the RS-485 is immune to the noise as they use <strong>differential signal method</strong> to transfer.</li>
-<li>RS-485 is faster compared to I2C protocol.</li>
-</ul>
-<h3 id="Connecting-RS-485-with-Arduino"><a href="#Connecting-RS-485-with-Arduino" class="headerlink" title="Connecting RS-485 with Arduino"></a><strong>Connecting RS-485 with Arduino</strong></h3><p>RS-485 Module can be connected to any microcontroller having serial port. For using RS-485 module with microcontrollers, a module called <strong>5V MAX485 TTL to RS485 which is based on Maxim MAX485 IC</strong> is needed as it allows serial communication over long distance of 1200 meters. It is bidirectional and half duplex and has data transfer rate of  2.5 Mbps. This module requires a voltage of 5V.</p>
-<p><strong>Pin-Out of RS-485:</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Pinout-of-RS-485.jpg"
-                      alt="Pinout of RS-485"
-                ></p>
-<table>
-<thead>
-<tr>
-<th><strong>Pin Name</strong></th>
-<th><strong>Pin Description</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>VCC</td>
-<td>5V</td>
-</tr>
-<tr>
-<td>A</td>
-<td>Non-inverting Receiver InputNon-Inverting Driver Output</td>
-</tr>
-<tr>
-<td>B</td>
-<td>Inverting Receiver InputInverting Driver Output</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GND (0V)</td>
-</tr>
-<tr>
-<td>R0</td>
-<td>Receiver Out (RX pin)</td>
-</tr>
-<tr>
-<td>RE</td>
-<td>Receiver Output (LOW-Enable)</td>
-</tr>
-<tr>
-<td>DE</td>
-<td>Driver Output (HIGH-Enable)</td>
-</tr>
-<tr>
-<td>DI</td>
-<td>Driver Input (TX pin)</td>
-</tr>
-</tbody></table>
-<h3 id="USB-to-RS-485-Converter-Module"><a href="#USB-to-RS-485-Converter-Module" class="headerlink" title="USB to RS-485 Converter Module"></a><strong>USB to RS-485 Converter Module</strong></h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/USB-to-RS-485-Converter-Module.png"
-                      alt="USB to RS-485 Converter Module"
-                ></p>
-<p>This is an USB to RS485 Converter Adapter module which supports WIN7, XP, Vista, Linux, Mac OS and provides an easy to use RS485 interface by means of using COM port in the computer**.** This module is plug-and-play device**. There are no command structures, whatever is sent to the Virtual COM Port is automatically converted to RS485 and vice versa. The module is completely self-powered from the USB bus.** <em>So, no need of external power supply for operation.</em></p>
-<p>It shows up as a Serial&#x2F;COM port and is accessible from applications or hyper-terminal. <em>This converter provides half-duplex RS-485 communication. The Baud rate range is 75 bps to 115200 bps, maximum up to 6 Mbps.</em></p>
-<p>To use this device there are various Modbus Software available in the internet. In this tutorial a software called Simply Modbus Software is used.</p>
-<h3 id="Simply-Modbus-Master-Software"><a href="#Simply-Modbus-Master-Software" class="headerlink" title="Simply Modbus Master Software"></a><strong>Simply Modbus Master Software</strong></h3><p>Modbus Master Software application is needed to <strong>send data to slave Modbus RS-485 Arduino device via COM</strong>.</p>
-<p>Simply Modbus Master is a data communication test software. You can download the <a class="link"   target="_blank" rel="noopener" href="http://www.simplymodbus.ca/RTUmaster.htm" >Simply Modbus Master <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> from the given link and learn more about it by referring <a class="link"   target="_blank" rel="noopener" href="http://www.simplymodbus.ca/MasterManual8.htm" >Software Manual <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<p>Before using the software, it is important to get familiar with the following terminologies.</p>
-<p><strong>Slave ID:</strong></p>
-<p>Each slave in a network is assigned a unique unit address from 1 to 127. When the master requests data, the first byte it sends is the Slave address. This way each slave knows after the first byte whether or not to ignore the message.</p>
-<p><strong>Function code:</strong></p>
-<p>The second byte sent by the Master is the Function code. This number tells the slave which table to access and whether to read from or write to the table.</p>
-<p><strong>Supported Register Function codes:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>Function Code</strong></th>
-<th><strong>Action</strong></th>
-<th><strong>Table Name</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>04 (04 hex)</td>
-<td>Read</td>
-<td>Analog Input Registers</td>
-</tr>
-<tr>
-<td>03 (03 hex)</td>
-<td>Read</td>
-<td>Analog Output Holding Registers</td>
-</tr>
-<tr>
-<td>06 (06 hex)</td>
-<td>Write single</td>
-<td>Analog Output Holding Register</td>
-</tr>
-<tr>
-<td>16 (10 hex)</td>
-<td>Write multiple</td>
-<td>Analog Output Holding Registers</td>
-</tr>
-</tbody></table>
-<p><strong>Supported Coil Function codes:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>Function Code</strong></th>
-<th><strong>Action</strong></th>
-<th><strong>Table Name</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>02 (02 hex)</td>
-<td>Read</td>
-<td>Discrete Input Contacts</td>
-</tr>
-<tr>
-<td>01 (01 hex)</td>
-<td>Read</td>
-<td>Discrete Output Coils</td>
-</tr>
-<tr>
-<td>05 (05 hex)</td>
-<td>Write single</td>
-<td>Discrete Output Coil</td>
-</tr>
-<tr>
-<td>15 (0F hex)</td>
-<td>Write multiple</td>
-<td>Discrete Output Coils</td>
-</tr>
-</tbody></table>
-<p><strong>CRC:</strong></p>
-<p>CRC stands for Cyclic Redundancy check. It is two bytes added to the end of every Modbus message for error detection.</p>
-<h3 id="Tools-Required"><a href="#Tools-Required" class="headerlink" title="Tools Required"></a><strong>Tools Required</strong></h3><p><strong>Hardware</strong></p>
-<ul>
-<li>Arduino UNO</li>
-<li>MAX-485 TTL to RS-485 Converter Module</li>
-<li>USB to RS-485 Converter Module</li>
-<li>LED (2)</li>
-<li>1k-Resistor (2)</li>
-<li>16x2 LCD display</li>
-<li>10k Potentiometer</li>
-<li>Servo Motor SG-90</li>
-</ul>
-<p><strong>Software</strong></p>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="http://www.simplymodbus.ca/download.htm" >Simply Modbus Master <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-<h3 id="Circuit-Diagram"><a href="#Circuit-Diagram" class="headerlink" title="Circuit Diagram"></a><strong>Circuit Diagram</strong></h3><p><a target="_blank" rel="noopener" href="https://circuitdigest.com/fullimage?i=circuitdiagram_mic/Circuit-Diagram-for-RS-485-MODBUS-Serial-Communication-using-Arduino-UNO-as-Slave.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Circuit-Diagram-for-RS-485-MODBUS-Serial-Communication-using-Arduino-UNO-as-Slave.png"
-                      alt="Circuit Diagram for RS-485 MODBUS Serial Communication using Arduino UNO as Slave"
-                ></a></p>
-<p><strong>Circuit Connection between MAX-485 TTL to RS-485 converter module and Arduino UNO:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>Arduino UNO</strong></th>
-<th><strong>MAX-485 TTL to RS-485 Converter Module</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0(RX)</td>
-<td>RO</td>
-</tr>
-<tr>
-<td>1(TX)</td>
-<td>DI</td>
-</tr>
-<tr>
-<td>4</td>
-<td>DE &amp; RE</td>
-</tr>
-<tr>
-<td>+5V</td>
-<td>VCC</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>GND</td>
-</tr>
-</tbody></table>
-<p><strong>Circuit Connection between MAX-485 TTL to RS-485 Module and USB to RS-485 converter:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>MAX-485 TTL to RS-485****Converter Module</strong></th>
-<th><strong>USB to RS-485 Module****Connected with PC</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A</td>
-<td>A</td>
-</tr>
-<tr>
-<td>B</td>
-<td>B</td>
-</tr>
-</tbody></table>
-<p><strong>Circuit Connections between Arduino UNO and 16x2 LCD display:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>16x2 LCD</strong></th>
-<th><strong>Arduino UNO</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>VSS</td>
-<td>GND</td>
-</tr>
-<tr>
-<td>VDD</td>
-<td>+5V</td>
-</tr>
-<tr>
-<td>V0</td>
-<td>To control pin of potentiometer for contrast&#x2F;brightness control of 16x2 LCD</td>
-</tr>
-<tr>
-<td>RS</td>
-<td>8</td>
-</tr>
-<tr>
-<td>RW</td>
-<td>GND</td>
-</tr>
-<tr>
-<td>E</td>
-<td>9</td>
-</tr>
-<tr>
-<td>D4</td>
-<td>10</td>
-</tr>
-<tr>
-<td>D5</td>
-<td>11</td>
-</tr>
-<tr>
-<td>D6</td>
-<td>12</td>
-</tr>
-<tr>
-<td>D7</td>
-<td>13</td>
-</tr>
-<tr>
-<td>A</td>
-<td>+5V</td>
-</tr>
-<tr>
-<td>K</td>
-<td>GND</td>
-</tr>
-</tbody></table>
-<p><strong>Circuit Connection between 2 LEDs, Servo Motor and Arduino UNO:</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>Arduino UNO</strong></th>
-<th><strong>LED1</strong></th>
-<th><strong>LED2</strong></th>
-<th><strong>Servo Motor</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>Anode through 1k resistor</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>5</td>
-<td>-</td>
-<td>Anode through 1k resistor</td>
-<td>-</td>
-</tr>
-<tr>
-<td>6</td>
-<td>-</td>
-<td>-</td>
-<td>PWM pin (Orange)</td>
-</tr>
-<tr>
-<td>+5V</td>
-<td>-</td>
-<td>-</td>
-<td>+5V (RED)</td>
-</tr>
-<tr>
-<td>GND</td>
-<td>Cathode GND</td>
-<td>Cathode GND</td>
-<td>GND (Brown)</td>
-</tr>
-</tbody></table>
-<h3 id="Programming-Arduino-UNO-for-RS-485-MODBUS-Slave"><a href="#Programming-Arduino-UNO-for-RS-485-MODBUS-Slave" class="headerlink" title="Programming Arduino UNO for RS-485 MODBUS Slave"></a><strong>Programming Arduino UNO for RS-485 MODBUS Slave</strong></h3><p>The Arduino UNO is configured as <strong>Modbus Slave</strong>. Also, <strong>Arduino UNO is attached with two LEDs and one Servo Motor</strong>. So the slave Arduino is controlled from the Master Modbus Software. The communication between the Arduino UNO and the Modbus Master Software is accomplished by using the RS-485 module. For connecting it with PC, the USB to RS-485 converter module is used. And the Arduino UNO with <strong>MAX-485 TTL to RS-485</strong> converter module, the whole setup will look file follows:</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/projectimage_mic/RS-485-MODBUS-Serial-Communication-using-Arduino-UNO-as-Slave.jpg"
-                      alt="RS-485 MODBUS Serial Communication using Arduino UNO as Slave"
-                ></p>
-<p>For using Modbus in Arduino UNO, a library <strong>&lt;ModbusRtu.h&gt;</strong> is used. This library is used for communicating with RS-485 Modbus Master or Slave via RTU protocol. <a class="link"   target="_blank" rel="noopener" href="https://github.com/smarmengol/Modbus-Master-Slave-for-Arduino/blob/master/ModbusRtu.h" >Download the Modbus RTU  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> and add the library in the sketch by following <strong>Sketch-&gt;include library-&gt;Add .zip Library</strong>. Programming has some major steps which will be explained below.</p>
-<p>Initially, include the required library. ModbusRTU library is for using RS-485 Modbus communication, and the liquid crystal library is for using LCD with Arduino UNO, and the servo library is for using Servo motor with Arduino UNO.</p>
-<pre><code>#include&lt;ModbusRtu.h&gt;      
-#include&lt;LiquidCrystal.h&gt;  
-#include &lt;Servo.h&gt;         
-</code></pre>
-<p>Now the LED anode pins that are connected with Arduino pins 2 and 5 are defined as LED1 and LED2.</p>
-<pre><code>#define led1 2             
-#define led2 5             
-</code></pre>
-<p>Next the object for accessing Liquid Crystal class is declared with the LCD pins (RS, E, D4, D5, D6, D7) that are connected with Arduino UNO.</p>
-<pre><code>LiquidCrystal lcd(8,9,10,11,12,13);  
-</code></pre>
-<p>When LCD is done, Initialize servo object for class Servo. Also Initialize bus object for class Modbus.</p>
-<pre><code>Servo servo;                      
-Modbus bus;                       
-</code></pre>
-<p>Next for storing values for Modbus communication an array is declared with the three values initialized with zero.</p>
-<pre><code>uint16_t modbus_array[] = &#123;0,0,0&#125;;   
-</code></pre>
-<p>In *<strong>setup*</strong> function, firstly the LCD is set in 16x2 mode and a welcome message is displayed and cleared.</p>
-<pre><code>  lcd.begin(16,2);                //Lcd set in 16x2 mode
-  lcd.print(&quot;RS-485 Modbus&quot;);     //Welcome Message
-  lcd.setCursor(0,1);
-  lcd.print(&quot;Arduino Slave&quot;);
-  delay(5000);
-  lcd.clear();
-</code></pre>
-<p>After this, LED1 and LED2 pins are set as output pins.</p>
-<pre><code>  pinMode(led1,OUTPUT);          
-  pinMode(led2,OUTPUT);          
-</code></pre>
-<p>The servo pulse pin connected to PWM pin 6 of Arduino is attached.</p>
-<pre><code>  servo.attach(6);              
-</code></pre>
-<p>Now for the Modbus communication the following parameters are set. First ‘1’ represents Slave ID, second ‘1’ represents that it uses RS-485 to transfer data and ‘4’ represents RS-485 DE&amp;RE pin connected to Arduino UNO.</p>
-<pre><code>  bus = Modbus(1,1,4);           
-</code></pre>
-<p>The Modbus slave is set at 9600 baudrate.</p>
-<p>The loop starts with the definition of bus poll and <em>bus.poll()</em> is used to write and receive value from the master Modbus.</p>
-<pre><code>bus.poll(modbus_array,sizeof(modbus_array)/sizeof(modbus_array[0]));     
-</code></pre>
-<p>This method is used to check if there is any data available at the serial port.</p>
-<p>If there is any data available at serial port the Modbus RTU library will check the message (check the device address, data length, and CRC) and perform the required action.</p>
-<p><strong>For example</strong> to write or read any value from master, the ModbusRTU must receive an unsigned 16-bit integer array and its length from the Master Modbus. This array carries the data that is written from the master.</p>
-<p>In this tutorial there are <strong>three arrays for LED1, LED2 and Servo motor angle.</strong></p>
-<p>First to turn ON or OFF the LED1 <strong>modbus_array[0]</strong> is used.</p>
-<pre><code>  if (modbus_array[0] == 0)    //Depends upon value in modubus_array[0] written by Master Modbus
-  &#123;
-    digitalWrite(led1,LOW);    //LED OFF if 0
-    lcd.setCursor(0,0);
-    lcd.print(&quot;L1:OFF&quot;);
-  &#125;
-  else
-  &#123;
-     digitalWrite(led1,HIGH);  //LED ON if value other than 0
-     lcd.setCursor(0,0);
-     lcd.print(&quot;L1:ON&quot;);       
-  &#125;
-</code></pre>
-<p>Next to turn ON or OFF the LED2 <strong>modbus_array[1]</strong> is used.</p>
-<pre><code> if (modbus_array[1] == 0)    //Depends upon value in modbus_array[1] written by Master Modbus
-  &#123;
-    digitalWrite(led2,LOW);   //LED OFF if 0
-    lcd.setCursor(8,0);
-    lcd.print(&quot;L2:OFF&quot;);
-  &#125;
-  else
-  &#123;
-     digitalWrite(led2,HIGH);  //LED ON if value other than 0
-     lcd.setCursor(9,0);
-     lcd.print(&quot;L2:ON&quot;);
-&#125;
-</code></pre>
-<p>Next to set the angle of the Servo motor the <strong>modbus_array[2]</strong> used and value is printed in the 16x2 LCD display.</p>
-<pre><code>  int pwm = modbus_array[2];
-  servo.write(pwm);         
-  lcd.setCursor(0,1);       
-  lcd.print(&quot;Servo angle:&quot;);
-  lcd.print(pwm);              
-  delay(200);
-  lcd.clear();
-</code></pre>
-<p>This finishes programming Arduino UNO for working it as MODBUS Slave. The next step will be testing it as Modbus Slave.</p>
-<h3 id="Testing-the-Arduino-UNO-as-Rs485-Modbus-Slave"><a href="#Testing-the-Arduino-UNO-as-Rs485-Modbus-Slave" class="headerlink" title="Testing the Arduino UNO as Rs485 Modbus Slave"></a><strong>Testing the Arduino UNO as Rs485 Modbus Slave</strong></h3><p>After the circuit connections are completed and the code is uploaded to the Arduino UNO, its time to connect the <strong>USB to RS-485 module</strong> with the PC where the <strong>Simple Modbus Master</strong> software is installed.</p>
-<p>Open the device manager and check the COM port according to your PC where the USB to RS-485 Module is connected and after that open the Simply Modbus Master 8.1.1 software.</p>
-<p>\1. After <em>Simply Modbus Software</em> is opened now open the Write option.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Testing-the-Arduino-UNO-as-RS-485-Modbus-Slave.jpg"
-                      alt="Testing the Arduino UNO as RS485 Modbus Slave"
-                ></p>
-<p>\2. After the <em>Simply Modbus Master</em> Write is opened. Set the parameters</p>
-<p>Mode in RTU, COM port according to your PC (mine was COM6), Baud at 9600, Data Bits 8, Stop bit 1, Parity None and Slave ID as 1.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Setting-Paramters-for-Arduino-UNO-as-RS-485-Modbus-Slave.jpg"
-                      alt="Setting Parameters for Arduino UNO as RS-485 Modbus Slave"
-                ></p>
-<p>\3. After that set first register as 40001 and values to write is 3 and the function code as 16 (Write Holding Register).</p>
-<p>After that write 1 to 40001 (For LED1 on) and 1 to 40002 (For LED2 on) and 90 to 40003 (For Servo Motor Angle) and then click SEND button.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Controlling-Servo-using-Arduino-UNO-as-RS-485-Modbus-Slave.jpg"
-                      alt="Controlling Servo using Arduino UNO as RS-485 Modbus Slave"
-                ></p>
-<p><strong>You can see both LED status is ON and servo angle at 90 degree.</strong></p>
-<p>\4. After that enter 40001 as 1 and 40002 as 0 and 40003 as 180 and click SEND button.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Controlling-Servo-angle-at-180-using-Arduino-UNO-as-RS-485-Modbus-Slave.jpg"
-                      alt="Controlling Servo at angle 180 using Arduino UNO as RS-485 Modbus Slave"
-                ></p>
-<p><strong>Now Servo angle at 180 and the led1 is ON and led2 is OFF.</strong></p>
-<p>\5. Now writing 135 to 40003 and 40001 as 0 and 40002 as 1.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Controlling-Servo-angle-at-135-using-Arduino-UNO-as-RS-485-Modbus-Slave.jpg"
-                      alt="Controlling Servo at angle 135 using Arduino UNO as RS-485 Modbus Slave"
-                ></p>
-<p><strong>Now the servo position is at 135 and led1 is OFF and led2 is ON.</strong></p>
-<p>This is how <strong>RS-485 Modbus can be used in serial communication with Arduino UNO as Slave.</strong> In next tutorial we will use the Arduino Uno as master in MODBUS commination.</p>
-<p><strong>Find the complete code and a Demonstration video below.</strong></p>
-<p>Code</p>
-<pre><code>//RS-485 Modbus Slave (Arduino UNO)
-//Circuit Digest
-#include&lt;ModbusRtu.h&gt;       //Library for using Modbus in Arduino
-#include&lt;LiquidCrystal.h&gt;   //Library for using 16x2 LCD display
-#include &lt;Servo.h&gt;          //Library for using Servo Motor
-#define led1 2              //Define as 2 led1 
-#define led2 5              //Define as 5 led2
-LiquidCrystal lcd(8,9,10,11,12,13);   //initizlize lcd object with pins (RS,E,D4,D5,D6,D7) for class liquid crystal
-Servo servo;                          //Initilize servo object for class Servo
-Modbus bus;                          //Define Object bus for class modbus 
-uint16_t modbus_array[] = &#123;0,0,0&#125;;    //Array initilized with three 0 values
-                      
-void setup()
-&#123;
-  lcd.begin(16,2);                //Lcd set in 16x2 mode
-  lcd.print(&quot;RS-485 Modbus&quot;);     //Welcome Message
-  lcd.setCursor(0,1); 
-  lcd.print(&quot;Arduino Slave&quot;);
-  delay(5000);
-  lcd.clear();
-  
-  pinMode(led1,OUTPUT);           //Led1 set as OUTPUT
-  pinMode(led2,OUTPUT);           //Led2 set as OUTPUT
-  servo.attach(6);                //Servo PWM pin 6
-  bus = Modbus(1,1,4);            //Modbus slave ID as 1 and 1 connected via RS-485 and 4 connected to DE &amp; RE pin of RS-485 Module 
-  bus.begin(9600);                //Modbus slave baudrate at 9600
-&#125;
-void loop()
-&#123;
-   bus.poll(modbus_array,sizeof(modbus_array)/sizeof(modbus_array[0]));       //Used to receive or write value from Master 
-  
-  if (modbus_array[0] == 0)    //Depends upon value in modubus_array[0] written by Master Modbus
-  &#123;
-    digitalWrite(led1,LOW);    //LED OFF if 0
-    lcd.setCursor(0,0);
-    lcd.print(&quot;L1:OFF&quot;);
-  &#125;
-  else
-  &#123;
-     digitalWrite(led1,HIGH);  //LED ON if value other than 0
-     lcd.setCursor(0,0);
-     lcd.print(&quot;L1:ON&quot;);        
-  &#125; 
- if (modbus_array[1] == 0)    //Depends upon value in modbus_array[1] written by Master Modbus
-  &#123;
-    digitalWrite(led2,LOW);   //LED OFF if 0
-    lcd.setCursor(8,0);
-    lcd.print(&quot;L2:OFF&quot;);
-  &#125;
-  else
-  &#123;
-     digitalWrite(led2,HIGH);  //LED ON if value other than 0
-     lcd.setCursor(9,0);
-     lcd.print(&quot;L2:ON&quot;);
-  &#125;
-  
-  int pwm = modbus_array[2]; //Depends upon value in modbus_array[1] written by Master Modbus
- 
-  servo.write(pwm);          //Write Received value (0 to 180) from Modbus Master
-  lcd.setCursor(0,1);        
-  lcd.print(&quot;Servo angle:&quot;);
-  lcd.print(pwm);              //Prints Angle in 16x2 LCD display.
-  delay(200); 
-  lcd.clear();
-&#125;
-</code></pre>
-<p>Video</p>
-<p>Tags</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/arduino-uno" >Arduino Uno <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/arduino" >Arduino <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/modbus" >MODBUS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/rs485" >RS485 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/serial-communication" >Serial Communication <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/tags/servo-motor" >Servo Motor <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/ameeth" >Ameeth <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Mon, 11&#x2F;18&#x2F;2019 - 16:19</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/30804#comment-30804" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="modbus-simply-modbus-software"><a href="#modbus-simply-modbus-software" class="headerlink" title="modbus simply modbus software"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/30804#comment-30804" >modbus simply modbus software <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>hi , i tested both program of arduino RS485 modbus as master and slave communication , great thanks for this project and tutorial ,</p>
-<p>but i want to send 16 keys data to simply modbus software as arduino in slave mode but also need recive data</p>
-<p>from modbus like LED on OFF cammand and error massage , here in bothe example Arduino as master and arduino as Slave there are differant library and command are used , in hardware in RS 485 module DE and RE pin is short and in master mode not , so i want ask how i can use this project as slave mode but as transreceiver mode , want send digital keys data and receive cammand etc , please suggest.</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/benlemlih7gmailcom" >Abdellah Benlemlih <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Wed, 12&#x2F;15&#x2F;2021 - 19:16</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/30804#comment-30804" >modbus simply modbus software  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/ameeth" >Ameeth <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34764#comment-34764" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Hi-Ameeth-Did-you-find-how"><a href="#Hi-Ameeth-Did-you-find-how" class="headerlink" title="Hi Ameeth, Did you find how"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34764#comment-34764" >Hi Ameeth, Did you find how <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hi Ameeth, Did you find how to read and write in the same time ? Thank you</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/christopher-8" >Christopher <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Fri, 01&#x2F;10&#x2F;2020 - 17:36</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31091#comment-31091" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Slave-and-Master-in-one-Network"><a href="#Slave-and-Master-in-one-Network" class="headerlink" title="Slave and Master in one Network"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31091#comment-31091" >Slave and Master in one Network <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hello Pramoth,</p>
-<p>thanks for your posts about the master and slave. I had fun testing your systems! I and some others surely want to push it one step further. Is it possible to include one master and multiple slave devices in one RS485 network?</p>
-<p>Previosly I worked with a pre setup professional Modbus system that containd one communication module, one output module and one input module. The communication module sent requests to the input and output modules.</p>
-<p>Can I configure the DIY system specified as follows:</p>
-<ul>
-<li>Communication Arduino Nano as the master (ID0) transmitts requests and responds<ul>
-<li>The Master sends a request to a slave and waits for a reply</li>
-<li>After the reply the the response is processed and sent to a application interface</li>
-<li>No error report is needed</li>
-</ul>
-</li>
-<li>Output Arduino Nano as Slave1 (ID1) responds to “Read Input Register” (FC04) to the Master (ID0)<ul>
-<li>The Slave checks the request and processes the required action</li>
-<li>No error report is needed</li>
-</ul>
-</li>
-<li>Input Arduino Nano as Slave2 (ID2) responds to “Write Single Register” (FC06) to the Master (ID0)<ul>
-<li>The Slave checks the request and processes the required action</li>
-<li>No error report is needed</li>
-</ul>
-</li>
-</ul>
-<p>I faced some problems when implementing your master and slave approaches into one system</p>
-<ol>
-<li>How to use the libraries in wholistic way, or in the best case, only to use one library?</li>
-<li>How to properly wire the physical layer: Which DI, DE, RE and RO go to which Arduino?</li>
-<li>How to configure the DE and RE pins? Which are enabled?</li>
-<li>How to deal with preTransmission() and postTransmission() (ModbusMaster.h)?</li>
-<li>How to access the different IDs and registers from one Master?<ol>
-<li>Your <em>Modbus Master</em> explictly uses writeSingleRegister() to addresses <strong>specifed via the Arduino code</strong></li>
-<li>Your <em>Modbus Slave</em> writes Outputs to <strong>addresses arbitrarily specified via the ModbuSimply Modbus Master tool</strong>. The addresses have not been defined on the slave device in the Arduino code. The polls the uint16_t array modbus_array with poll(). How can we better understand the poll() function? Or even better how can we define addresses that can be recognized by the application interface?</li>
-</ol>
-</li>
-<li>Display the stream over one Port (trhough the communcation module) and use a application interface (e.g. <em>Simply Modbus Master</em>, <em>ModbusServerPro</em>, <em>Pymodbus</em>, or whatever)</li>
-</ol>
-<p>Did you try to build a system like this on your own or has anybody helpful suggestions? I like to share my thoughts with you.</p>
-<p>I got a “half working” system that read and wrote data. My <em>ModbusServerPro</em> software indicated read and write access. The reads through the potentiometer were well displayed but the LED randomly went on and off. I guess the data was stored in a not well defined memory location through TX and RX due to code misinterpretation.</p>
-<p>Thanks a lot!</p>
-<p>Chris</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/buddika-nilakshana" >Buddika Nilakshana <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 04&#x2F;28&#x2F;2020 - 15:28</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31091#comment-31091" >Slave and Master in one Network <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/christopher-8" >Christopher <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31634#comment-31634" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Modbus-Communication"><a href="#Modbus-Communication" class="headerlink" title="Modbus Communication"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31634#comment-31634" >Modbus Communication <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p><strong><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/christopher-8" >Christopher Can I have you email ID or conatct number. <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong></p>
-<p><strong>I try to do this project but failed …need some help from you</strong></p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/lee-jae-yun" >Lee Jae Yun <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Mon, 02&#x2F;03&#x2F;2020 - 06:47</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31229#comment-31229" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="if-i-want-to-connect-more-then-2-devices-by-RS485-to-Modbus"><a href="#if-i-want-to-connect-more-then-2-devices-by-RS485-to-Modbus" class="headerlink" title="if i want to connect more then 2 devices by RS485 to Modbus"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31229#comment-31229" >if i want to connect more then 2 devices by RS485 to Modbus <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>i have to prepare more then 2 same arduino UNO it presented in this tutorial right?</p>
-<p>and i put port number one by one?</p>
-<p>after, send message and done?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/joyce-1" >joyce <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Thu, 03&#x2F;05&#x2F;2020 - 04:05</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31420#comment-31420" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Error-message-form-Modbus-master"><a href="#Error-message-form-Modbus-master" class="headerlink" title="Error message form Modbus master"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31420#comment-31420" >Error message form Modbus master <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>I get Error-1073807339 ocurred at write in SIMM write 8.0vi-&gt;SMM 8.0vi</p>
-<p>possible reasons: VISa 0xBFFF0015 time out expired before operation completed.</p>
-<p>Well what is going on?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/buddika-nilakshana" >Buddika Nilakshana <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 04&#x2F;28&#x2F;2020 - 15:29</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31420#comment-31420" >Error message form Modbus master <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/joyce-1" >joyce <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31635#comment-31635" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="its-due-to-Com-port"><a href="#its-due-to-Com-port" class="headerlink" title="its due to Com port"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/31635#comment-31635" >its due to Com port <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>its due to Com port mismatching…check the right com port and redo</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/emte" >emte <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Wed, 07&#x2F;08&#x2F;2020 - 20:43</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/32129#comment-32129" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Modbus-Slave"><a href="#Modbus-Slave" class="headerlink" title="Modbus Slave"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/32129#comment-32129" >Modbus Slave <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>hallo, i have a project. i want to communicate arduino with plc using modbus rs485. your post about modbus arduino as slave is running well. but i want to send from arduino (as slave) to plc but i dont know that syntax, can you give a example program to send data? thank you</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/gladyne-berlian-alif-zago" >Gladyne Berlia… <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Sat, 10&#x2F;24&#x2F;2020 - 14:29</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/32801#comment-32801" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Why-it’s-must-used-holding"><a href="#Why-it’s-must-used-holding" class="headerlink" title="Why it’s must used holding"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/32801#comment-32801" >Why it’s must used holding <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Why it’s must used holding register ?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/emanuel-1" >Emanuel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Mon, 12&#x2F;07&#x2F;2020 - 19:04</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/33234#comment-33234" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Hello-it-was-a-great"><a href="#Hello-it-was-a-great" class="headerlink" title="Hello, it was a great"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/33234#comment-33234" >Hello, it was a great <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hello, it was a great explanation.</p>
-<p>I have one doubt about how the modbus-array[] was filled.</p>
-<p>Thanks</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/dedearfandy222gmailcom" >Dede Arfandy <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Thu, 04&#x2F;01&#x2F;2021 - 23:55</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/33754#comment-33754" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="That-is-great-project-but-i"><a href="#That-is-great-project-but-i" class="headerlink" title="That is great project, but i"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/33754#comment-33754" >That is great project, but i <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>That is great project, but i can’t found the library. Can you give me the library, please?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/amin-0" >amin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Mon, 10&#x2F;11&#x2F;2021 - 23:31</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/33754#comment-33754" >That is great project, but i <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/dedearfandy222gmailcom" >Dede Arfandy <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34509#comment-34509" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Hi"><a href="#Hi" class="headerlink" title="Hi"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34509#comment-34509" >Hi <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hi</p>
-<p>can u find library?</p>
-<p>if u find it, please send me.</p>
-<p>thanks</p>
-<p><a class="link"   href="mailto:&#x61;&#115;&#x61;&#x64;&#105;&#46;&#x6d;&#111;&#x68;&#x61;&#109;&#x6d;&#x61;&#100;&#x61;&#x6d;&#105;&#110;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;" >&#x61;&#115;&#x61;&#x64;&#105;&#46;&#x6d;&#111;&#x68;&#x61;&#109;&#x6d;&#x61;&#100;&#x61;&#x6d;&#105;&#110;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/%E6%9E%97%E7%90%AE%E5%81%89" >林琮偉 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Fri, 07&#x2F;02&#x2F;2021 - 14:27</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34167#comment-34167" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="how-to-send-a-broadcast"><a href="#how-to-send-a-broadcast" class="headerlink" title="how to send a broadcast?"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34167#comment-34167" >how to send a broadcast? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>how to send a broadcast?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/hobby3025" >hobby3025 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 08&#x2F;10&#x2F;2021 - 13:06</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34301#comment-34301" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="I-tried-this-project-make"><a href="#I-tried-this-project-make" class="headerlink" title="I tried this project, make"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34301#comment-34301" >I tried this project, make <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>I tried this project, make the same circuit and have the same software, but it doesn’t work, have someone an idea which problem I have?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/ashish-mishra-0" >Ashish Mishra <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 08&#x2F;10&#x2F;2021 - 13:22</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34301#comment-34301" >I tried this project, make <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/hobby3025" >hobby3025 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34302#comment-34302" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Please-explain-in-which"><a href="#Please-explain-in-which" class="headerlink" title="Please explain in which"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34302#comment-34302" >Please explain in which <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Please explain in which section you are facing problem ?</p>
-<p>Did your code run sucessfully ? did you properly interface all the componens ?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/hobby3025" >hobby3025 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 08&#x2F;10&#x2F;2021 - 13:37</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34302#comment-34302" >Please explain in which <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/ashish-mishra-0" >Ashish Mishra <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34304#comment-34304" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="I-have-wired-the-Arduino-Uno"><a href="#I-have-wired-the-Arduino-Uno" class="headerlink" title="I have wired the Arduino Uno"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34304#comment-34304" >I have wired the Arduino Uno <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>I have wired the Arduino Uno like the schematic on the picture, have an MAX485 the De &amp; RE Pin are connected to D4, If i will write data via SimpleMosbusMaster to the Arduino uno via the RS485 board i get an error no response, so the Arduino maybe don’t get data or don’t answer.</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/hobby3025" >hobby3025 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Tue, 08&#x2F;10&#x2F;2021 - 13:44</p>
-<p>In reply to <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34304#comment-34304" >I have wired the Arduino Uno <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/hobby3025" >hobby3025 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34305#comment-34305" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="the-funny-part-is-that-i-use"><a href="#the-funny-part-is-that-i-use" class="headerlink" title="the funny part is, that i use"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34305#comment-34305" >the funny part is, that i use <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>the funny part is, that i use the chip45 bootloader with RS485 and this bootloader works fine, without any problems</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/amin-0" >amin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Mon, 10&#x2F;11&#x2F;2021 - 23:29</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34508#comment-34508" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Hi-1"><a href="#Hi-1" class="headerlink" title="Hi"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34508#comment-34508" >Hi <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hi</p>
-<p>I can’t found the library. Can you give me the library, please?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/amin-1" >amin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Fri, 10&#x2F;15&#x2F;2021 - 19:45</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34519#comment-34519" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Hi-2"><a href="#Hi-2" class="headerlink" title="Hi"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34519#comment-34519" >Hi <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Hi</p>
-<p>this is very helfull i tryed and it works.</p>
-<p>but my problem is i have to make the same projet on software serial<br>can you help me please?</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/reidsimgmailcom" >Reid <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Wed, 02&#x2F;02&#x2F;2022 - 04:38</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34890#comment-34890" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="I-got-it-working-to-send-data"><a href="#I-got-it-working-to-send-data" class="headerlink" title="I got it working to send data"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/34890#comment-34890" >I got it working to send data <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>I got it working to send data to turn on LEDs. Can you teach me how to slave send data to Simply Modbus Master? I have some sensors on the Slave.</p>
-<p>Submitted by <a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/users/edlamahesh143" >Mahesh Edla <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on Wed, 09&#x2F;07&#x2F;2022 - 13:04</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/35627#comment-35627" >Permalink <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Dear-Pramoth-Many-thanks…"><a href="#Dear-Pramoth-Many-thanks…" class="headerlink" title="Dear Pramoth, Many thanks…"></a><a class="link"   target="_blank" rel="noopener" href="https://circuitdigest.com/comment/35627#comment-35627" >Dear Pramoth, Many thanks… <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>Dear Pramoth,</p>
-<p>Many thanks for your explanation and for sharing knowledge with other people. I have a quick question and please see below.</p>
-<p>If I write one line or 2 line outputs, the program is running fine. However, if I write a lengthy program, the Modbus connection is not working.</p>
-<p><strong>For instance, I wrote a program like this;</strong></p>
-<p>if (modbus[0] &#x3D;&#x3D;0)</p>
-<p>{ digitalWrite (led1, HIGH);</p>
-<p>digitalWrite (led1, HIGH);</p>
-<p>}</p>
-<p>else</p>
-<p>{</p>
-<p>digitalWrite (led1, HIGH);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>delay(3000);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>delay(1000);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>digitalWrite (led1, HIGH);</p>
-<p>delay(3000);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>digitalWrite (led1, LOW);</p>
-<p>delay(1000);</p>
-<p>}</p>
-<p>When the Modbus array address: 40000 &#x3D; 0, then it is communicating. However, when the Modbus array: 40000&#x3D;1; then it stopped communicating to my PLC.</p>
-<p>Any idea?</p>
-<p>I look forward to seeing your response, please.</p>
-<p>Kind regards,</p>
-<p>Mahesh Edla.</p>
+  &.show-toc
+    gap 30px
 
-        </div>
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>Title:</strong> modbus rtu ascll tcp</li>
-        <li><strong>Author:</strong> Lechance</li>
-        <li><strong>Created at
-                :</strong> 2021-10-10 00:00:00</li>
-        
-            <li>
-                <strong>Updated at
-                    :</strong> 2024-07-15 21:27:24
-            </li>
-        
-        <li>
-            <strong>Link:</strong> https://lechance.github.io/2021/10/10/modbus-rtu-ascll-tcp/
-        </li>
-        <li>
-            <strong>
-                License:
-            </strong>
-            
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-            
-                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
-            
-        </li>
-    </ul>
-</div>
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            </div>
-        
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/modbus/">#modbus</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/iot/">#iot</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/rtu/">#rtu</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/arduino/">#arduino</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-        
+    .article-content-container
+      width calc(100% - 210px) !important
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/07/03/coporate-network-topolgy-demo/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">coporate-network-topolgy-demo</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2020/04/29/modbus-byte-order/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Modbus - Byte Order</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
+    .article-content-container
+      width 100% !important
 
-        
-    </div>
+    &.show-toc
+      .toc-content-container
+        display none
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">modbus rtu ascll tcp</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RS-485-Serial-Communication"><span class="nav-text">RS-485 Serial Communication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connecting-RS-485-with-Arduino"><span class="nav-text">Connecting RS-485 with Arduino</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB-to-RS-485-Converter-Module"><span class="nav-text">USB to RS-485 Converter Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simply-Modbus-Master-Software"><span class="nav-text">Simply Modbus Master Software</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools-Required"><span class="nav-text">Tools Required</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Circuit-Diagram"><span class="nav-text">Circuit Diagram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Programming-Arduino-UNO-for-RS-485-MODBUS-Slave"><span class="nav-text">Programming Arduino UNO for RS-485 MODBUS Slave</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-the-Arduino-UNO-as-Rs485-Modbus-Slave"><span class="nav-text">Testing the Arduino UNO as Rs485 Modbus Slave</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments"><span class="nav-text">Comments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#modbus-simply-modbus-software"><span class="nav-text">modbus simply modbus software </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hi-Ameeth-Did-you-find-how"><span class="nav-text">Hi Ameeth, Did you find how </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Slave-and-Master-in-one-Network"><span class="nav-text">Slave and Master in one Network </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modbus-Communication"><span class="nav-text">Modbus Communication </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-i-want-to-connect-more-then-2-devices-by-RS485-to-Modbus"><span class="nav-text">if i want to connect more then 2 devices by RS485 to Modbus </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-message-form-Modbus-master"><span class="nav-text">Error message form Modbus master </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#its-due-to-Com-port"><span class="nav-text">its due to Com port </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modbus-Slave"><span class="nav-text">Modbus Slave </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-it%E2%80%99s-must-used-holding"><span class="nav-text">Why it’s must used holding </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-it-was-a-great"><span class="nav-text">Hello, it was a great </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#That-is-great-project-but-i"><span class="nav-text">That is great project, but i </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hi"><span class="nav-text">Hi </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-to-send-a-broadcast"><span class="nav-text">how to send a broadcast? </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-tried-this-project-make"><span class="nav-text">I tried this project, make </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Please-explain-in-which"><span class="nav-text">Please explain in which </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-have-wired-the-Arduino-Uno"><span class="nav-text">I have wired the Arduino Uno </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-funny-part-is-that-i-use"><span class="nav-text">the funny part is, that i use </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hi-1"><span class="nav-text">Hi </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hi-2"><span class="nav-text">Hi </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-got-it-working-to-send-data"><span class="nav-text">I got it working to send data </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dear-Pramoth-Many-thanks%E2%80%A6"><span class="nav-text">Dear Pramoth, Many thanks… </span></a></li></ol>
+      .article-content-container
+        width 100% !important
 
-    </div>
-</div>
-        </div>
-    
-</div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      0,
+      30px
+    )
 
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
+      max-width 100vw
 
+    .article-header .avatar img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .article-prev, .article-next
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    //margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
 
                 
 
@@ -1491,58 +873,66 @@ void loop()
         </div>
 
         <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
-        
-        <div class="text-center">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        47 posts in total
-                    </span>
-                    
-                        <span>
-                            32k words in total
-                        </span>
-                    
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">VISITOR COUNT</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">TOTAL PAGE VIEWS</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
-        </div>
-        
-        
-        
-        
-        
-    </div>  
-</footer>
+            @import '../../common/variables'
+
+.footer
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
+    display inline-block
+    vertical-align baseline
+    visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
+    text-align left
+    display block
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    overflow hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
+    display block
+    -webkit-backface-visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
+    position absolute
+
+  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
+    transition transform 999ms
+
+  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
+    transition transform 999ms
+    transform translateY(0)
+
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    line-height 1.1em
+
+  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
+    text-align center
+
         </div>
     </div>
 

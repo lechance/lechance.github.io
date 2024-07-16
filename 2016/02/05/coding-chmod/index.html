@@ -276,272 +276,313 @@
 
 
         <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+            $logo-title-font-size = 1.7rem
+$desktop-search-icon-font-size = 1.5rem
+$navbar-bar-line-height = 2.5px
+$logo-image-box-width = 34px
 
-    <div class="navbar-content ">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Lechance&#39;s Blog
-                
-            </a>
-        </div>
+@import '../../common/variables'
 
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
+.navbar-container
+  font-family 'Chillax-Variable', sans-serif
+  width 100%
+  height 100%
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  background $nav-color-bg
+  -webkit-backdrop-filter blur(10px)
+  backdrop-filter blur(10px)
+  padding-top $scroll-progress-bar-height
+  hover-style(
+    false,
+    0,
+    0
+  )
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    HOME
-                                    
-                                </a>
+  .navbar-content
+    position relative
+    height 100%
+    width 100%
+    max-width $navbar-width-pages
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    z-index $z-index-5
+    transition max-width 0.3s ease
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+    &.has-home-banner
+      max-width $navbar-width-home
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/archives"
-                                        >
-                                    <i class="fa-regular fa-archive fa-fw"></i>
-                                    ARCHIVES
-                                    
-                                </a>
+    .left
+      display flex
+      align-items center
+      //transform-origin bottom
+      //transition-t('transform', '0', '0.15', 'ease')
+      //
+      //.navbar-shrink &
+      //  transform scale(0.9)
+      //  transform-origin bottom
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+      if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
+        .logo-image
+          width $logo-image-box-width
+          height $logo-image-box-width
+          margin-right 12px
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/categories"
-                                        >
-                                    <i class="fa-solid fa-table-list fa-fw"></i>
-                                    CATEGORIES
-                                    
-                                </a>
+          +redefine-tablet()
+            width: $logo-image-box-width * 0.9
+            height: $logo-image-box-width * 0.9
 
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
+          +redefine-mobile()
+            width: $logo-image-box-width * 0.8
+            height: $logo-image-box-width * 0.8
 
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="has-dropdown"
-                                   href="#"
-                                        onClick=&#34;return false;&#34;>
-                                    <i class="fa-regular fa-link fa-fw"></i>
-                                    LINKS
-                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
-                                </a>
+          img
+            border-radius 6px
+            width 100%
 
-                                <!-- Submenu -->
-                                
-                                    <ul class="sub-menu">
-                                        
-                                            <li>
-                                                <a href="/about">
-                                                    ABOUT
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/essays">
-                                                    ESSAY
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/masonry">
-                                                    GALLERY
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/links">
-                                                    BOOKMARK
-                                                </a>
-                                            </li>
-                                        
-                                    </ul>
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+      .logo-title
+        font-size $logo-title-font-size
+        font-weight 520
+        //letter-spacing 1px
+        line-height 1
+        color var(--first-text-color)
+        transform translateY(1px)
 
-    <!-- Mobile sheet -->
-    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
-                
-                    
+        h1
+          margin 0
+          font-size $logo-title-font-size
+          font-weight 520
+          //letter-spacing 1px
+          line-height 1
+          color var(--first-text-color)
+          transform translateY(1px)
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/"
-                        >
-                            <span>
-                                HOME
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+          +redefine-tablet()
+            font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-mobile()
+            font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/archives"
-                        >
-                            <span>
-                                ARCHIVES
-                            </span>
-                            
-                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+        +redefine-tablet()
+          font-size: $logo-title-font-size * 0.9
 
-                        
-                    </li>
-            
-                
-                    
+        +redefine-mobile()
+          font-size: $logo-title-font-size * 0.8
 
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories"
-                        >
-                            <span>
-                                CATEGORIES
-                            </span>
-                            
-                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
+    .right
+      .desktop
+        .navbar-list
+          display flex
+          gap 24px
+          align-items center
 
-                        
-                    </li>
-            
-                
-                    
+          +redefine-tablet()
+            display none
 
-                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
-                        
-                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                             navbar-data-toggle="submenu-links"
-                        >
-                            <span>
-                                LINKS
-                            </span>
-                            
-                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
-                            
-                        </div>
-                        
+          .navbar-item
+            float left
+            // padding 5px
+            position relative
+            font-size 1rem
+            font-weight 500
+            cursor pointer
+            color var(--default-text-color)
 
-                        
-                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/about">ABOUT</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/essays">ESSAY</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/masonry">GALLERY</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/links">BOOKMARK</a>
-                                    </div>
-                                
-                            </div>
-                        
-                    </li>
-            
+            a
+              display block
+              padding 5px
 
-            
-            
-        </ul>
+            a .fa-chevron-down
+              transform rotate(0deg)
+              transition transform 0.3s ease
 
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">75</div>
-        <div class="label text-third-text-color text-sm">Tags</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
-        <div class="label text-third-text-color text-sm">Categories</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">47</div>
-        <div class="label text-third-text-color text-sm">Posts</div>
-    </a>
-</div>
-    </div>
+            a, .active
+              &::after
+                content ''
+                position absolute
+                bottom -5px
+                left 50%
+                width 100%
+                height 2px
+                transform translate3d(-50%, -5px, 0)
+                border-radius $redefine-border-radius-large
+                background var(--primary-color)
+                opacity 0
+                transition-t('transform, bottom, opacity', '0.2, 0.2, 0.2', '0.2, 0.2, 0.2', 'ease, ease, ease')
 
-    <div class="window-mask"></div>
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
 
-</header>
+            &:hover a .fa-chevron-down
+              transform rotate(180deg)
 
+            &:hover .has-dropdown
+              &::after
+                display none !important
+
+            &:hover a, .active
+              &::after
+                transform translate3d(-50%, 0, 0)
+                opacity 1
+                transition-t('transform, bottom, opacity', '0, 0, 0', '0.2, 0.2, 0.2', 'ease, ease, ease')
+
+                .navbar-shrink &
+                  bottom -($navbar-shrink-height / 2 - 17)
+
+            &.search
+              font-size $desktop-search-icon-font-size
+              margin-left 26px
+
+              i
+                color var(--default-text-color)
+
+            .sub-menu
+              position absolute
+              right auto
+              left 50%
+              -webkit-transform translate(-50%, 0)
+              -o-transform translate(-50%, 0)
+              transform translate(-50%, 0)
+              margin-top 0px
+              width auto
+              text-align center
+              list-style none
+              padding 0 10px
+              border-radius $redefine-border-radius-large
+              // visibility hidden
+              max-height 0px
+              overflow hidden
+              transition-t('all', '0', '0.2', 'linear')
+
+              li a
+                white-space nowrap
+                color var(--default-text-color)
+                font-size 1rem
+                padding 3px 15px
+                display block
+                text-align center
+                border-radius 8px
+                transition-t('all', '0', '0.2', 'linear')
+
+                &:hover
+                  color var(--primary-color)
+                  background-color var(--third-background-color)
+
+        .navbar-list .navbar-item:hover .sub-menu
+          // visibility visible
+          max-height 500px
+          transition-t('all', '0', '0.2', 'ease')
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            5px
+          )
+
+      .mobile
+        display flex
+        justify-content space-between
+        align-items center
+
+        .icon-item
+          display none
+          position relative
+          cursor pointer
+          font-size 18px
+          margin-left 12px
+          width 20px
+          height 20px
+          color var(--default-text-color)
+
+          i
+            color var(--default-text-color)
+
+          &:first-child
+            margin-left 0
+
+          +redefine-tablet()
+            display flex
+            justify-content center
+            align-items center
+
+        .navbar-bar
+          .navbar-bar-middle
+            width 18px
+            height $navbar-bar-line-height
+            position relative
+            background var(--default-text-color)
+
+            .navbar-drawer-show &
+              background transparent
+
+            &::before, &::after
+              content ''
+              position absolute
+              left 0
+              width 100%
+              height $navbar-bar-line-height
+              background var(--default-text-color)
+              transition-t('transform', '0', '0.38', 'ease')
+
+            &::before
+              top -6px
+
+              .navbar-drawer-show &
+                transform translateY(6px) rotate(45deg)
+
+            &::after
+              bottom -6px
+
+              .navbar-drawer-show &
+                transform translateY(-6px) rotate(-45deg)
+
+  .navbar-drawer
+    padding $navbar-height 0 20px 0
+    transform translateX(100%)
+    transform-origin top
+    z-index $z-index-2
+    height 100vh
+    overflow-y auto
+    transition-t('transform', '0', '0.38', 'ease')
+
+    .navbar-drawer-show &
+      transform translateX(0)
+
+  .window-mask
+    position absolute
+    top 0
+    width 100%
+    height 100vh
+    background rgba(0, 0, 0, 0.4)
+    z-index $z-index-1
+    visibility hidden
+    opacity 0
+    transition-t('transform, opacity', '0, 0', '0.38, 0.38', 'ease, ease')
+
+    .navbar-drawer-show &
+      visibility visible
+      opacity 1
+
+.navbar-drawer-show
+  overflow hidden
+
+[data-target] {
+  display: block; /* or flex, depending on your layout */
+  overflow: hidden;
+}
+
+[data-target] .submenu-item {
+  opacity: 0;
+}
+
+.icon-rotated {
+  transform: rotate(90deg);
+}
 
         </div>
 
@@ -552,217 +593,263 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
+                    @import '../common/variables'
 
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Coding - Chmod Program</h1>
-                </div>
-            
-            </div>
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/redefine-avatar.svg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2016-02-05 15:18:22</span>
-        <span class="mobile">2016-02-05 15:18:22</span>
-        <span class="hover-info">Created</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-13 08:20:47</span>
-            <span class="mobile">2024-07-13 08:20:47</span>
-            <span class="hover-info">Updated</span>
-        </span>
-    
+.post-page-container
+  gap 0px
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/Coding/">Coding</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/java/">java</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/chmod/">chmod</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>34k Words</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2:03 Mins</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        
+  +redefine-mobile()
+    overflow-x hidden
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>Sample code that changes the permissions of files in a similar manner to the chmod(1) program.</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Chmod</span> &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param   exprs</span></span><br><span class="line"><span class="comment">     *          List of one or more &lt;em&gt;symbolic mode expressions&lt;/em&gt;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @return  A &#123;@code Changer&#125; that may be used to changer a set of</span></span><br><span class="line"><span class="comment">     *          file permissions</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @throws  IllegalArgumentException</span></span><br><span class="line"><span class="comment">     *          If the value of the &#123;@code exprs&#125; parameter is invalid</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Changer <span class="title function_">compile</span><span class="params">(String exprs)</span> &#123;</span><br><span class="line">        <span class="comment">// minimum is who and operator (u= for example)</span></span><br><span class="line">        <span class="keyword">if</span> (exprs.length() &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// permissions that the changer will add or remove</span></span><br><span class="line">        <span class="keyword">final</span> Set&lt;PosixFilePermission&gt; toAdd = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;PosixFilePermission&gt;();</span><br><span class="line">        <span class="keyword">final</span> Set&lt;PosixFilePermission&gt; toRemove = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;PosixFilePermission&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// iterate over each of expression modes</span></span><br><span class="line">        <span class="keyword">for</span> (String expr: exprs.split(<span class="string">&quot;,&quot;</span>)) &#123;</span><br><span class="line">            <span class="comment">// minimum of who and operator</span></span><br><span class="line">            <span class="keyword">if</span> (expr.length() &lt; <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// who</span></span><br><span class="line">            <span class="type">boolean</span> <span class="variable">u</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">g</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">o</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">done</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                <span class="keyword">switch</span> (expr.charAt(pos)) &#123;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;u&#x27;</span> : u = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;g&#x27;</span> : g = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;o&#x27;</span> : o = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> : u = <span class="literal">true</span>; g = <span class="literal">true</span>; o = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span> : done = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (done)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                pos++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!u &amp;&amp; !g &amp;&amp; !o)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// get operator and permissions</span></span><br><span class="line">            <span class="type">char</span> <span class="variable">op</span> <span class="operator">=</span> expr.charAt(pos++);</span><br><span class="line">            <span class="type">String</span> <span class="variable">mask</span> <span class="operator">=</span> (expr.length() == pos) ? <span class="string">&quot;&quot;</span> : expr.substring(pos);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// operator</span></span><br><span class="line">            <span class="type">boolean</span> <span class="variable">add</span> <span class="operator">=</span> (op == <span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">remove</span> <span class="operator">=</span> (op == <span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">assign</span> <span class="operator">=</span> (op == <span class="string">&#x27;=&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!add &amp;&amp; !remove &amp;&amp; !assign)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// who= means remove all</span></span><br><span class="line">            <span class="keyword">if</span> (assign &amp;&amp; mask.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                assign = <span class="literal">false</span>;</span><br><span class="line">                remove = <span class="literal">true</span>;</span><br><span class="line">                mask = <span class="string">&quot;rwx&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// permissions</span></span><br><span class="line">            <span class="type">boolean</span> <span class="variable">r</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">w</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">x</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;mask.length(); i++) &#123;</span><br><span class="line">                <span class="keyword">switch</span> (mask.charAt(i)) &#123;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;r&#x27;</span> : r = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> : w = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;x&#x27;</span> : x = <span class="literal">true</span>; <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid mode&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// update permissions set</span></span><br><span class="line">            <span class="keyword">if</span> (add) &#123;</span><br><span class="line">                <span class="keyword">if</span> (u) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(OWNER_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(OWNER_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(OWNER_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (g) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(GROUP_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(GROUP_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(GROUP_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (o) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(OTHERS_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(OTHERS_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(OTHERS_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (remove) &#123;</span><br><span class="line">                <span class="keyword">if</span> (u) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toRemove.add(OWNER_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toRemove.add(OWNER_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toRemove.add(OWNER_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (g) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toRemove.add(GROUP_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toRemove.add(GROUP_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toRemove.add(GROUP_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (o) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toRemove.add(OTHERS_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toRemove.add(OTHERS_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toRemove.add(OTHERS_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (assign) &#123;</span><br><span class="line">                <span class="keyword">if</span> (u) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(OWNER_READ);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OWNER_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(OWNER_WRITE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OWNER_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(OWNER_EXECUTE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OWNER_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (g) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(GROUP_READ);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(GROUP_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(GROUP_WRITE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(GROUP_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(GROUP_EXECUTE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(GROUP_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (o) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (r) toAdd.add(OTHERS_READ);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OTHERS_READ);</span><br><span class="line">                    <span class="keyword">if</span> (w) toAdd.add(OTHERS_WRITE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OTHERS_WRITE);</span><br><span class="line">                    <span class="keyword">if</span> (x) toAdd.add(OTHERS_EXECUTE);</span><br><span class="line">                      <span class="keyword">else</span> toRemove.add(OTHERS_EXECUTE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// return changer</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Changer</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Set&lt;PosixFilePermission&gt; <span class="title function_">change</span><span class="params">(Set&lt;PosixFilePermission&gt; perms)</span> &#123;</span><br><span class="line">                perms.addAll(toAdd);</span><br><span class="line">                perms.removeAll(toRemove);</span><br><span class="line">                <span class="keyword">return</span> perms;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * A task that &lt;i&gt;changes&lt;/i&gt; a set of &#123;<span class="doctag">@link</span> PosixFilePermission&#125; elements.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Changer</span> &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Applies the changes to the given set of permissions.</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span>   perms</span></span><br><span class="line"><span class="comment">         *          The set of permissions to change</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span>  The &#123;<span class="doctag">@code</span> perms&#125; parameter</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Set&lt;PosixFilePermission&gt; <span class="title function_">change</span><span class="params">(Set&lt;PosixFilePermission&gt; perms)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Changes the permissions of the file using the given Changer.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">chmod</span><span class="params">(Path file, Changer changer)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Set&lt;PosixFilePermission&gt; perms = Files.getPosixFilePermissions(file);</span><br><span class="line">            Files.setPosixFilePermissions(file, changer.change(perms));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException x) &#123;</span><br><span class="line">            System.err.println(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Changes the permission of each file and directory visited</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">TreeVisitor</span> <span class="keyword">implements</span> <span class="title class_">FileVisitor</span>&lt;Path&gt; &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Changer changer;</span><br><span class="line"></span><br><span class="line">        TreeVisitor(Changer changer) &#123;</span><br><span class="line">            <span class="built_in">this</span>.changer = changer;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> FileVisitResult <span class="title function_">preVisitDirectory</span><span class="params">(Path dir, BasicFileAttributes attrs)</span> &#123;</span><br><span class="line">            chmod(dir, changer);</span><br><span class="line">            <span class="keyword">return</span> CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> FileVisitResult <span class="title function_">visitFile</span><span class="params">(Path file, BasicFileAttributes attrs)</span> &#123;</span><br><span class="line">            chmod(file, changer);</span><br><span class="line">            <span class="keyword">return</span> CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> FileVisitResult <span class="title function_">postVisitDirectory</span><span class="params">(Path dir, IOException exc)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (exc != <span class="literal">null</span>)</span><br><span class="line">                System.err.println(<span class="string">&quot;WARNING: &quot;</span> + exc);</span><br><span class="line">            <span class="keyword">return</span> CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> FileVisitResult <span class="title function_">visitFileFailed</span><span class="params">(Path file, IOException exc)</span> &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;WARNING: &quot;</span> + exc);</span><br><span class="line">            <span class="keyword">return</span> CONTINUE;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">usage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.err.println(<span class="string">&quot;java Chmod [-R] symbolic-mode-list file...&quot;</span>);</span><br><span class="line">        System.exit(-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">if</span> (args.length &lt; <span class="number">2</span>)</span><br><span class="line">            usage();</span><br><span class="line">        <span class="type">int</span> <span class="variable">argi</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxDepth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (args[argi].equals(<span class="string">&quot;-R&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (args.length &lt; <span class="number">3</span>)</span><br><span class="line">                usage();</span><br><span class="line">            argi++;</span><br><span class="line">            maxDepth = Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// compile the symbolic mode expressions</span></span><br><span class="line">        <span class="type">Changer</span> <span class="variable">changer</span> <span class="operator">=</span> compile(args[argi++]);</span><br><span class="line">        <span class="type">TreeVisitor</span> <span class="variable">visitor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TreeVisitor</span>(changer);</span><br><span class="line"></span><br><span class="line">        Set&lt;FileVisitOption&gt; opts = Collections.emptySet();</span><br><span class="line">        <span class="keyword">while</span> (argi &lt; args.length) &#123;</span><br><span class="line">            <span class="type">Path</span> <span class="variable">file</span> <span class="operator">=</span> Paths.get(args[argi]);</span><br><span class="line">            Files.walkFileTree(file, opts, maxDepth, visitor);</span><br><span class="line">            argi++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+  &.show-toc
+    gap 30px
 
-        </div>
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>Title:</strong> Coding - Chmod Program</li>
-        <li><strong>Author:</strong> Lechance</li>
-        <li><strong>Created at
-                :</strong> 2016-02-05 15:18:22</li>
-        
-            <li>
-                <strong>Updated at
-                    :</strong> 2024-07-13 08:20:47
-            </li>
-        
-        <li>
-            <strong>Link:</strong> https://lechance.github.io/2016/02/05/coding-chmod/
-        </li>
-        <li>
-            <strong>
-                License:
-            </strong>
-            
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-            
-                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
-            
-        </li>
-    </ul>
-</div>
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            </div>
-        
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/java/">#java</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/chmod/">#chmod</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-        
+    .article-content-container
+      width calc(100% - 210px) !important
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2016/02/14/algorithm-insertion-sort-in-java/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Algorithm - Insertion Sort in Java</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2016/02/01/design-pattern-proxy-pattern/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Design Pattern - Proxy Pattern</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
+    .article-content-container
+      width 100% !important
 
-        
-    </div>
+    &.show-toc
+      .toc-content-container
+        display none
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">Coding - Chmod Program</div>
-        
+      .article-content-container
+        width 100% !important
 
-    </div>
-</div>
-        </div>
-    
-</div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      0,
+      30px
+    )
 
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
+      max-width 100vw
 
+    .article-header .avatar img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .article-prev, .article-next
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    //margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
 
                 
 
@@ -773,58 +860,66 @@
         </div>
 
         <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
-        
-        <div class="text-center">
-            &copy;
-            
-              <span>2023</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        47 posts in total
-                    </span>
-                    
-                        <span>
-                            32k words in total
-                        </span>
-                    
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">VISITOR COUNT</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">TOTAL PAGE VIEWS</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
-        </div>
-        
-        
-        
-        
-        
-    </div>  
-</footer>
+            @import '../../common/variables'
+
+.footer
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit
+    display inline-block
+    vertical-align baseline
+    position relative
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
+    display inline-block
+    vertical-align baseline
+    visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner
+    text-align left
+    display block
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    overflow hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner
+    display block
+    -webkit-backface-visibility hidden
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value
+    display block
+
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value
+    position absolute
+
+  .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner
+    transition transform 999ms
+
+  .odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner
+    transform translateY(-100%)
+
+  .odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner
+    transition transform 999ms
+    transform translateY(0)
+
+  .odometer.odometer-auto-theme, .odometer.odometer-theme-default
+    line-height 1.1em
+
+  .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value
+    text-align center
+
         </div>
     </div>
 
