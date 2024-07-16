@@ -8,6 +8,9 @@
 - links_category: "Dev & OPS"
   has_thumbnail: false
   list:
+    - name: Huawei Developer
+      link: https://developer.huawei.com/cn/
+      avatar: https://developer.huawei.com/allianceCmsResource/resource/HUAWEI_Developer_VUE/images/yingyongicon.png
     - name: Google Developer
       link: https://developer.android.google.cn/
       description: Android Mobile App Developer Tools – Android Developers
@@ -18,7 +21,7 @@
   list:
     - name: Huawei enterprise docs
       link: https://support.huawei.com/enterprise/en/index.html
-      avatar: https://p9.itc.cn/images01/20200723/dd865e71c4fd4e0caeaeb489d2e2d875.jpeg
+      avatar: https://img0.baidu.com/it/u=1219452632,2042335449&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500
     - name: H3c Technical Documents
       link: https://www.h3c.com/en/Support/Resource_Center/Technical_Documents/
       avatar: https://resource.h3c.com/en/202001/20/20200120_4736072_Cloud Computing_1267200_294551_0.jpg
