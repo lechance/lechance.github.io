@@ -596,263 +596,257 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Design Pattern - Proxy Pattern</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-02-01 13:15:42</span>
+        <span class="mobile">2016-02-01 13:15:42</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Design-Pattern/">Design Pattern</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/design-pattern/">design pattern</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/proxy/">proxy</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>18k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:05 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
+</blockquote>
+<p>Provide a surrogate or placeholder for another object to control access to it.</p>
+<h4 id="In-Computer-World-Example"><a href="#In-Computer-World-Example" class="headerlink" title="In Computer World Example"></a>In Computer World Example</h4><p>Consider an ATM implementation for a bank. Here we will find multiple proxy objects, Actual bank information will be stored in a remote server. We must remember that in te programming world, the creation of multiple instances of a complex object(heavy object) is very costly. In such situations, we can create multiple proxy object(which must point to an original object) and the total creation of actual objects can be carried out on a demand basis. Thu we can save both the memory and creational time.</p>
+<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><p>The figure below shows a <code>UML class diagram</code> for the <code>Proxy Pattern</code>.</p>
+<p>![uml diagram] (&#x2F;images&#x2F;uml&#x2F;proxy_pattern_uml_diagram.png “uml” )</p>
+<p>The participants classes in the proxy pattern are:</p>
+<ul>
+<li>Subject - interface implemented by the RealSubject and representing its services. The interface must be implemented by the proxy as well so that the proxy can be used in any location where the RealSubject can be used.</li>
+<li>Proxy:</li>
+<li>Maintains a reference that allows the Proxy to access the RealSubject.</li>
+<li>Implements the same interface implemented by the RealSubject so that the Proxy can be subsituted for the RealSubject.</li>
+<li>Controls access to the RealSubject and may be responsible for its creation and deletion.</li>
+<li>Other responsibilities depend on the kind of proxy.</li>
+<li>RealSubject - the real object that the proxy repsents.</li>
+</ul>
+<h4 id="Applicability-Examples"><a href="#Applicability-Examples" class="headerlink" title="Applicability &amp; Examples"></a>Applicability &amp; Examples</h4><p>The Proxy design pattern is applicable when there is a need to control access to an Object, as well as when there is a need for a sophisiticated reference to an Ojbect. Common Situations where the proxy pattern is applicable are:</p>
+<ul>
+<li>Virtual Proxies: delaying the creation and initialization of expensive objects util needed, where the objects are created on demand(For example creating the RealSubject object only when the doSomething method is invoked).</li>
+<li>Remote Proxies: providing a local representation for an object that is in a different address space. A common example is Java RMI stub objects. The stub object acts as proxy where invoking methods on the stub would cause the stub to communicate and invoke methds on a remote object(called skeleton) found on a different machine.</li>
+<li>Protection Proxies: where a proxy controls access to RealSubject methods, by giving access to some object while denying access to others.</li>
+<li>Smart Reference: providing a sophisticated access to certain objects such as tracking the number of references to an object and denying access if a certain number is reached, as well as loading an object from database into memory on demand.</li>
+</ul>
+<h4 id="Coding-in-Java"><a href="#Coding-in-Java" class="headerlink" title="Coding in Java"></a>Coding in Java</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * subject interface</span></span><br><span class="line"><span class="comment"> * &lt;br /&gt;</span></span><br><span class="line"><span class="comment"> * The &lt;code&gt;Image&lt;/code&gt; interface has a single method #displayImage() that</span></span><br><span class="line"><span class="comment"> * the concrete class must implement to render to an image to screen.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Image</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">displayImage</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Proxy</span></span><br><span class="line"><span class="comment"> * &lt;br /&gt;</span></span><br><span class="line"><span class="comment"> * the ImageProxy is a virtual proxy that creates and loads the actual image</span></span><br><span class="line"><span class="comment"> * object on demand, thus saving the cost of loading an image into memory</span></span><br><span class="line"><span class="comment"> * until it needs to be rendered.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ImageProxy</span> <span class="keyword">implements</span> <span class="title class_">Image</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Private Proxy data</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String imageFilePath;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Reference to RealSubject</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Image proxiedImage;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ImageProxy</span><span class="params">(String imageFilePath)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.imageFilePath = imageFilePath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">displayImage</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Create the Image object only when the image is required to be shown</span></span><br><span class="line">        <span class="keyword">if</span> (proxiedImage == <span class="literal">null</span>) &#123;</span><br><span class="line">            proxiedImage = <span class="keyword">new</span> <span class="title class_">HighResolutionImage</span>(imageFilePath);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//now call displayImage on realSubject</span></span><br><span class="line">        proxiedImage.displayImage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Real Subject</span></span><br><span class="line"><span class="comment"> * &lt;br /&gt;</span></span><br><span class="line"><span class="comment"> * the RealSubject Implementation,</span></span><br><span class="line"><span class="comment"> * which is the concrete and heavyweight implementation of the image interface.</span></span><br><span class="line"><span class="comment"> * The High resolution image, loads a high resolution image from disk,</span></span><br><span class="line"><span class="comment"> * and renders it to screen when showImage() is called.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HighResolutionImage</span> <span class="keyword">implements</span> <span class="title class_">Image</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String imageFilePath;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">HighResolutionImage</span><span class="params">(String imageFilePath)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.imageFilePath=imageFilePath;</span><br><span class="line">        loadImage(imageFilePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">loadImage</span><span class="params">(String imageFilePath)</span>&#123;</span><br><span class="line">        <span class="comment">//load image from disk into memory</span></span><br><span class="line">        <span class="comment">//this is heavy and costly operation</span></span><br><span class="line">        System.out.println(<span class="string">&quot;loading image from disk...:&quot;</span>+imageFilePath);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">displayImage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//actual image rendering logic</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Show Image: -_- &quot;</span>+imageFilePath);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ProxyPatternDemo Created by lechance.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProxyPatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//assuming that user selects a folder that has 3 images</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//create the 3 images</span></span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ImageProxy</span>(<span class="string">&quot;images/pic1.jpeg&quot;</span>);</span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ImageProxy</span>(<span class="string">&quot;images/pic2.jpeg&quot;</span>);</span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ImageProxy</span>(<span class="string">&quot;images/pic3.jpeg&quot;</span>);</span><br><span class="line">        <span class="comment">//assume that the user clicks on Image one item in a list</span></span><br><span class="line">        <span class="comment">//this would cause the program to call displayImage() for that image only</span></span><br><span class="line">        <span class="comment">//note that in this case only image one was loaded into memory</span></span><br><span class="line">        highResolutionImage1.displayImage();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;\n-------------------\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//consider using high resolution image object directly</span></span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage1NoProxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HighResolutionImage</span>(<span class="string">&quot;images/pc1.jpeg&quot;</span>);</span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage2NoProxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HighResolutionImage</span>(<span class="string">&quot;images/pc2.jpeg&quot;</span>);</span><br><span class="line">        <span class="type">Image</span> <span class="variable">highResolutionImage3NoProxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HighResolutionImage</span>(<span class="string">&quot;images/pc3.jpeg&quot;</span>);</span><br><span class="line">        <span class="comment">//assume that the user selects image two item from  images list</span></span><br><span class="line">        highResolutionImage2NoProxy.displayImage();</span><br><span class="line">        <span class="comment">//note that is this case all images have been loaded</span></span><br><span class="line">        <span class="comment">// into memory and not all have been actually displayed.</span></span><br><span class="line">        <span class="comment">//this is a waste of memory resources</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Kazam_screenshot_proxy.png"
+                      alt="proxy pattern"
+                ></p>
+<blockquote>
+<p>Orignazie from network</p>
+</blockquote>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+        </div>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Design Pattern - Proxy Pattern</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-02-01 13:15:42</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/02/01/design-pattern-proxy-pattern/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+            </div>
+        
 
-    .article-content-container
-      width calc(100% - 210px) !important
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/java/">#java</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/design-pattern/">#design pattern</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/proxy/">#proxy</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        
 
-    .article-content-container
-      width 100% !important
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/02/05/coding-chmod/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Coding - Chmod Program</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/01/24/generic-type-inference/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Generic - Type Inference</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    &.show-toc
-      .toc-content-container
-        display none
 
-      .article-content-container
-        width 100% !important
+        
+    </div>
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Design Pattern - Proxy Pattern</div>
+        
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+    </div>
+</div>
+        </div>
+    
+</div>
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

@@ -596,263 +596,259 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Notes - Make Gif File in Linux(debian)</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-05-13 13:30</span>
+        <span class="mobile">2016-05-13 13:30</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Android/">Android</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/gif/">gif</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ffmpeg/">ffmpeg</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/convert/">convert</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>14 mins. Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>本篇是记录如何在Linux(我的系统是Debian)下制作用来演示app操作的gif动画文件.因为之前知道的方法是只有在ps里制作演示gif文件,而在Linux下安装ps又需要安装<a class="link"   target="_blank" rel="noopener" href="https://www.winehq.org/" >Wine <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>这样的软件,由于自己电脑硬盘容量只有320G,所以像ps这样的软件还是能不装就不装吧.</p>
+<blockquote>
+<p>一位<a class="link"   target="_blank" rel="noopener" href="http://my.csdn.net/harvic880925" >朋友 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>推荐了在windows和mac下的两个工具<code>gifcam</code>和<code>licecap</code>,先记录在这里方便以后用到的时候有地方查.</p>
+</blockquote>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li>GIMP这个图片处理工具一般系统默认安装的,没有安装的话可以下载.</li>
+<li>Kazam这个一个屏幕录制工具,使用非常简便,可以在这里<a class="link"   target="_blank" rel="noopener" href="https://launchpad.net/kazam" >下载 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>安装,也可以通过apt-get安装.</li>
+</ul>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install kazam</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>FFMPEG这是一个非常强大的工具,这里我只是用它来转换格式,更多的信息你可以到<a class="link"   target="_blank" rel="noopener" href="https://ffmpeg.org/" >官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>了解, 安装方式如下：</li>
+</ul>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install libav-tools ffmpeg</span><br></pre></td></tr></table></figure></div>
+<p>使用ffmpeg从命令行能够转换一个视频文件(mp4或其他格式)到多个png格式的文件.下面命令提取视频的帧到独立的png文件中,当然你可以对这些帧进行编辑.</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -r 10 output%05d.png` </span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<ul>
+<li>ImageMagick同样是一个强大的图片处理工具,它用于创建,编辑,组合以及转换位图图片,支持超过200种格式(PNG,JPEG,JPEG-200,GIF,PDF,SVG).<code>Convert</code>程序用于在两种图片格式间进行转换,更多关于<code>Convert</code>命令的使用可以参考<a class="link"   target="_blank" rel="noopener" href="http://www.imagemagick.org/script/convert.php" >这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</li>
+</ul>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert output*.png output.gif</span><br></pre></td></tr></table></figure></div>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+<p>也可以通过<code>Convert</code>命令进一步对图片进行编辑,选项 -delay [fps&#x2F;sec] 和 -loop [numbers],如下：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -delay 1x20 -loop 0 out*.gif converted-out.gif</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>由于最终生成的文件太大,需要做一些优化,下面是通过<code>ImageMagick</code>的优化功能来减小gif文件的大小.</li>
+</ul>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -layers Optimize demo.gif optimized-demo.gif</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+<p>优化效果不怎么好(文件大小2.8M),要是你知道更好的优化gif文件大小的工具,可以在下方留言,-_-</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/small.gif"
+                      alt="demo"
+                ></p>
+<p>再贴一个同类教程的帖子，很实用.<br><a class="link"   target="_blank" rel="noopener" href="http://www.liaohuqiu.net/posts/make-gif-for-android-app/" >Make GIF Snapshot for Android APP  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+        </div>
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Notes - Make Gif File in Linux(debian)</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-05-13 13:30:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/05/13/make-gif-file-in-linux/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-    .article-content-container
-      width calc(100% - 210px) !important
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+            </div>
+        
 
-    .article-content-container
-      width 100% !important
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/gif/">#gif</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ffmpeg/">#ffmpeg</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/convert/">#convert</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-    &.show-toc
-      .toc-content-container
-        display none
+        
 
-      .article-content-container
-        width 100% !important
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/05/15/simple-xml-usage/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Simple-xml Library Usage</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/05/05/Usage-of-Google-Guava-EventBus/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Usage of Google Guava EventBus</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+        
+    </div>
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Notes - Make Gif File in Linux(debian)</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-text">工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol>
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
+    </div>
+</div>
+        </div>
+    
+</div>
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

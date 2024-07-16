@@ -594,263 +594,270 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-04-15 23:05</span>
+        <span class="mobile">2016-04-15 23:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Android/">Android</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/Android/Network/">Network</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/android/">android</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/http/">http</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/HttpURLConnection/">HttpURLConnection</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>24k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:26 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>通常Android应用程序要与远程服务器进行信息交换．最简单的方式是以HTTP协议作为基础来传输信息．在某些环境下使用HTTP协议是非常有用的，比如从远程服务器下载图片或者上传二进制数据到服务器．Android应用程序通过执行GET和POST请求(request)来发送数据．在这篇帖子，我想要分析分析一下如何使用<code>HttpURLConnection</code>与远程服务器进行通信．</p>
+<h3 id="GET和POST请求"><a href="#GET和POST请求" class="headerlink" title="GET和POST请求"></a>GET和POST请求</h3><p>GET和POST请求在HTTP协议中是基块(the base blocks)。为了生成这类请求我们首先需要打开一个指向远程服务器的链接:</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HttpURLConnection</span> <span class="variable">con</span> <span class="operator">=</span> (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">con.connect();</span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<p>首先，我门通过<code>url</code>参数构建一个<code>Url</code>对象，通过这个对象的<code>openConnection</code>方法得到<code>HttpURLConnection</code>,代码第二行我们设置请求的方式为Post，最后connect到服务器。</p>
+<p>一旦我们持有一个打开了的链接我们就可以使用<code>OutputStream</code>进行写入我们的数据了。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">con.getOutputStream().wirte((<span class="string">&quot;name=&quot;</span>+name).getBytes());</span><br></pre></td></tr></table></figure></div>
+<p>对于我们已经知道的参数我们可以使用键值对来写入。</p>
+<p>最后一步是使用<code>InputStream</code>读取响应数据。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">ins</span> <span class="operator">=</span> con.getInputStream();</span><br><span class="line"><span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span>(ins.read(b) != -<span class="number">1</span>)</span><br><span class="line">    buffer.append(<span class="keyword">new</span> <span class="title class_">String</span>(b));</span><br><span class="line">con.disconnect();</span><br></pre></td></tr></table></figure></div>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+<p>到目前为止所有的工作都非常简单，但是需要记住的一点是：使用<code>HTTP</code>链接是一个耗时的操作，有时它可能需要很长的时间，因此我们不能把它放在UI线程里运行，否则我们会得到一个ANR(Application Not Responding)对话框。</p>
+<p>解决这个问题的方法是我们可以使用<code>AsyncTask</code></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">doInBackground</span><span class="params">(String... params)</span>&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> sendHttpRequest(url, name);</span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(String result)</span>&#123;</span><br><span class="line">	edtResp.setText(result);</span><br><span class="line">	item.setActionView(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+<h3 id="从服务器下载数据"><a href="#从服务器下载数据" class="headerlink" title="从服务器下载数据"></a>从服务器下载数据</h3><p>一个最普遍的情景是应用程序从远程服务器下载一些数据。我们假设要从服务器下载一张图片，在这例子里我们依旧使用<code>AsyncTask</code>来完成我们的操作，代码如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">byte</span>[] downloadImage(String imgName)&#123;</span><br><span class="line">    <span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;URL [&quot;</span>+url+<span class="string">&quot;] - Name [&quot;</span>+imgName+<span class="string">&quot;]&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">HttpURLConnection</span> <span class="variable">con</span> <span class="operator">=</span> (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">	con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">	con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">	con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">	con.connect();</span><br><span class="line">	con.getOutputStream.write((<span class="string">&quot;name=&quot;</span> + imgName).getBytes());</span><br><span class="line"></span><br><span class="line">	<span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> con.getInputStream();</span><br><span class="line">	<span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>( is.read(b) != -<span class="number">1</span>)</span><br><span class="line">	    baos.write(b);</span><br><span class="line"></span><br><span class="line">	con.disconnect();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Throwable t)&#123;</span><br><span class="line">	t.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> baos.toByteArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>这个方法以下面这样的方式调用：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">byte</span>[] doInBackground(String...params)&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	<span class="type">HttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpClient</span>(url);</span><br><span class="line">	<span class="type">byte</span>[] data = client.downloadImage(name);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(<span class="type">byte</span>[] result)</span>&#123;</span><br><span class="line">	<span class="type">Bitmap</span> <span class="variable">img</span> <span class="operator">=</span> BitmapFactory.decodeByteArray(result, <span class="number">0</span>, result.length);</span><br><span class="line">	imgView.setImageBitmap(img);</span><br><span class="line">	item.setActionView(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
 
-    .article-content-container
-      width calc(100% - 210px) !important
+<h3 id="使用MultipartRequest上传数据到服务器"><a href="#使用MultipartRequest上传数据到服务器" class="headerlink" title="使用MultipartRequest上传数据到服务器"></a>使用MultipartRequest上传数据到服务器</h3><p>这是在处理<code>http</code>链接里最复杂的部分，本地的<code>HttpUrlConnection</code>不处理这类请求,一个Android应用程序上传一些二进制数据到服务器时它会发生。<code>MultipartRequest</code>类主要对文件上传进行操作，在上传时，编码格式为<code>enctype=&quot;multipart/form-data&quot;格式，以二进制方式提交，提交方式为post方式。以上传一张图片为例子，在种情况下请求会有点复杂，因为一个“一般”的请求满足不了我门的需求，因此我们创建一个</code>MultipartRequest&#96;.</p>
+<p><code>MultipartRequest</code> 是一个通过像参数和二进制数据这样不同的部分构造的请求。</p>
+<p>首先第一步是打开一个链接，通知(informing)服务器我们要发一些二进制数据。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connectForMultipart</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    con = (HttpURLConnection) (<span class="keyword">new</span> <span class="title class_">URL</span>(url)).openConnection();</span><br><span class="line">    con.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">    con.setDoInput(<span class="literal">true</span>);</span><br><span class="line">    con.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">    con.setRequestProperty(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;Keep-Alive&quot;</span>);</span><br><span class="line">    con.setRequestProperty(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;multipart/form-data&quot;</span>; boundary=<span class="string">&quot; + boundary);</span></span><br><span class="line"><span class="string">    con.connect();</span></span><br><span class="line"><span class="string">    os = con.getOutputStream();</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></div>
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+<p>在第７行我们指定了请求的<code>content-type</code>和另一个字段<em>boundary</em>,　这个字段是一个字符序列用于分隔不同的部分。</p>
+<p>对于每个部分，如果它是一个文本像提交的参数或者是一个文件（二进制数据）就需要指定想要添加的部分。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFormPart</span><span class="params">(String paramName, String value)</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    writeParamData(paramName, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">writeParamData</span><span class="params">(String paramName, String value)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    os.wirte( (delimiter + boundary + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( <span class="string">&quot;Content-Type: text/plain\r\n&quot;</span>.getBytes());</span><br><span class="line">    os.wirte( (<span class="string">&quot;Content-Disposition: form-data; name=\&quot;&quot;</span> +paramName + <span class="string">&quot;\&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;\r\n&quot;</span> + value + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-    .article-content-container
-      width 100% !important
+<p>这里：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">delimiter</span> <span class="operator">=</span> <span class="string">&quot;--&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">boundary</span> <span class="operator">=</span> <span class="string">&quot;SwA&quot;</span>+ Long.toString(System.currentTimeMillis())+<span class="string">&quot;SwA&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+<p>使用下面的方式添加文件部分：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFilePart</span><span class="params">(String paramName, String fileName, <span class="type">byte</span>[] data)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    os.write( (delimiter + boundary + <span class="string">&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Disposition: form-data; name=\&quot;&quot;</span>+ paramName + <span class="string">&quot;\&quot;; filename=\&quot;&quot;</span> + fileName + <span class="string">&quot;\&quot;\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Type: application/octet-stream\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write( (<span class="string">&quot;Content-Transfer-Encoding: binary\r\n&quot;</span>).getBytes());</span><br><span class="line">    os.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">    os.write(data);</span><br><span class="line">    os.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>因此，使用在我们的例子里：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SendHttpRequestTask</span> <span class="keyword">extends</span> <span class="title class_">AsyncTask</span>&lt;String, Void, String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">doInBackground</span><span class="params">(String... params)</span>&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> params[<span class="number">0</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">param1</span> <span class="operator">=</span> params[<span class="number">1</span>];</span><br><span class="line">	<span class="type">String</span> <span class="variable">param2</span> <span class="operator">=</span> params[<span class="number">2</span>];</span><br><span class="line">	<span class="type">Bitmap</span> <span class="variable">b</span> <span class="operator">=</span> BitmapFactory.decodeResource(UploadActivity.<span class="built_in">this</span>.getResources(), R.drawable.logo);</span><br><span class="line"></span><br><span class="line">	<span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">	b.compress(CompressFormat.PNG, <span class="number">0</span>, baos);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">	    <span class="type">HttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpClient</span>(url);</span><br><span class="line">	    client.connectForMulitipart();</span><br><span class="line">	    client.addFormPart(<span class="string">&quot;param1&quot;</span>, param1);</span><br><span class="line">	    client.addFormPart(<span class="string">&quot;param2&quot;</span>, param2);</span><br><span class="line">	    client.addFilePart(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;logo.png&quot;</span>, baos.toByteArray());</span><br><span class="line">	    client.finishMultipart();</span><br><span class="line">	    <span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> client.getResponse();</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Throwable t)&#123;</span><br><span class="line">	    t.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPostExecute</span><span class="params">(String data)</span>&#123;</span><br><span class="line">	    item.setActionView(<span class="literal">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
-    &.show-toc
-      .toc-content-container
-        display none
+        </div>
 
-      .article-content-container
-        width 100% !important
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-04-15 23:05:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/04/15/android-http-client-get-post-download-upload-multipart-request/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+            </div>
+        
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/android/">#android</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/http/">#http</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/HttpURLConnection/">#HttpURLConnection</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
+        
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/04/20/Simple-Usage-of-Gson-Library/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Gson 库的使用</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/04/08/least-recently-used-cache/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Least-Recently-Used Cache</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
 
-      &>:first-child
-        margin-top 0 !important
+        
+    </div>
 
-    .article-prev, .article-next
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET%E5%92%8CPOST%E8%AF%B7%E6%B1%82"><span class="nav-text">GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE"><span class="nav-text">从服务器下载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8MultipartRequest%E4%B8%8A%E4%BC%A0%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">使用MultipartRequest上传数据到服务器</span></a></li></ol>
 
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
+    </div>
+</div>
+        </div>
+    
+</div>
 
-          &.prev
-            padding-left $arrow-icon-width
 
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

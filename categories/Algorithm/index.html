@@ -587,38 +587,81 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="category-container">
+    <div class="category-name">
+        <i class="fa-solid fa-folder"></i>&nbsp;Algorithm
+    </div>
+    <div class="category-post-list">
+        
+<div class="archive-list-container">
+    
+        <section class="archive-item mb-spacing-unit last:mb-0">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2017</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">1</span>
+            </div>
+            
+            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+                
+                    
+                    
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='03-25'>
+                    
+                    <a href="/2017/03/25/easy-way-to-understand-algorithm-complexity-and-big-o-notation/" class="block overflow-hidden w-fit">
+                        <span class="article-title my-0.5 text-2xl">Easy way to understand algorithm complexity and big O notation</span>
+                    </a>
+                    
+                
+                </li> <!-- Ensure the last item is properly closed -->
+            </ul>
+        </section>
+    
+        <section class="archive-item mb-spacing-unit last:mb-0">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2016</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">2</span>
+            </div>
+            
+            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+                
+                    
+                    
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='04-08'>
+                    
+                    <a href="/2016/04/08/least-recently-used-cache/" class="block overflow-hidden w-fit">
+                        <span class="article-title my-0.5 text-2xl">Least-Recently-Used Cache</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='02-14'>
+                    
+                    <a href="/2016/02/14/algorithm-insertion-sort-in-java/" class="block overflow-hidden w-fit">
+                        <span class="article-title my-0.5 text-2xl">Algorithm - Insertion Sort in Java</span>
+                    </a>
+                    
+                
+                </li> <!-- Ensure the last item is properly closed -->
+            </ul>
+        </section>
+    
+</div>
 
-$category-name-font-size = 2.8rem
+    </div>
+</div>
+<div class="category-paginator">
+    <div class="paginator">
+    <span class="page-number current">1</span>
+</div>
 
-.category-container
-  redefine-container(
-    false,
-    0,
-    0,
-    30px,
-    30px
-  )
+</div>
 
-
-
-  .category-name
-    color var(--second-text-color)
-    font-size $category-name-font-size
-
-    i
-      color var(--second-text-color)
-
-    +redefine-tablet()
-      font-size: $category-name-font-size * 0.9
-
-    +redefine-mobile()
-      font-size: $category-name-font-size * 0.8
-
-    font-weight 600
-    padding-bottom 20px
-    margin-bottom $spacing-unit
-    border-bottom 1px solid var(--shadow-color-1)
 
 
                 

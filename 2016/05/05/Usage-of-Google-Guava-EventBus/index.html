@@ -591,263 +591,205 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Usage of Google Guava EventBus</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-05-05 16:43:14</span>
+        <span class="mobile">2016-05-05 16:43:14</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>16k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>58 mins. Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
+</blockquote>
+<p><code>EventBus</code> allows publish-subscribe-style communication between components without requiring the components to explicitly register with one another (and thus be aware of each other). It is designed exclusively to replace traditional Java in-process event distribution using explicit registration. It is not a general-purpose publish-subscribe system, nor is intended for interprocess communication.</p>
+<p><em>本资料整理自网络</em></p>
+<h4 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h4><p>在应用程序中有些对象需要分享信息,在Java程序中实现信息共享的一种方式是使用事件监听器(event listener),监听器的唯一目的是当事件发生时采取一些操作.对于这样的问题,通常开发者会编写必要的匿名内部类(anonymous inner class)来实现事件监听接口.而在这里要学习的是另一个处理Java事件的方法,<code>EventBus</code>.</p>
+<p><code>EventBus</code>是Google<a class="link"   target="_blank" rel="noopener" href="https://github.com/google/guava"  title="guava">Guava <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>项目中用于事件处理机制的子库(当然里面还包含许多实用),是设计模式中观察者模式(生产者／消费者模式)的实现.<code>EventBus</code>允许对象无需明确知道对方的情况下发布或订阅事件(实现这样的功能是通过Java的Reflection机制).更多的信息可以参考<a class="link"   target="_blank" rel="noopener" href="https://github.com/google/guava/wiki/EventBusExplained"  title="wiki">这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<blockquote>
+<p>Observer模式是比较常用的设计模式之一,比如常用的event Listener就是这个模式,只是名字不同罢了,不管名字怎么变,模式还是这个模式.而从JDK1.0开始就提供了两个用于实现这类模式的类(<code>Observable</code>,<code>Observer</code>).</p>
+</blockquote>
+<h4 id="EventBus-类"><a href="#EventBus-类" class="headerlink" title="EventBus 类"></a>EventBus 类</h4><p><code>EventBus</code>是一个非常灵活以及能够作为单例模式来使用的类,或者在不同的上下文中程序可以持有此类的几个实例适当地传递事件(transferring event).由于事件会被串行(serially)地分发,因此保持轻量的事件处理方法是非常重要的.假如你要在事件处理程序(Event Handler)中做大量的操作,有另一种风味(flavor)的<code>EventBus</code>可以使用,<code>AsyncEventBus</code>.<br><code>AsyncEventBus</code>与<code>EventBus</code>具有相同的功能,只不过<code>AsyncEventBus</code>是采用<code>ExecutorService</code>作为构造函数的参数以此允许异步事件的分发.</p>
+<h4 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h4><p>使用<code>EventBus</code>替换一个基于事件监听器(EventListener) 的系统是很简单的.</p>
+<h4 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h4><ul>
+<li>定义一个只包含需要订阅的事件类型的形参的public方法,并用<code>@Subscribe</code>注解这个方法.</li>
+<li>通过调用<code>register</code>方法注册所有要接收事件的订阅者.</li>
+</ul>
+<p>简单的示例如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NewSubscriber</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleNewEvent</span><span class="params">(NewEvent event)</span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">EventBus</span> <span class="variable">eventBus</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventBus</span>();</span><br><span class="line">eventBus.register(<span class="keyword">new</span> <span class="title class_">NewSubscriber</span>());</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<h4 id="发布事件"><a href="#发布事件" class="headerlink" title="发布事件"></a>发布事件</h4><ul>
+<li>通过<code>EventBus</code>发布事件是非常简单明了的,通过调用<code>EventBus.post</code>发送事件的变化通知所有注册了的对象.<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleTransaction</span><span class="params">()</span>&#123;</span><br><span class="line">  purchaseService.purchase(item, amount);</span><br><span class="line">  eventBus.post(<span class="keyword">new</span> <span class="title class_">CashPurchaseEvent</span>(item, amount);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<blockquote>
+<p>明显的可以看出,发布和订阅使用了相同的<code>EventBus</code>类的实例,简单起见,你也可以使用单例模式.</p>
+</blockquote>
+<h4 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h4><p><code>EventBus</code>的一个非常强大的功能是你可以根据自己的需要使你的<code>handler</code>作为<a class="link"   target="_blank" rel="noopener" href="http://stackoverflow.com/questions/3766845/coarse-grained-vs-fine-grained" >粗粒度或细粒度 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>的处理方式.<code>EventBus</code>会调用已注册的发布的事件对象的子类和它的实现接口.比如，要处理某个事件可以创建一个带有类型参数的事件处理程序。要处理具体的事件，就创建一个非常具体的事件处理程序，比如下面的示例：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * EventBusDemo Created by lechance </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">PurchaseEvent</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> String item;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PurchaseEvent</span><span class="params">(String item)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.item = item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CashPurchaseEvent</span> <span class="keyword">extends</span> <span class="title class_">PurchaseEvent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> amount;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CashPurchaseEvent</span><span class="params">(String item, <span class="type">int</span> amount)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(item);</span><br><span class="line">        <span class="built_in">this</span>.amount = amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;item: %s amount: %s%n&quot;</span>, item, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CreditPurchaseEvent</span> <span class="keyword">extends</span> <span class="title class_">PurchaseEvent</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> amount;</span><br><span class="line">    <span class="keyword">private</span> String cardNumber;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CreditPurchaseEvent</span><span class="params">(String item, <span class="type">int</span> amount, String cardNumber)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(item);</span><br><span class="line">        <span class="built_in">this</span>.amount = amount;</span><br><span class="line">        <span class="built_in">this</span>.cardNumber = cardNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;item: %s amount: %d cardNumber: %s%n&quot;</span>, item, amount, cardNumber);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endhighlight %&#125;</span><br><span class="line"></span><br><span class="line">下面是事件处理类：</span><br><span class="line"></span><br><span class="line">&#123;% highlight java %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * EventBusDemo Created by lechance </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只有现金购买时才会被通知</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CashPurchaseSubscriber</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleCashPurchase</span><span class="params">(CashPurchaseEvent event)</span>&#123;</span><br><span class="line">        event.handle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有信用卡购买时才会被通知</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CreditPurchaseSubscriber</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleCreditPurchase</span><span class="params">(CreditPurchaseEvent event)</span>&#123;</span><br><span class="line">        event.handle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对于任何事件都会被通知</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PurchaseSubscriber</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handlePurchaseEvent</span><span class="params">(PurchaseEvent event)</span>&#123;</span><br><span class="line">	<span class="comment">//由于PurchaseEvent是抽象类，以下方法会调用它的实现类中对应的方法。</span></span><br><span class="line">        event.handle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+<p><code>EventBus</code>提供了吸引人的操作事件的模式，使你可以替代传统的Java事件处理机制。</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><h4 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h4><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://google.github.io/guava/releases/snapshot/api/docs/" >EventBus API <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/google/guava" >Guava on Github <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://codingjunkie.net/guava-eventbus/" >Bill’s Post about EventBus <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+        </div>
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Usage of Google Guava EventBus</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-05-05 16:43:14</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/05/05/Usage-of-Google-Guava-EventBus/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-    .article-content-container
-      width calc(100% - 210px) !important
+            </div>
+        
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        
 
-    .article-content-container
-      width 100% !important
+        
 
-    &.show-toc
-      .toc-content-container
-        display none
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/05/13/make-gif-file-in-linux/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Notes - Make Gif File in Linux(debian)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/04/23/Model-view-presenter-Pattern-in-Android/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Model-view-presenter Pattern in Android</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-      .article-content-container
-        width 100% !important
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+        
+    </div>
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Usage of Google Guava EventBus</div>
+        
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+    </div>
+</div>
+        </div>
+    
+</div>
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

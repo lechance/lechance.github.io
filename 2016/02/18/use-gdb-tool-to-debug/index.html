@@ -594,263 +594,235 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">使用 gdb 工具调试 C 程序</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-02-18 17:25:15</span>
+        <span class="mobile">2016-02-18 17:25:15</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/gdb/">gdb</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/c/">c</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/debug/">debug</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>13k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>47 mins. Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>gdb 是 C 编程中调试程序的一个强大工具. 程序开发中经常需要一些调试方法来对程序进行分析 debug.</p>
+<p>通常我们检查程序的错误只是简单地根据执行时的出错现象假设错误原因，然后在代码中适当的插入 printf, 执行程序并分析打印结果，如果结果和预期的一样，就基本上证明了自己假设的错误原因，就可以动手修正 bug 了，如果结果与预期的不一样，就要进一步的假设和分析. 这样的方式对于小型程序还能应付之，但当面对代码量巨大的程序时，我们就急切需要一种工具来更详细具体地观察程序运行过程中各个变量以及函数的调用信息，查看程序中所有的内部状态，比如变量的值，传给函数的参数，当前执行的代码行等. <code>gdb</code> 就是这样一个工具，掌握它的用法后，我们调试程序的手段就更加丰富了. 即使如此，也应该始终记得调试程序的的基本思想仍然是”分析现象－假设错误原因－产生新的现象去验证假设”这样一个循环，根据现象如何假设错误原因，以及如何设计新的现象去验证假设，这都需要非常严密的分析和思考.</p>
+<blockquote>
+<p>此博客是学习过程中的一些简短记录，并不能梳理成文。如果你想要了解更多关于 gdb 的信息，还请 google之.</p>
+</blockquote>
+<h4 id="预热"><a href="#预热" class="headerlink" title="预热"></a>预热</h4><p>在编译时需要加上<code>-g</code>选项，生成的可执行文件才能用<code>gdb</code>进行源码级调试.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">lechance@debian:/tmp$ cc -g bp.c -o bp</span><br><span class="line">lechance@debian:/tmp$ gdb bp</span><br><span class="line">GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1</span><br><span class="line">Copyright (C) 2014 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.  Type <span class="string">&quot;show copying&quot;</span></span><br><span class="line">and <span class="string">&quot;show warranty&quot;</span> <span class="keyword">for</span> details.</span><br><span class="line">This GDB was configured as <span class="string">&quot;i586-linux-gnu&quot;</span>.</span><br><span class="line">Type <span class="string">&quot;show configuration&quot;</span> <span class="keyword">for</span> configuration details.</span><br><span class="line">For bug reporting instructions, please see:</span><br><span class="line">&lt;http://www.gnu.org/software/gdb/bugs/&gt;.</span><br><span class="line">Find the GDB manual and other documentation resources online at:</span><br><span class="line">&lt;http://www.gnu.org/software/gdb/documentation/&gt;.</span><br><span class="line">For <span class="built_in">help</span>, <span class="built_in">type</span> <span class="string">&quot;help&quot;</span>.</span><br><span class="line">Type <span class="string">&quot;apropos word&quot;</span> to search <span class="keyword">for</span> commands related to <span class="string">&quot;word&quot;</span>...</span><br><span class="line">Reading symbols from bp...done.</span><br><span class="line">(gdb) </span><br></pre></td></tr></table></figure></div>
+<p><code>-g</code>选项的作用是在可执行文件中加入源代码的信息，比如可执行文件中第几条指令对应源代码的第几行，但并不是把整个文件嵌入到可执行文件中，所以才调试时必须保证<code>gdb</code>能找到源文件.<code>gdb</code>提供一个类似shell的命令行环境，上面的gdb就是提示符，在这个提示符下可以输入help查看命令的类别.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">help</span></span><br><span class="line">List of classes of commands:</span><br><span class="line"></span><br><span class="line">aliases -- Aliases of other commands</span><br><span class="line">breakpoints -- Making program stop at certain points</span><br><span class="line">data -- Examining data</span><br><span class="line">files -- Specifying and examining files</span><br><span class="line">internals -- Maintenance commands</span><br><span class="line">obscure -- Obscure features</span><br><span class="line">running -- Running the program</span><br><span class="line">stack -- Examining the stack</span><br><span class="line">status -- Status inquiries</span><br><span class="line">support -- Support facilities</span><br><span class="line">tracepoints -- Tracing of program execution without stopping the program</span><br><span class="line">user-defined -- User-defined commands</span><br><span class="line"></span><br><span class="line">Type <span class="string">&quot;help&quot;</span> followed by a class name <span class="keyword">for</span> a list of commands <span class="keyword">in</span> that class.</span><br><span class="line">Type <span class="string">&quot;help all&quot;</span> <span class="keyword">for</span> the list of all commands.</span><br><span class="line">Type <span class="string">&quot;help&quot;</span> followed by <span class="built_in">command</span> name <span class="keyword">for</span> full documentation.</span><br><span class="line">Type <span class="string">&quot;apropos word&quot;</span> to search <span class="keyword">for</span> commands related to <span class="string">&quot;word&quot;</span>.</span><br><span class="line">Command name abbreviations are allowed <span class="keyword">if</span> unambiguous.</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="list-row-number"><a href="#list-row-number" class="headerlink" title="list [row_number]"></a>list [row_number]</h5><p>从指定的row_number行开始列出源代码，也可以忽略指定显示的行号，list命令也可以简化为l使用.</p>
+<h5 id="Enter-key"><a href="#Enter-key" class="headerlink" title="Enter key"></a>Enter key</h5><p>gdb提供了一个方便的功能，在提示符下直接敲回车键重复上一条命令.</p>
+<h5 id="sart"><a href="#sart" class="headerlink" title="sart"></a>sart</h5><p>我们使用start命令开始执行程序，通过在提示符下查看start的help，我知道了还可以在start时指定程序启动的参数.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">help</span> start</span><br><span class="line">Run the debugged program <span class="keyword">until</span> the beginning of the main procedure.</span><br><span class="line">You may specify arguments to give to your program, just as with the</span><br><span class="line"><span class="string">&quot;run&quot;</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure></div>
+<h5 id="next-abbreviation-n"><a href="#next-abbreviation-n" class="headerlink" title="next (abbreviation: n)"></a>next (abbreviation: n)</h5><p>我们可以使用next命令控制程序的语句一条一条地执行. gdb停在main函数中变量定义之后的第一条语句处等待我们发出命令.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(gdb) start</span><br><span class="line">Temporary breakpoint 1 at 0x804845c: file bp.c, line 4.</span><br><span class="line">Starting program: /tmp/bp </span><br><span class="line"></span><br><span class="line">Temporary breakpoint 1, main () at bp.c:4</span><br><span class="line">4	    int <span class="built_in">sum</span> = 0, i = 0;</span><br><span class="line">(gdb) n</span><br><span class="line">8		scanf(<span class="string">&quot;%s&quot;</span>, input);</span><br><span class="line">(gdb) </span><br></pre></td></tr></table></figure></div>
+<h5 id="step-abbreviation-s"><a href="#step-abbreviation-s" class="headerlink" title="step (abbreviation: s)"></a>step (abbreviation: s)</h5><p>执行下一行语句，如果有函数调用则进入到函数中</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(gdb) s</span><br><span class="line">add_range (low=1, high=10) at main.c:6</span><br><span class="line">6		<span class="keyword">for</span> (i = low; i &lt;= high; i++)</span><br></pre></td></tr></table></figure></div>
+<h5 id="backtrace-abbreviation-bt"><a href="#backtrace-abbreviation-bt" class="headerlink" title="backtrace (abbreviation: bt)"></a>backtrace (abbreviation: bt)</h5><p>使用<code>backtrace</code>命令可以查看函数调用的栈帧.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(gdb) bt</span><br><span class="line"><span class="comment">#0  add_range (low=1, high=10) at main.c:6</span></span><br><span class="line"><span class="comment">#1  0x080483c1 in main () at main.c:14</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="info-abbrevition-i"><a href="#info-abbrevition-i" class="headerlink" title="info (abbrevition: i)"></a>info (abbrevition: i)</h4><p>用info命令（简写为i）查看add_range函数局部变量的值：</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(gdb) i locals</span><br><span class="line">i = 0</span><br><span class="line"><span class="built_in">sum</span> = 0</span><br></pre></td></tr></table></figure></div>
+<p>如果想查看main函数当前局部变量的值也可以做到，先用frame命令（简写为f）选择1号栈帧然后再查看局部变量：</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(gdb) f 1</span><br><span class="line"><span class="comment">#1  0x080483c1 in main () at main.c:14</span></span><br><span class="line">14		result[0] = add_range(1, 10);</span><br><span class="line">(gdb) i locals </span><br><span class="line">result = &#123;0, 0, 0, 0, 0, 0, 134513196, 225011984, -1208685768, -1081160480, </span><br><span class="line">...</span><br><span class="line">  -1208623680&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="print-abbrevition-p"><a href="#print-abbrevition-p" class="headerlink" title="print (abbrevition: p)"></a>print (abbrevition: p)</h4><p>打印表达式的值，通过表达式可以修改变量的值或者调用函数</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p <span class="built_in">sum</span></span><br><span class="line"><span class="variable">$1</span> = 3</span><br></pre></td></tr></table></figure></div>
+<h4 id="un-display-variables"><a href="#un-display-variables" class="headerlink" title="[un]display [variables]"></a>[un]display [variables]</h4><p>用display命令使得每次停下来的时候都显示当前sum的值</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) display <span class="built_in">sum</span></span><br><span class="line">1: <span class="built_in">sum</span> = -1208103488</span><br></pre></td></tr></table></figure></div>
+<h4 id="break-b-row-number"><a href="#break-b-row-number" class="headerlink" title="break (b) [row_number]"></a>break (b) [row_number]</h4><p>在某一行设置断点</p>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+        </div>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 使用 gdb 工具调试 C 程序</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-02-18 17:25:15</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/02/18/use-gdb-tool-to-debug/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+            </div>
+        
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/gdb/">#gdb</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/c/">#c</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/debug/">#debug</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-    .article-content-container
-      width calc(100% - 210px) !important
+        
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/02/22/google-java-style/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Google Java Style</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/02/14/algorithm-insertion-sort-in-java/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Algorithm - Insertion Sort in Java</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    .article-content-container
-      width 100% !important
 
-    &.show-toc
-      .toc-content-container
-        display none
+        
+    </div>
 
-      .article-content-container
-        width 100% !important
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">使用 gdb 工具调试 C 程序</div>
+        
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+    </div>
+</div>
+        </div>
+    
+</div>
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

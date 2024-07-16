@@ -594,263 +594,241 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Least-Recently-Used Cache</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2016-04-08 18:58:16</span>
+        <span class="mobile">2016-04-08 18:58:16</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Algorithm/">Algorithm</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/lruCache/">lruCache</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>24k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:26 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>Implement LRU Cache</p>
+<blockquote>
+<p>Wikipedia <a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cache_algorithms" >https://en.wikipedia.org/wiki/Cache_algorithms <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+</blockquote>
+<p>In computing, cache algorithms (also frequently called cache replacement algorithms or cache replacement policies) are optimizing instructions—​​or algorithms—​​that a computer program or a hardware-maintained structure can follow in order to manage a cache of information stored on the computer. When the cache is full, the algorithm must choose which items to discard to make room for the new ones.</p>
+<p>The LRU caching scheme is to remove the least recently used frame when the cache is full and a new page is referenced which is not there in cache.</p>
+<p>We use two data structures to implement an LRU Cache.</p>
+<ol>
+<li><p>A Queue which is implemented using a doubly linked list. </p>
+</li>
+<li><p>A Hash with node number as key and value of the corresponding queue node as value.</p>
+</li>
+</ol>
+<p>Note: Initially no data is in the cache.</p>
+<p>Below is Java implementation:</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  LruCacheDemo Created by lechance</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LruCacheDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">maxSize</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        LruCache&lt;Integer, Person&gt; lruCache = <span class="keyword">new</span> <span class="title class_">LruCache</span>&lt;&gt;(maxSize);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//entity</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 1&quot;</span>);</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 2&quot;</span>);</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 3&quot;</span>);</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 4&quot;</span>);</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 5&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p6</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;people 6&quot;</span>);</span><br><span class="line"></span><br><span class="line">        lruCache.put(<span class="number">1</span>, p1);</span><br><span class="line">        lruCache.put(<span class="number">2</span>, p2);</span><br><span class="line">        lruCache.put(<span class="number">3</span>, p3);</span><br><span class="line">        lruCache.put(<span class="number">4</span>, p4);</span><br><span class="line">        lruCache.put(<span class="number">5</span>, p5);</span><br><span class="line"></span><br><span class="line">        lruCache.put(<span class="number">6</span>, p6);</span><br><span class="line"></span><br><span class="line">        print(lruCache.get(<span class="number">1</span>)); <span class="comment">// it will print null because beyond the limit size</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//therefore, the following items can be acquired normally</span></span><br><span class="line">        print(p2);</span><br><span class="line">        print(p5);</span><br><span class="line">        print(p6);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//generic method for convenience print test-info</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        System.out.println(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">        String name;</span><br><span class="line"></span><br><span class="line">        Person(String name) &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Person: &quot;</span> + name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * We can keep two separate data structures, A &lt;b&gt;HashMap with (key, pointers)&lt;/b&gt; pairs and a &lt;b&gt;</span></span><br><span class="line"><span class="comment"> * doubly linked list&lt;/b&gt; which will work as the priority queue for deletion and store the &lt;b&gt;Values&lt;/b&gt;</span></span><br><span class="line"><span class="comment"> * , From the &lt;b&gt;HashMap&lt;/b&gt;, we can point to an element in the doubly linked list and update it&#x27;s retrieval</span></span><br><span class="line"><span class="comment"> * time. Because we go directly from the &lt;b&gt;HashMap&lt;/b&gt; to the item in the list, our time complexity</span></span><br><span class="line"><span class="comment"> * remains at O(1).</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * For example, our doubly linked list can look like:</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Least-recently-used-link -&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; D &lt;-&gt; E -&gt; most-recently-used-link</span></span><br><span class="line"><span class="comment"> * --------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"> * left-side most -&gt;                   middle                 &lt;- right-side most</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;K&gt; The type of key</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;V&gt; The type of pointers (doubly linked list)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LruCache</span>&lt;K, V&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">mLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> mCurrentSize;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> mMaxSize;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;K, Node&lt;K, V&gt;&gt; mCache;</span><br><span class="line">    <span class="keyword">private</span> Node&lt;K, V&gt; mLeastRecentlyUsedNode;</span><br><span class="line">    <span class="keyword">private</span> Node&lt;K, V&gt; mMostRecentlyUsedNode;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// the list is empty</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LruCache</span><span class="params">(<span class="type">int</span> maxSize)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.mMaxSize = maxSize;</span><br><span class="line">        mCurrentSize = <span class="number">0</span>;</span><br><span class="line">        mCache = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        mLeastRecentlyUsedNode = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(<span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        mMostRecentlyUsedNode = mLeastRecentlyUsedNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (mCache.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//put the new node at the right-most end of the linked list</span></span><br><span class="line">        Node&lt;K, V&gt; tempNode = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(mMostRecentlyUsedNode, <span class="literal">null</span>, key, value);</span><br><span class="line">        mMostRecentlyUsedNode.next = tempNode;</span><br><span class="line">        mMostRecentlyUsedNode = tempNode;</span><br><span class="line">        mCache.put(key, tempNode);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Delete the left-most entry if items exceed maxSize and update the LRU</span></span><br><span class="line">        <span class="keyword">if</span> (mCurrentSize == mMaxSize) &#123;</span><br><span class="line">            mCache.remove(mLeastRecentlyUsedNode.key);</span><br><span class="line">            mLeastRecentlyUsedNode = mLeastRecentlyUsedNode.next;</span><br><span class="line">            mLeastRecentlyUsedNode.previous = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Update cache size, for the first added entry update the LRU pointer</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mCurrentSize &lt; mMaxSize) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mCurrentSize == <span class="number">0</span>) &#123;</span><br><span class="line">                mLeastRecentlyUsedNode = tempNode;</span><br><span class="line">            &#125;</span><br><span class="line">            mCurrentSize++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> V <span class="title function_">get</span><span class="params">(K key)</span> &#123;</span><br><span class="line"></span><br><span class="line">        Node&lt;K, V&gt; tempNode = mCache.get(key);</span><br><span class="line">        <span class="keyword">if</span> (tempNode == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// if MRU leave the list as it is</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tempNode.key == mMostRecentlyUsedNode.key) &#123;</span><br><span class="line">            <span class="keyword">return</span> tempNode.value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// get the next and previous nodes</span></span><br><span class="line">        Node&lt;K, V&gt; previousNode = tempNode.previous;</span><br><span class="line">        Node&lt;K, V&gt; nextNode = tempNode.next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If at the left-most(LRU), we update LRU</span></span><br><span class="line">        <span class="keyword">if</span> (tempNode.key == mLeastRecentlyUsedNode.key) &#123;</span><br><span class="line">            nextNode.previous = tempNode;</span><br><span class="line">            previousNode.previous = <span class="literal">null</span>;</span><br><span class="line">            mLeastRecentlyUsedNode = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// if we are at in middle, we need to update the items before and after</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tempNode.key != mMostRecentlyUsedNode.key) &#123;</span><br><span class="line">            previousNode.next = nextNode;</span><br><span class="line">            <span class="comment">//note that</span></span><br><span class="line">            previousNode.previous = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//finally  move the item to the MRU</span></span><br><span class="line">        tempNode.previous = mMostRecentlyUsedNode;</span><br><span class="line">        mMostRecentlyUsedNode.next = tempNode;</span><br><span class="line">        mMostRecentlyUsedNode = tempNode;</span><br><span class="line">        mMostRecentlyUsedNode.next = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> tempNode.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Define &#123;<span class="doctag">@code</span> Node&#125; with pointers to the previous and next item and a key, value</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt; the type of key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;U&gt; the type of value</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;T, U&gt; &#123;</span><br><span class="line">        T key;</span><br><span class="line">        U value;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;T, U&gt; previous;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;T, U&gt; next;</span><br><span class="line"></span><br><span class="line">        Node(Node&lt;T, U&gt; previous, Node&lt;T, U&gt; next, T key, U value) &#123;</span><br><span class="line">            <span class="built_in">this</span>.previous = previous;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">            <span class="built_in">this</span>.key = key;</span><br><span class="line">            <span class="built_in">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<p>Origanize post from Network.</p>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+        </div>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Least-Recently-Used Cache</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2016-04-08 18:58:16</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2016/04/08/least-recently-used-cache/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+            </div>
+        
 
-    .article-content-container
-      width calc(100% - 210px) !important
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/java/">#java</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/algorithm/">#algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/lruCache/">#lruCache</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        
 
-    .article-content-container
-      width 100% !important
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2016/04/15/android-http-client-get-post-download-upload-multipart-request/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">ANDROID HTTP CLIENT-GET,POST,DOWNLOAD,UPLOAD,MULTIPART REQUEST</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2016/04/02/usage-of-volley-lib/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Usage of The Volley Library in Android</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    &.show-toc
-      .toc-content-container
-        display none
 
-      .article-content-container
-        width 100% !important
+        
+    </div>
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Least-Recently-Used Cache</div>
+        
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+    </div>
+</div>
+        </div>
+    
+</div>
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

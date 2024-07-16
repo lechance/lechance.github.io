@@ -593,263 +593,236 @@ $logo-image-box-width = 34px
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Conceptions of Java</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2015-02-13 20:39:13</span>
+        <span class="mobile">2015-02-13 20:39:13</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-13 08:20:47</span>
+            <span class="mobile">2024-07-13 08:20:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>12k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>44 mins. Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h4 id="Programming-Conceptions"><a href="#Programming-Conceptions" class="headerlink" title="Programming Conceptions"></a>Programming Conceptions</h4><p>独立的地址空间使得进程共享状态信息变得更加困难。为了共享信息，他们必须使用显式的ＩＰＣ(interprocess communication, IPC)机制。基于进程设计的另一个缺点是，他们往往比较慢，因为进程控制和IPC的开销都很高．</p>
+<p>一个线程(thread)就是运行在一个进程上下文中的逻辑流．线程由内核调度．每个线程都有它自己的线程上下文(thread context)，包含一个唯一的整数线程ID(Thread ID,TID),栈，栈指针，程序计数器,通用目的寄存器和条件码．所有运行在一个进程里的线程共享该进程的虚拟地址空间．<br>基于线程的逻辑流结合了基于进程和基于I&#x2F;O多路复用的流的特性．</p>
+<p>thread routine 线程例程</p>
+<p>分离线程：在任何一个时间点上，线程是可结合的（joinable）或者是可以分离的（detached）的．一个可结合的线程能够被其他线程收回和杀死．在被其他线程收回之前，它的存储资源（例如栈）是不释放的．相反，一个分离的线程是不能被其他线程回收和杀死的．他的存储器资源在它终止时由系统自动释放．<br>默认情况下，线程是被创建成可结合的．为了避免存储器泄露，每个线程都应该要么被其他线程显式地收回，要么通过调用pthread_detached函数被分离．</p>
+<h4 id="Operator-in-Java"><a href="#Operator-in-Java" class="headerlink" title="Operator in Java"></a>Operator in Java</h4><h5 id="Arithmetic-Operators"><a href="#Arithmetic-Operators" class="headerlink" title="Arithmetic Operators"></a>Arithmetic Operators</h5><p>Mathematical (or arithmetic) operators are used in performing mathematical operations in an arithmetic expression. The various arithmetic operators are listed in Table SR2-1.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Operator							Symbol</span><br><span class="line"></span><br><span class="line">Addition					  		+</span><br><span class="line">Increment					  		++</span><br><span class="line">Division					  		/</span><br><span class="line">Unary Negation					  		~</span><br><span class="line">Unary Minus							-</span><br><span class="line">Multiplication					  		*</span><br><span class="line">Logical NOT							!</span><br><span class="line">Unary  Plus							+</span><br><span class="line">Subtraction							-</span><br><span class="line">Decrement						  	--</span><br><span class="line">Remainder					  		%</span><br><span class="line">Typecasting					  		(<span class="built_in">type</span>)</span><br></pre></td></tr></table></figure></div>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<p>TABLE SR2-1.   Arithmetic Operators</p>
+<h5 id="Unary-Operators"><a href="#Unary-Operators" class="headerlink" title="Unary Operators"></a>Unary Operators</h5><p>As the name indicates, unary operators operate on a single operand. We discuss the four unary<br>operators in this section. You have already seen the use of the unary minus <code>(-)</code> operator in the<br>previous example. The unary minus operator negates the operand. Likewise, a unary plus <code>(+)</code><br>operator is available in Java.<br>Tip:The unary plus operator is included for symmetry only and has no<br>effect on the sign of its operand.<br>The increment (++) and decrement (–) operators increment or decrement the value of their<br>operand by 1. These are also called “auto” operators because they operate and assign the result<br>automatically. The implicit operand for both the operators is 1, which means that the given<br>operand value is either increased or decreased by exactly 1, depending on the operation.</p>
+<h5 id="Post-and-Pre-Operators"><a href="#Post-and-Pre-Operators" class="headerlink" title="Post and Pre Operators"></a>Post and Pre Operators</h5><p>The two “auto” operators can be applied to a variable as a suffix or a prefix. Depending on which<br>side of the variable they are applied, they produce different results.</p>
+<p>String Concatenation<br>In Java, the + operator, when applied to a string data type, performs concatenation of strings.<br>Tip<br>In other languages, the use of the + operator for string concatenation<br>is considered a feature of operator overloading. Java does not support<br>operator overloading in the sense that a developer cannot redefine<br>the meaning of any of the operators. The string concatenation is<br>equivalent to operator overloading defined internally in Java.</p>
+<h5 id="Type-Conversions"><a href="#Type-Conversions" class="headerlink" title="Type Conversions"></a>Type Conversions</h5><p>Oftentimes, in a program statement, you assign the value of one data type to another. For example,<br>you may assign an integer variable to a float type, or vice versa. When you assign an integer to a<br>float type, there is no loss of magnitude.</p>
+<p><em>Caution:</em></p>
+<blockquote>
+<p>Converting int to float may result in loss of precision.</p>
+</blockquote>
+<h5 id="Bitwise-Operators"><a href="#Bitwise-Operators" class="headerlink" title="Bitwise Operators"></a>Bitwise Operators</h5><p>Bitwise operators are used to test, set, or shift actual bits in a byte or a word that corresponds to<br>the char and int data types. These operators cannot perform operations on data types such as<br>float, double, and boolean. Table SR2-4 lists the various bitwise operators.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Operator					   Meaning</span><br><span class="line"></span><br><span class="line">&amp;					  		AND</span><br><span class="line">&gt;&gt;					  		Right-<span class="built_in">shift</span></span><br><span class="line">~					  		NOT</span><br><span class="line">&lt;&lt;					  		<span class="string">Left-shift</span></span><br><span class="line"><span class="string">^					  		XOR</span></span><br><span class="line"><span class="string">|					  		OR</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;					  		Right-shift with zero fill</span></span><br></pre></td></tr></table></figure></div>
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+<p>TABLE SR2-4.	  Bitwise Operators</p>
+<p>These operators perform the well-known Boolean operations, as their names suggest.</p>
+<h5 id="Logical-Conditional-Operators"><a href="#Logical-Conditional-Operators" class="headerlink" title="Logical Conditional Operators"></a>Logical Conditional Operators</h5><p>As mentioned earlier, logical operators can take one, two, or three operands. The lists of operators<br>that fall in this category are given in Table SR2-5. The first two operators operate on two operands,<br>the NOT operator operates on a single operand, and the ternary conditional operator takes three<br>operands.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Operator						 Meaning</span><br><span class="line">&amp;&amp;					  		AND</span><br><span class="line">!					  		NOT</span><br><span class="line">||					  		OR</span><br><span class="line">?:					  		ternary condition</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+<p>TABLE SR2-5.    Logical Operators</p>
+<h5 id="Relational-Operators"><a href="#Relational-Operators" class="headerlink" title="Relational Operators"></a>Relational Operators</h5><p>Relational operators and used to compare two values.The output of the comparison is always a<br>Boolean value, which is true or false. The various relational operators are listed in Table SR2-6.<br>These operators generally operate on numeric and character data types.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Operation                Operator</span><br><span class="line"></span><br><span class="line">Greater than                &gt;</span><br><span class="line">Not equal to                !=</span><br><span class="line">Less than or equal to       &lt;=</span><br><span class="line">Greater than or equal to    &gt;=</span><br><span class="line">Less than                   &lt;</span><br><span class="line">Equal to                    ==</span><br><span class="line">			instanceof</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+<p>TABLE SR2-6.   Relational Operators</p>
+<h5 id="Assignment-Operators"><a href="#Assignment-Operators" class="headerlink" title="Assignment Operators"></a>Assignment Operators</h5><p>The basic assignment operator is the equal to (&#x3D;)operator,where the right-side value of the expression is assigned to the variable defined on the left-side of the expression.<br>The various assignment operators are listed in Table SR2-7.</p>
+<div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Operation	(操作)					 Operator(操作符)</span><br><span class="line">Assignment					          =</span><br><span class="line">Add and assign					          +=</span><br><span class="line">Subtract and assign					  -=</span><br><span class="line">Multiply and assign					  *=</span><br><span class="line">Divide and assign					  /=</span><br><span class="line">Modulo divide and assign				  %=</span><br><span class="line">Left <span class="built_in">shift</span> and assign					  &lt;&lt;=</span><br><span class="line">Right <span class="built_in">shift</span> and assign					  &gt;&gt;=</span><br><span class="line">Unsigned right <span class="built_in">shift</span> and assign				  &gt;&gt;&gt;=</span><br><span class="line">Bitwise logical AND and assign				  &amp;=</span><br><span class="line">Bitwise OR and assign					  |=</span><br><span class="line">Bitwise exclusive OR and assign			          ^=</span><br></pre></td></tr></table></figure></div>
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+<p>TABLE SR2-7.            Assignment Operators</p>
+<h5 id="Separators"><a href="#Separators" class="headerlink" title="Separators"></a>Separators</h5><p>The following nine ASCII characters are the separators (punctuators) in Java:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Separator : one of</span><br><span class="line">( )  &#123;  &#125;  [  ]   ;   ,   .</span><br></pre></td></tr></table></figure></div>
+<p>They carry special meaning when used in program statements.For example, the parentheses are used in a function call and typecasting. The curly braces are used for compounding statements. The square brackets are used in array declarations. The semicolon is used in terminating a program statement; a comma is used in separating multiple statements and declarations. Finally, a dot is used in defining the package hierarchy or calling object methods. You will learn the use of these separators in the book as we delve deeper into the language syntax.</p>
 
-    .article-content-container
-      width calc(100% - 210px) !important
+        </div>
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Conceptions of Java</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2015-02-13 20:39:13</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-13 08:20:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2015/02/13/notes-programming-conceptions/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-    .article-content-container
-      width 100% !important
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
 
-    &.show-toc
-      .toc-content-container
-        display none
+            </div>
+        
 
-      .article-content-container
-        width 100% !important
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/java/">#java</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/note/">#note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+        
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2015/05/01/java-reflection-tutorial/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Java Reflection Tutorial</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
+        
+    </div>
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Conceptions of Java</div>
+        
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
+    </div>
+</div>
+        </div>
+    
+</div>
 
-      &>:first-child
-        margin-top 0 !important
 
-    .article-prev, .article-next
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 
