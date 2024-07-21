@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lechance">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lechance.github.io/2019/09/23/what-is-reset/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="What is REST ? A RESTful API is an application program interface (API) that uses HTTP requests to GET, PUT, POST and DELETE data. A RESTful API – also referred to as a RESTful web service – is based o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is REST">
+<meta property="og:url" content="https://lechance.github.io/2019/09/23/what-is-reset/index.html">
+<meta property="og:site_name" content="Lechance&#39;s Blog">
+<meta property="og:description" content="What is REST ? A RESTful API is an application program interface (API) that uses HTTP requests to GET, PUT, POST and DELETE data. A RESTful API – also referred to as a RESTful web service – is based o">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-20T02:43:43.077Z">
+<meta property="article:author" content="Lechance Cheung">
+<meta property="article:tag" content="http">
+<meta property="article:tag" content="dev">
+<meta property="article:tag" content="rest">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            What is REST -
+        
+        Lechance&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"lechance.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["MVP"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"Suggestion","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"...","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=i&c=h&c=d&c=e&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/lechance/","instagram":null,"zhihu":null,"twitter":null,"email":"lechance@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-solid fa-table-list"},"links":{"icon":"fa-regular fa-link","submenus":{"About":"/about","Essay":"/essays","Gallery":"/masonry","Bookmark":"/links"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"stay hungry stay foolish","show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/28 13:14:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Lechance&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Lechance&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-solid fa-table-list fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ABOUT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/essays">
+                                                    ESSAY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/masonry">
+                                                    GALLERY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/links">
+                                                    BOOKMARK
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ABOUT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">ESSAY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/masonry">GALLERY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/links">BOOKMARK</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">101</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">What is REST</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2019-09-23</span>
+        <span class="mobile">2019-09-23</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-20 10:43:43</span>
+            <span class="mobile">2024-07-20 10:43:43</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/DEV/">DEV</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/http/">http</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/dev/">dev</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/rest/">rest</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>25k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:31 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h3 id="What-is-REST"><a href="#What-is-REST" class="headerlink" title="What is REST ?"></a>What is REST ?</h3><blockquote>
+<p>A <strong>RESTful API</strong> is an application program interface (API) that uses HTTP requests to GET, PUT, POST and DELETE data. A RESTful API – also referred to as a RESTful web service – is based on <strong>representational state transfer (REST)</strong> technology, an architectural style and approach to communications often used in web services development.</p>
+</blockquote>
+<p>Definition of <strong>Representational State Transfer:</strong></p>
+<blockquote>
+<p><strong>REpresentational State Transfer (REST)</strong> is a software architectural style that defines a set of constraints to be used for creating Web services. Web services that conform to the REST architectural style, called <code>RESTful Web services</code>, provide interoperability between computer systems on the Internet. <code>RESTful Web services</code>    allow the requesting systems to access and manipulate textual representations of Web resources by using a uniform and predefined set of stateless operations. Other kinds of Web services, such as <code>SOAP Web services</code>, expose their own arbitrary sets of operations.</p>
+</blockquote>
+<p>Learn about how to design web services using the REST paradigm</p>
+<hr>
+<h4 id="Representational-State-Transfer"><a href="#Representational-State-Transfer" class="headerlink" title="Representational State Transfer"></a>Representational State Transfer</h4><p><code>REST</code>, or <code>REpresentational State Transfer</code>, is an architectural style for providing standards between computer systems on the web, making it easier for systems to communicate with each other. <em>REST-compliant systems</em>, often called RESTful systems, are characterized by how they are stateless and separate the concerns of client and server. We will go into what these terms mean and why they are beneficial characteristics for services on the Web. </p>
+<h4 id="Separation-of-Client-and-Server"><a href="#Separation-of-Client-and-Server" class="headerlink" title="Separation of Client and Server"></a>Separation of Client and Server</h4><p>In the REST architectural style, the implementation of the client and the implementation of the server can be done independently without each knowing about the other. This means that the code on the client side can be changed at any time without affecting the operation of the server, and the code on the server side can be changed without affecting the operation of the client.</p>
+<p>As long as each side knows what format of messages to send to the other, they can be kept modular and separate. Separating the user interface concerns from the data storage concerns, we improve the flexibility of the interface across platforms and improve scalability by simplifying the server components. Additionally, the separation allows each component the ability to evolve independently.</p>
+<p>By using a REST interface, different clients hit the same REST endpoints, perform the same actions, and receive the same responses. </p>
+<h4 id="Statelessness"><a href="#Statelessness" class="headerlink" title="Statelessness"></a>Statelessness</h4><p>Systems that follow the REST paradigm are stateless, meaning that the server does not need to know anything about what state the client is in and vice versa. In this way, both the server and the client can understand any message received, even without seeing previous messages. This constraint of statelessness is enforced through the use of resources, rather than commands. Resources are the nouns of the Web - they describe any object, document, or thing that you may need to store or send to other services.</p>
+<p>Because REST systems interact through standard operations on resources, they do not rely on the implementation of interfaces.</p>
+<p>These constraints help RESTful applications achieve reliability, quick performance, and scalability, as components that can be managed, updated, and reused without affecting the system as a whole, even during operation of the system.</p>
+<p>Now, we’ll explore how the communication between the client and server actually happens when we are implementing a RESTful interface.</p>
+<h4 id="Communication-between-Client-and-Server"><a href="#Communication-between-Client-and-Server" class="headerlink" title="Communication between Client and Server"></a>Communication between Client and Server</h4><p>In the REST architecture, clients send requests to retrieve or modify resources, and servers send responses to these requests. Let’s take a look at the standard ways to make requests and send responses.</p>
+<h4 id="Making-Requests"><a href="#Making-Requests" class="headerlink" title="Making Requests"></a>Making Requests</h4><p>REST requires that a client make a request to the server in order to retrieve or modify data on the server. A request generally consists of:</p>
+<ul>
+<li>an HTTP verb, which defines what kind of operation to perform</li>
+<li>a header, which allows the client to pass along information about the request</li>
+<li>a path to a resource</li>
+<li>an optional message body containing data</li>
+</ul>
+<h6 id="HTTP-Verbs"><a href="#HTTP-Verbs" class="headerlink" title="HTTP Verbs"></a>HTTP Verbs</h6><p>There are 4 basic HTTP verbs we use in requests to interact with resources in a REST system:</p>
+<ul>
+<li><strong>GET</strong> — retrieve a specific resource (by id) or a collection of resources</li>
+<li><strong>POST</strong> — create a new resource</li>
+<li><strong>PUT</strong> — update a specific resource (by id)</li>
+<li><strong>DELETE</strong> — remove a specific resource by id</li>
+</ul>
+<p>You can learn more about these HTTP verbs in the following Codecademy article: </p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.codecademy.com/articles/what-is-crud" >What is CRUD ? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h6 id="Headers-and-Accept-parameters"><a href="#Headers-and-Accept-parameters" class="headerlink" title="Headers and Accept parameters"></a>Headers and Accept parameters</h6><p>In the header of the request, the client sends the type of content that it is able to receive from the server. This is called the Accept field, and it ensures that the server does not send data that cannot be understood or processed by the client. The options for types of content are <code>MIME Types</code> (or Multipurpose Internet Mail Extensions, which you can read more about in the ++<a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" >MDN Web Docs - MIME types (IANA media types) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>++.</p>
+<p>MIME Types, used to specify the content types in the Accept field, consist of a type and a subtype. They are separated by a slash (&#x2F;). </p>
+<p>For example, a text file containing HTML would be specified with the type <code>text/html</code>. If this text file contained CSS instead, it would be specified as <code>text/css</code>. A generic text file would be denoted as <code>text/plain</code>. This default value, <code>text/plain</code>, is not a catch-all, however. If a client is expecting <code>text/cs</code>s and receives <code>text/plain</code>, it will not be able to recognize the content.</p>
+<p>Other types and commonly used subtypes:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>types</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">image — image/png, image/jpeg, image/gif</span><br><span class="line">audio — audio/wav, image/mpeg</span><br><span class="line">video — video/mp4, video/ogg</span><br><span class="line">application — application/json, application/pdf, application/xml, application/octet-stream</span><br></pre></td></tr></table></figure></div>
+<p>For example, a client accessing a resource with <code>id</code> 23 in an <code>articles</code> resource on a server might send a GET request like this:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /articles/23</span><br><span class="line">Accept: text/html, application/xhtml</span><br></pre></td></tr></table></figure></div>
+<p>The <code>Accept</code> header field in this case is saying that the client will accept the content in <code>text/html</code> or <code>application/xhtml</code>.</p>
+<h6 id="Paths"><a href="#Paths" class="headerlink" title="Paths"></a>Paths</h6><p>Requests must contain a path to a resource that the operation should be performed on. In <code>RESTful APIs</code>, paths should be designed to help the client know what is going on.</p>
+<p>Conventionally, the first part of the path should be the plural form of the resource. This keeps nested paths simple to read and easy to understand.</p>
+<p>A path like <code>fashionboutique.com/customers/223/orders/12</code> is clear in what it points to, even if you’ve never seen this specific path before, because it is hierarchical and descriptive. We can see that we are accessing the order with <code>id</code> 12 for the customer with <code>id</code> 223.</p>
+<p>Paths should contain the information necessary to locate a resource with the degree of specificity needed. When referring to a list or collection of resources, it is unnecessary to add an <code>id</code> to a POST request to a <code>fashionboutique.com/customers</code> path would not need an extra identifier, as the server will generate an <code>id</code> for the new object.</p>
+<p>If we are trying to access a single resource, we would need to append an <code>id</code> to the path. For example: GET <code>fashionboutique.com/customers/:id</code> — retrieves the item in the <code>customers</code> resource with the id specified. DELETE <code>fashionboutique.com/customers/:id</code> — deletes the item in the <code>customers</code> resource with the <code>id</code> specified.</p>
+<h4 id="Sending-Responses"><a href="#Sending-Responses" class="headerlink" title="Sending Responses"></a>Sending Responses</h4><h6 id="Content-Types"><a href="#Content-Types" class="headerlink" title="Content Types"></a>Content Types</h6><p>In cases where the server is sending a data payload to the client, the server must include a <code>content-type</code> in the header of the response. This <code>content-type</code> header field alerts the client to the type of data it is sending in the response body. These <code>content types</code> are <code>MIME Types</code>, just as they are in the <code>accept</code> field of the request header. The <code>content-type</code> that the server sends back in the response should be one of the options that the client specified in the <code>accept</code> field of the request.</p>
+<p>For example, when a client is accessing a resource with <code>id</code> 23 in an <code>articles</code> resource with this <strong>GET</strong> Request:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /articles/23 HTTP/1.1</span><br><span class="line">Accept: text/html, application/xhtml</span><br></pre></td></tr></table></figure></div>
+<p>The server might send back the content with the response header:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 (OK)</span><br><span class="line">Content-Type: text/html</span><br></pre></td></tr></table></figure></div>
+<p>This would signify that the content requested is being returning in the response body with a <code>content-type</code> of <code>text/html</code>, which the client said it would be able to accept.</p>
+<h6 id="Response-Codes"><a href="#Response-Codes" class="headerlink" title="Response Codes"></a>Response Codes</h6><p>Responses from the server contain status codes to alert the client to information about the success of the operation. As a developer, you do not need to know every status code (there are &#x3D;&#x3D;many&#x3D;&#x3D; of them), but you should know the most common ones and how they are used:</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200 (OK)</td>
+<td>This is the standard response for successful HTTP requests.</td>
+</tr>
+<tr>
+<td>201 (CREATED)</td>
+<td>This is the standard response for an HTTP request that resulted in an item being successfully created.</td>
+</tr>
+<tr>
+<td>204 (NO CONTENT)</td>
+<td>This is the standard response for successful HTTP requests, where nothing is being returned in the response body.</td>
+</tr>
+<tr>
+<td>400 (BAD REQUEST)</td>
+<td>The request cannot be processed because of bad request syntax, excessive size, or another client error.</td>
+</tr>
+<tr>
+<td>403 (FORBIDDEN)</td>
+<td>The client does not have permission to access this resource.</td>
+</tr>
+<tr>
+<td>404 (NOT FOUND)</td>
+<td>The resource could not be found at this time. It is possible it was deleted, or does not exist yet.</td>
+</tr>
+<tr>
+<td>500 (INTERNAL SERVER ERROR)</td>
+<td>The generic answer for an unexpected failure if there is no more specific information available.</td>
+</tr>
+</tbody></table>
+<p>For each HTTP verb, there are expected status codes a server should return upon success:</p>
+<ul>
+<li>GET — return 200 (OK)</li>
+<li>POST — return 201 (CREATED)</li>
+<li>PUT — return 200 (OK)</li>
+<li>DELETE — return 204 (NO CONTENT) If the operation fails, return the most specific status code possible corresponding to the problem that was encountered.</li>
+</ul>
+<h4 id="Examples-of-Requests-and-Responses"><a href="#Examples-of-Requests-and-Responses" class="headerlink" title="Examples of Requests and Responses"></a>Examples of Requests and Responses</h4><p>Let’s say we have an application that allows you to view, create, edit, and delete customers and orders for a small clothing store hosted at <code>fashionboutique.com</code>. We could create an HTTP API that allows a client to perform these functions:</p>
+<p>If we wanted to view all customers, the request would look like this:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET http://fashionboutique.com/customers</span><br><span class="line">Accept: application/json</span><br></pre></td></tr></table></figure></div>
+<p>A possible response header would look like:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Status Code: 200 (OK)</span><br><span class="line">Content-type: application/json</span><br></pre></td></tr></table></figure></div>
+<p>followed by the <code>customers</code> data requested in <code>application/json</code> format.</p>
+<p>Create a new customer by posting the data:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST http://fashionboutique.com/customers</span><br><span class="line">Body:</span><br><span class="line">&#123;</span><br><span class="line">  “customer”: &#123;</span><br><span class="line">    “name” = “Scylla Buss”</span><br><span class="line">    “email” = “scylla.buss@codecademy.org”</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>The server then generates an id for that object and returns it back to the client, with a header like:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">201 (CREATED)</span><br><span class="line">Content-type: application/json</span><br></pre></td></tr></table></figure></div>
+<p>To view a single customer we GET it by specifying that customer’s id:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET http://fashionboutique.com/customers/123</span><br><span class="line">Accept: application/json</span><br></pre></td></tr></table></figure></div>
+<p>A possible response header would look like:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Status Code: 200 (OK)</span><br><span class="line">Content-type: application/json</span><br></pre></td></tr></table></figure></div>
+
+<p>followed by the data for the <code>customer</code> resource with <code>id</code> 23 in <code>application/json</code> format.</p>
+<p>We can update that customer by _PUT_ting the new data:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUT http://fashionboutique.com/customers/123</span><br><span class="line">Body:</span><br><span class="line">&#123;</span><br><span class="line">  “customer”: &#123;</span><br><span class="line">    “name” = “Scylla Buss”</span><br><span class="line">    “email” = “scyllabuss1@codecademy.com”</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>A possible response header would have <code>Status Code: 200 (OK)</code>, to notify the client that the item with <code>id</code> 123 has been modified.</p>
+<p>We can also DELETE that customer by specifying its <code>id</code>:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE http://fashionboutique.com/customers/123</span><br></pre></td></tr></table></figure></div>
+<p>The response would have a header containing <code>Status Code: 204 (NO CONTENT)</code>, notifying the client that the item with <code>id</code> 123 has been deleted, and nothing in the body.</p>
+<h4 id="Practice-with-REST"><a href="#Practice-with-REST" class="headerlink" title="Practice with REST"></a>Practice with REST</h4><p>Let’s imagine we are building a photo-collection site for a different want to make an API to keep track of users, venues, and photos of those venues. This site has an <code>index.html</code> and a <code>style.css</code>. Each user has a <code>username</code> and a <code>password</code>. Each photo has a <code>venue</code> and <code>an owner</code> (i.e. the user who took the picture). Each venue has a name and street address. Can you design a REST system that would accommodate:</p>
+<ul>
+<li>storing users, photos, and venues</li>
+<li>accessing venues and accessing certain photos of a certain venue</li>
+</ul>
+<p>Start by writing out:</p>
+<ul>
+<li>what kinds of requests we would want to make</li>
+<li>what responses the server should return</li>
+<li>what the <code>content-type</code> of each response should be</li>
+</ul>
+<h5 id="Possible-Solution-Models"><a href="#Possible-Solution-Models" class="headerlink" title="Possible Solution - Models"></a>Possible Solution - Models</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  “user”: &#123;</span><br><span class="line">    &quot;id&quot;: &lt;Integer&gt;,</span><br><span class="line">    “username”: &lt;String&gt;,</span><br><span class="line">    “password”:  &lt;String&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  “photo”: &#123;</span><br><span class="line">    &quot;id&quot;: &lt;Integer&gt;,</span><br><span class="line">    “venue_id”: &lt;Integer&gt;,</span><br><span class="line">    “author_id”: &lt;Integer&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  “venue”: &#123;</span><br><span class="line">    &quot;id&quot;: &lt;Integer&gt;,</span><br><span class="line">    “name”: &lt;String&gt;,</span><br><span class="line">    “address”: &lt;String&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="Possible-Solution-Requests-Responses"><a href="#Possible-Solution-Requests-Responses" class="headerlink" title="Possible Solution - Requests&#x2F;Responses"></a>Possible Solution - Requests&#x2F;Responses</h5><h6 id="GET-Requests"><a href="#GET-Requests" class="headerlink" title="GET Requests"></a>GET Requests</h6><p>Request- <code>GET /index.html</code> Accept: <code>text/html</code> Response- 200 (OK) Content-type:<code> text/html</code></p>
+<p>Request- <code>GET /style.css</code> Accept: <code>text/css</code> Response- 200 (OK) Content-type: <code>text/css</code></p>
+<p>Request- <code>GET /venues</code> Accept:<code>application/json</code> Response- 200 (OK) Content-type: <code>application/json</code></p>
+<p>Request- <code>GET /venues/:id</code> Accept: <code>application/json</code> Response- 200 (OK) Content-type: <code>application/json</code></p>
+<p>Request- <code>GET /venues/:id/photos/:id</code> Accept: <code>application/json</code> Response- 200 (OK) Content-type: <code>image/png</code></p>
+<h6 id="POST-Requests"><a href="#POST-Requests" class="headerlink" title="POST Requests"></a>POST Requests</h6><p>Request- <code>POST /users</code> Response- 201 (CREATED) Content-type: <code>application/json</code></p>
+<p>Request- <code>POST /venues</code> Response- 201 (CREATED) Content-type: <code>application/json</code></p>
+<p>Request- <code>POST /venues/:id/photos</code> Response- 201 (CREATED) Content-type: <code>application/json</code></p>
+<h6 id="PUT-Requests"><a href="#PUT-Requests" class="headerlink" title="PUT Requests"></a>PUT Requests</h6><p>Request- <code>PUT /users/:id</code> Response- 200 (OK)</p>
+<p>Request- <code>PUT /venues/:id</code> Response- 200 (OK)</p>
+<p>Request- <code>PUT /venues/:id/photos/:id</code> Response- 200 (OK)</p>
+<h6 id="DELETE-Requests"><a href="#DELETE-Requests" class="headerlink" title="DELETE Requests"></a>DELETE Requests</h6><p>Request- <code>DELETE /venues/:id</code> Response- 204 (NO CONTENT)</p>
+<p>Request- <code>DELETE /venues/:id/photos/:id</code> Response- 204 (NO CONTENT)</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> What is REST</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2019-09-23 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-20 10:43:43
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2019/09/23/what-is-reset/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/http/">#http</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/dev/">#dev</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/rest/">#rest</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2020/01/03/wpf-mul-thread/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">WPF multiple thread</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2019/09/12/build-an-auto-deploy-process-with-k8s-cicd/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Building an Automated Deployment Process with Kubernetes CI/CD</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">What is REST</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-REST"><span class="nav-text">What is REST ?</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        64 posts in total
+                    </span>
+                    
+                        <span>
+                            58k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

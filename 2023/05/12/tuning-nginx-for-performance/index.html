@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lechance">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lechance.github.io/2023/05/12/tuning-nginx-for-performance/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="NGINX is well known as a high‑performance load balancer , cache , and web server , powering over 40% of the busiest websites  in the world. For most use cases, default NGINX and Linux settings work we">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lechance&#39;s Blog">
+<meta property="og:url" content="https://lechance.github.io/2023/05/12/tuning-nginx-for-performance/index.html">
+<meta property="og:site_name" content="Lechance&#39;s Blog">
+<meta property="og:description" content="NGINX is well known as a high‑performance load balancer , cache , and web server , powering over 40% of the busiest websites  in the world. For most use cases, default NGINX and Linux settings work we">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-20T01:49:17.153Z">
+<meta property="article:author" content="Lechance Cheung">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="tuning">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+        Lechance&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"lechance.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["MVP"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"Suggestion","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"...","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=i&c=h&c=d&c=e&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/lechance/","instagram":null,"zhihu":null,"twitter":null,"email":"lechance@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-solid fa-table-list"},"links":{"icon":"fa-regular fa-link","submenus":{"About":"/about","Essay":"/essays","Gallery":"/masonry","Bookmark":"/links"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"stay hungry stay foolish","show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/28 13:14:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Lechance&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Lechance&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-solid fa-table-list fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ABOUT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/essays">
+                                                    ESSAY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/masonry">
+                                                    GALLERY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/links">
+                                                    BOOKMARK
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ABOUT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">ESSAY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/masonry">GALLERY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/links">BOOKMARK</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">101</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-12</span>
+        <span class="mobile">2023-05-12</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-20 09:49:17</span>
+            <span class="mobile">2024-07-20 09:49:17</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Web/">Web</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/nginx/">nginx</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/tuning/">tuning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>17k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1:03 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>NGINX is well known as a high‑performance <a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/products/nginx/load-balancing/" >load balancer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/products/nginx/caching/" >cache <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, and <a class="link"   target="_blank" rel="noopener" href="https://docs.nginx.com/nginx/admin-guide/web-server/web-server/" >web server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, powering <a class="link"   target="_blank" rel="noopener" href="https://w3techs.com/technologies/cross/web_server/ranking" >over 40% of the busiest websites <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> in the world. For most use cases, default NGINX and Linux settings work well, but achieving optimal performance sometimes requires a bit of tuning. This blog post discusses some of the NGINX and Linux settings to consider when tuning a system.</p>
+<p>You can tune almost any setting, but this post concentrates on the few settings for which tuning benefits the most users. There are settings that we recommend you change only if you have a deep understanding of NGINX and Linux, or as directed by our <a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/support/" >Support <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or <a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/services/" >Professional Services <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> teams, and we don’t cover those here. The Professional Services team has worked with some of the world’s busiest websites to tune NGINX for the maximum level of performance, and is available to work with you on getting the most out of your NGINX or NGINX Plus deployment.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>A basic understanding of the NGINX architecture and configuration concepts is assumed. This post does not attempt to duplicate the NGINX documentation, but provides an overview of the various options and links to the relevant documentation.</p>
+<p>A good rule to follow when tuning is to change one setting at a time, and set it back to the default value if the change does not improve performance.</p>
+<p>We start with a discussion of Linux tuning, because the value of some operating system settings determines how you tune your NGINX configuration.</p>
+<h2 id="Tuning-Your-Linux-Configuration"><a href="#Tuning-Your-Linux-Configuration" class="headerlink" title="Tuning Your Linux Configuration"></a>Tuning Your Linux Configuration</h2><p>The settings in modern Linux kernels (2.6+) are suitable for most purposes, but changing some of them can be beneficial. Check the kernel log for error messages indicating that a setting is too low, and adjust it as advised. Here we cover only those settings that are most likely to benefit from tuning under normal workloads. For details on adjusting these settings, please refer to your Linux documentation.</p>
+<h3 id="The-Backlog-Queue"><a href="#The-Backlog-Queue" class="headerlink" title="The Backlog Queue"></a>The Backlog Queue</h3><p>The following settings relate to connections and how they are queued. If you have a high rate of incoming connections and you are getting uneven levels of performance (for example some connections appear to be stalling), then changing these settings can help.</p>
+<ul>
+<li><p><code>net.core.**somaxconn**</code> – The maximum number of connections that can be queued for acceptance by NGINX. The default is often very low and that’s usually acceptable because NGINX accepts connections very quickly, but it can be worth increasing it if your website experiences heavy traffic. If error messages in the kernel log indicate that the value is too small, increase it until the errors stop.</p>
+<p><strong>Note:</strong> If you set this to a value greater than 512, change the <code>backlog</code> parameter to the NGINX <a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_core_module.html#listen"><code>listen</code></a> directive to match.</p>
+</li>
+<li><p><code>net.core.**netdev_max_backlog**</code> – The rate at which packets are buffered by the network card before being handed off to the CPU. Increasing the value can improve performance on machines with a high amount of bandwidth. Check the kernel log for errors related to this setting, and consult the network card documentation for advice on changing it.</p>
+</li>
+</ul>
+<h3 id="File-Descriptors"><a href="#File-Descriptors" class="headerlink" title="File Descriptors"></a>File Descriptors</h3><p>File descriptors are operating system resources used to represent connections and open files, among other things. NGINX can use up to two file descriptors per connection. For example, if NGINX is proxying, it generally uses one file descriptor for the client connection and another for the connection to the proxied server, though this ratio is much lower if HTTP keepalives are used. For a system serving a large number of connections, the following settings might need to be adjusted:</p>
+<ul>
+<li><code>sys.fs.**file-max**</code> – The system‑wide limit for file descriptors</li>
+<li><code>**nofile**</code> – The user file descriptor limit, set in the <strong>&#x2F;etc&#x2F;security&#x2F;limits.conf</strong> file</li>
+</ul>
+<h3 id="Ephemeral-Ports"><a href="#Ephemeral-Ports" class="headerlink" title="Ephemeral Ports"></a>Ephemeral Ports</h3><p>When NGINX is acting as a proxy, each connection to an upstream server uses a temporary, or <em>ephemeral</em>, port. You might want to change this setting:</p>
+<ul>
+<li><code>net.ipv4.**ip_local_port_range**</code> – The start and end of the range of port values. If you see that you are running out of ports, increase the range. A common setting is ports 1024 to 65000.</li>
+<li></li>
+</ul>
+<h2 id="Tuning-Your-NGINX-Configuration"><a href="#Tuning-Your-NGINX-Configuration" class="headerlink" title="Tuning Your NGINX Configuration"></a>Tuning Your NGINX Configuration</h2><p>The following are some NGINX directives that can impact performance. As stated above, we only discuss directives that are safe for you to adjust on your own. We recommend that you not change the settings of other directives without direction from the NGINX team.</p>
+<h3 id="Worker-Processes"><a href="#Worker-Processes" class="headerlink" title="Worker Processes"></a>Worker Processes</h3><p>NGINX can run multiple worker processes, each capable of processing a large number of simultaneous connections. You can control the number of worker processes and how they handle connections with the following directives:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/ngx_core_module.html#worker_processes"><code>worker_processes</code></a> – The number of NGINX worker processes (the default is 1). In most cases, running one worker process per CPU core works well, and we recommend setting this directive to <code>auto</code> to achieve that. There are times when you may want to increase this number, such as when the worker processes have to do a lot of disk I&#x2F;O.</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/ngx_core_module.html#worker_connections"><code>worker_connections</code></a> – The maximum number of connections that each worker process can handle simultaneously. The default is 512, but most systems have enough resources to support a larger number. The appropriate setting depends on the size of the server and the nature of the traffic, and can be discovered through testing.</li>
+</ul>
+<h3 id="Keepalive-Connections"><a href="#Keepalive-Connections" class="headerlink" title="Keepalive Connections"></a>Keepalive Connections</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.f5.com/company/blog/nginx/http-keepalives-and-web-performance" >Keepalive connections <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> can have a major impact on performance by reducing the CPU and network overhead needed to open and close connections. NGINX terminates all client connections and creates separate and independent connections to the upstream servers. NGINX supports keepalives for both clients and upstream servers. The following directives relate to client keepalives:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests"><code>keepalive_requests</code></a> – The number of requests a client can make over a single keepalive connection. The default is 100, but a much higher value can be especially useful for testing with a load‑generation tool, which generally sends a large number of requests from a single client.</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout"><code>keepalive_timeout</code></a> – How long an idle keepalive connection remains open.</li>
+</ul>
+<p>The following directive relates to upstream keepalives:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive"><code>keepalive</code></a> – The number of idle keepalive connections to an upstream server that remain open for each worker process. There is no default value.</li>
+</ul>
+<p>To enable keepalive connections to upstream servers you must also include the following directives in the configuration:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;proxy_set_header Connection &quot;&quot;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Access-Logging"><a href="#Access-Logging" class="headerlink" title="Access Logging"></a>Access Logging</h3><p>Logging every request consumes both CPU and I&#x2F;O cycles, and one way to reduce the impact is to enable access‑log buffering. With buffering, instead of performing a separate write operation for each log entry, NGINX buffers a series of entries and writes them to the file together in a single operation.</p>
+<p>To enable access‑log buffering, include the <code>buffer=*size*</code> parameter to the <code>access_log</code> directive; NGINX writes the buffer contents to the log when the buffer reaches the <code>*size*</code> value. To have NGINX write the buffer after a specified amount of time, include the <code>flush=*time*</code> parameter. When both parameters are set, NGINX writes entries to the log file when the next log entry will not fit into the buffer or the entries in the buffer are older than the specified time, respectively. Log entries are also written when a worker process is reopening its log files or shutting down. To disable access logging completely, include the <code>off</code> parameter to the <code>access_log</code> directive.</p>
+<h3 id="Sendfile"><a href="#Sendfile" class="headerlink" title="Sendfile"></a>Sendfile</h3><p>The operating system’s <code>sendfile()</code> system call copies data from one file descriptor to another, often achieving zero‑copy, which can speed up TCP data transfers. To enable NGINX to use it, include the <code>sendfile</code> directive in the <code>http</code> context or a <code>server</code> or <code>location</code> context. NGINX can then write cached or on‑disk content down a socket without any context switching to user space, making the write extremely fast and consuming fewer CPU cycles. Note, however, that because data copied with <code>sendfile()</code> bypasses user space, it is not subject to the regular NGINX processing chain and filters that change content, such as <code>gzip</code>. When a configuration context includes both the <code>sendfile</code> directive and directives that activate a content‑changing filter, NGINX automatically disables <code>sendfile</code> for that context.</p>
+<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><p>You can set various limits that help prevent clients from consuming too many resources, which can adversely the performance of your system as well as security and the user experience. The following are some of the relevant directives:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn"><code>limit_conn</code></a> and <a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone"><code>limit_conn_zone</code></a> – Limit the number of client connections NGINX accepts, for example from a single IP address. Setting them can help prevent individual clients from opening too many connections and consuming more than their share of resources.</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate"><code>limit_rate</code></a> – Limits the rate at which responses are transmitted to a client, per connection (so clients that open multiple connections can consume this amount of bandwidth for each connection). Setting a limit can prevent the system from being overloaded by certain clients, ensuring more even quality of service for all clients.</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req"><code>limit_req</code></a> and <a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone"><code>limit_req_zone</code></a> – Limit the rate of requests being processed by NGINX, which has the same benefits as setting <code>limit_rate</code>. They can also improve security, especially for login pages, by limiting the request rate to a value reasonable for human users but too slow for programs trying to overwhelm your application with requests (such as bots in a <a class="link"   target="_blank" rel="noopener" href="https://www.f5.com/company/blog/nginx/mitigating-ddos-attacks-with-nginx-and-nginx-plus" >DDoS attack <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>).</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns"><code>max_conns</code></a> parameter to the <code>server</code> directive in an <code>upstream</code> configuration block – Sets the maximum number of simultaneous connections accepted by a server in an upstream group. Imposing a limit can help prevent the upstream servers from being overloaded. Setting the value to 0 (zero, the default) means there is no limit.</li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue"><code>queue</code></a> (NGINX Plus) – Creates a queue in which requests are placed when all the available servers in the upstream group have reached their <code>max_conns</code> limit. This directive sets the maximum number of requests in the queue and, optionally, the maximum time they wait (60 seconds by default) before an error is returned. Requests are not queued if you omit this directive.</li>
+</ul>
+<h2 id="Caching-and-Compression-Can-Improve-Performance"><a href="#Caching-and-Compression-Can-Improve-Performance" class="headerlink" title="Caching and Compression Can Improve Performance"></a>Caching and Compression Can Improve Performance</h2><p>Some additional features of NGINX that can be used to increase the performance of a web application don’t really fall under the heading of tuning, but are worth mentioning because their impact can be considerable. They include caching and compression.</p>
+<h3 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h3><p>By enabling caching on an NGINX instance that is load balancing a set of web or application servers, you can dramatically improve the response time to clients while at the same time dramatically reducing the load on the backend servers. Caching is a topic in its own right and we won’t try to cover it here. See the <a class="link"   target="_blank" rel="noopener" href="https://docs.nginx.com/nginx/admin-guide/content-cache/" >NGINX Plus Admin Guide <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h3 id="Compression"><a href="#Compression" class="headerlink" title="Compression"></a>Compression</h3><p>Compressing responses sent to clients can greatly reduce their size, so they use less network bandwidth. Because compressing data consumes CPU resources, however, it is most useful when it’s really worthwhile to reduce bandwidth usage. It is important to note that you should not enable compression for objects that are already compressed, such as JPEG files. For more information, see the <a class="link"   target="_blank" rel="noopener" href="https://docs.nginx.com/nginx/admin-guide/web-server/compression/" >NGINX Plus Admin Guide <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>For more information, see:</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/resources/webinars/benchmarking-nginx-better-accuracy-meaningful-results-45-min/" >Benchmarking NGINX: Better Accuracy and Meaningful Results <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (on‑demand webinar)</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://nginx.org/en/docs/" >NGINX reference documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> at nginx.org</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.nginx.com/products/nginx/compare-models" >Compare NGINX Models <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.nginx.com/nginx/technical-specs/" >NGINX Plus Technical Specifications <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> </li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2023-05-12 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-20 09:49:17
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2023/05/12/tuning-nginx-for-performance/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/nginx/">#nginx</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/tuning/">#tuning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/05/12/setup-linux-cluster-with-keepalived-p1/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Setting up a Linux cluster with Keepalived -  Basic configuration</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2022/05/12/vimrc/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">vim config</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title"></div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-Your-Linux-Configuration"><span class="nav-text">Tuning Your Linux Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Backlog-Queue"><span class="nav-text">The Backlog Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Descriptors"><span class="nav-text">File Descriptors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ephemeral-Ports"><span class="nav-text">Ephemeral Ports</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-Your-NGINX-Configuration"><span class="nav-text">Tuning Your NGINX Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker-Processes"><span class="nav-text">Worker Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keepalive-Connections"><span class="nav-text">Keepalive Connections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Logging"><span class="nav-text">Access Logging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sendfile"><span class="nav-text">Sendfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limits"><span class="nav-text">Limits</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Caching-and-Compression-Can-Improve-Performance"><span class="nav-text">Caching and Compression Can Improve Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching"><span class="nav-text">Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compression"><span class="nav-text">Compression</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        64 posts in total
+                    </span>
+                    
+                        <span>
+                            58k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

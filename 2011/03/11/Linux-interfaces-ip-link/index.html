@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lechance">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lechance.github.io/2011/03/11/linux-interfaces-ip-link/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Linux  has rich virtual networking capabilities that are used as basis for hosting VMs and containers , as well as cloud environments. In this post, I will give a brief introduction to all commonly us">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Linux interfaces for virtual networking">
+<meta property="og:url" content="https://lechance.github.io/2011/03/11/Linux-interfaces-ip-link/index.html">
+<meta property="og:site_name" content="Lechance&#39;s Blog">
+<meta property="og:description" content="Linux  has rich virtual networking capabilities that are used as basis for hosting VMs and containers , as well as cloud environments. In this post, I will give a brief introduction to all commonly us">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/team.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/net_failover.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan_01.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan_01.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/br_ns.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_01.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_02.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_03.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_04.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_01.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_02.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvtap.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec_01.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec.png">
+<meta property="og:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/veth.png">
+<meta property="article:published_time" content="2011-03-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-20T02:19:27.040Z">
+<meta property="article:author" content="Lechance Cheung">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ip">
+<meta property="article:tag" content="interface">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Introduction to Linux interfaces for virtual networking -
+        
+        Lechance&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"lechance.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["MVP"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"Suggestion","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"...","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=i&c=h&c=d&c=e&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/lechance/","instagram":null,"zhihu":null,"twitter":null,"email":"lechance@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-solid fa-table-list"},"links":{"icon":"fa-regular fa-link","submenus":{"About":"/about","Essay":"/essays","Gallery":"/masonry","Bookmark":"/links"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"stay hungry stay foolish","show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/28 13:14:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Lechance&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Lechance&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-solid fa-table-list fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ABOUT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/essays">
+                                                    ESSAY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/masonry">
+                                                    GALLERY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/links">
+                                                    BOOKMARK
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-table-list fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ABOUT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">ESSAY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/masonry">GALLERY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/links">BOOKMARK</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">101</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Introduction to Linux interfaces for virtual networking</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Lechance</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">MVP</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2011-03-11</span>
+        <span class="mobile">2011-03-11</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-20 10:19:27</span>
+            <span class="mobile">2024-07-20 10:19:27</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/linux/">linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ip/">ip</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/interface/">interface</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>43k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2:37 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/topics/linux/" >Linux <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> has rich virtual networking capabilities that are used as basis for hosting VMs and <a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/category/containers/" >containers <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, as well as cloud environments. In this post, I will give a brief introduction to all commonly used virtual network interface types. There is no code analysis, only a brief introduction to the interfaces and their usage on Linux. Anyone with a network background might be interested in this blog post. A list of interfaces can be obtained using the command <code>ip link help</code>.</p>
+<p>This post covers the following frequently used interfaces and some interfaces that can be easily confused with one another:</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#bridge" >Bridge <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#bonded" >Bonded interface <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#team" >Team device <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vlan" >VLAN (Virtual LAN) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxlan" >  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxlan" >VXLAN (Virtual eXtensible Local Area Network) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macvlan" >MACVLAN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ipvlan" >IPVLAN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macvtap" >MACVTAP&#x2F;IPVTAP <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macsec" >MACsec (Media Access Control Security) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#veth" >VETH (Virtual Ethernet) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vcan" >VCAN (Virtual CAN) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxcan" >VXCAN (Virtual CAN tunnel) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ipoib" >IPOIB (IP-over-InfiniBand) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#nlmon" >NLMON (NetLink MONitor) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#dummy" >Dummy interface <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ifb" >IFB (Intermediate Functional Block) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#netdevsim" >netdevsim <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+<p>After reading this article, you will know what these interfaces are, what’s the difference between them, when to use them, and how to create them.<br>For other interfaces like tunnel, please see <a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels/" >An introduction to Linux virtual interfaces: Tunnels <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h2><p>A Linux bridge behaves like a network switch. It forwards packets between interfaces that are connected to it. It’s usually used for forwarding packets on routers, on gateways, or between VMs and network namespaces on a host. It also supports STP, VLAN filter, and multicast snooping.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png"
+                      alt="Bridge diagram"
+                ></a></p>
+<p>Use a bridge when you want to establish communication channels between VMs, containers, and your hosts.</p>
+<p>Here’s how to create a bridge:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ip link add br0 type bridge</span><br><span class="line"># ip link set eth0 master br0</span><br><span class="line"># ip link set tap1 master br0</span><br><span class="line"># ip link set tap2 master br0</span><br><span class="line"># ip link set veth1 master br0</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates a bridge device named <code>br0</code> and sets two TAP devices (<code>tap1</code>, <code>tap2</code>), a VETH device (<code>veth1</code>), and a physical device (<code>eth0</code>) as its slaves, as shown in the diagram above.</p>
+<h2 id="Bonded-interface"><a href="#Bonded-interface" class="headerlink" title="Bonded interface"></a>Bonded interface</h2><p>The Linux bonding driver provides a method for aggregating multiple network interfaces into a single logical “bonded” interface. The behavior of the bonded interface depends on the mode; generally speaking, modes provide either hot standby or load balancing services.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png"
+                      alt="Bonded interface"
+                ></a></p>
+<p>Use a bonded interface when you want to increase your link speed or do a failover on your server.</p>
+<p>Here’s how to create a bonded interface:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip link add bond1 type bond miimon 100 mode active-backup</span><br><span class="line">ip link set eth0 master bond1</span><br><span class="line">ip link set eth1 master bond1</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates a bonded interface named <code>bond1</code> with mode active-backup. For other modes, please see the <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/bonding.txt" >kernel documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Team-device"><a href="#Team-device" class="headerlink" title="Team device"></a>Team device</h2><p>Similar a bonded interface, the purpose of a team device is to provide a mechanism to group multiple NICs (ports) into one logical one (teamdev) at the L2 layer.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/team.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/team.png"
+                      alt="Team device"
+                ></a></p>
+<p>The main thing to realize is that a team device is not trying to replicate or mimic a bonded interface. What it does is to solve the same problem using a different approach, using, for example, a lockless (RCU) TX&#x2F;RX path and modular design.</p>
+<p>But there are also some functional differences between a bonded interface and a team. For example, a team supports LACP load-balancing, NS&#x2F;NA (IPV6) link monitoring, D-Bus interface, etc., which are absent in bonding. For further details about the differences between bonding and team, see <a class="link"   target="_blank" rel="noopener" href="https://github.com/jpirko/libteam/wiki/Bonding-vs.-Team-features" >Bonding vs. Team features <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>Use a team when you want to use some features that bonding doesn’t provide.</p>
+<p>Here’s how to create a team:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># teamd -o -n -U -d -t team0 -c &#x27;&#123;&quot;runner&quot;: &#123;&quot;name&quot;: &quot;activebackup&quot;&#125;,&quot;link_watch&quot;: &#123;&quot;name&quot;: &quot;ethtool&quot;&#125;&#125;&#x27;</span><br><span class="line"># ip link set eth0 down</span><br><span class="line"># ip link set eth1 down</span><br><span class="line"># teamdctl team0 port add eth0</span><br><span class="line"># teamdctl team0 port add eth1</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates a team interface named <code>team0</code> with mode <code>active-backup</code>, and it adds <code>eth0</code> and <code>eth1</code> as <code>team0</code>‘s sub-interfaces.</p>
+<p>A new driver called <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/net_failover.html" >net_failover <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> has been added to Linux recently. It’s another failover master net device for virtualization and manages a primary ([passthru&#x2F;VF <a class="link"   target="_blank" rel="noopener" href="https://wiki.libvirt.org/page/Networking#PCI_Passthrough_of_host_network_devices" >Virtual Function] <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> device) slave net device and a standby (the original paravirtual interface) slave net device.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/net_failover.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/net_failover.png"
+                      alt="Net_failover driver"
+                ></a></p>
+<h2 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h2><p>A VLAN, aka virtual LAN, separates broadcast domains by adding tags to network packets. VLANs allow network administrators to group hosts under the same switch or between different switches.</p>
+<p>The VLAN header looks like:</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan_01.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan_01.png"
+                      alt="VLAN header"
+                ></a></p>
+<p>Use a VLAN when you want to separate subnet in VMs, namespaces, or hosts.</p>
+<p>Here’s how to create a VLAN:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ip link add link eth0 name eth0.2 type vlan id 2</span><br><span class="line"># ip link add link eth0 name eth0.3 type vlan id 3</span><br></pre></td></tr></table></figure></div>
+
+<p>This adds VLAN 2 with name <code>eth0.2</code> and VLAN 3 with name <code>eth0.3</code>. The topology looks like this:</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan.png"
+                      alt="VLAN topology"
+                ></a></p>
+<p>*<strong>Note*</strong>: When configuring a VLAN, you need to make sure the switch connected to the host is able to handle VLAN tags, for example, by setting the switch port to trunk mode.</p>
+<h2 id="VXLAN"><a href="#VXLAN" class="headerlink" title="VXLAN"></a>VXLAN</h2><p>VXLAN (Virtual eXtensible Local Area Network) is a tunneling protocol designed to solve the problem of limited VLAN IDs (4,096) in IEEE 802.1q. It is described by <a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7348" >IETF RFC 7348 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>With a 24-bit segment ID, aka VXLAN Network Identifier (VNI), VXLAN allows up to 2^24 (16,777,216) virtual LANs, which is 4,096 times the VLAN capacity.</p>
+<p>VXLAN encapsulates Layer 2 frames with a VXLAN header into a UDP-IP packet, which looks like this:</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan_01.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan_01.png"
+                      alt="VXLAN encapsulates Layer 2 frames with a VXLAN header into a UDP-IP packet"
+                ></a></p>
+<p>VXLAN is typically deployed in data centers on virtualized hosts, which may be spread across multiple racks.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan.png"
+                      alt="Typical VXLAN deployment"
+                ></a></p>
+<p>Here’s how to use VXLAN:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link add vx0 type vxlan id 100 local 1.1.1.1 remote 2.2.2.2 dev eth0 dstport 4789</span><br></pre></td></tr></table></figure></div>
+
+<p>For reference, you can read the <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/vxlan.txt" >VXLAN kernel documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or <a class="link"   target="_blank" rel="noopener" href="https://vincent.bernat.ch/en/blog/2017-vxlan-linux" >this VXLAN introduction <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="MACVLAN"><a href="#MACVLAN" class="headerlink" title="MACVLAN"></a>MACVLAN</h2><p>With VLAN, you can create multiple interfaces on top of a single one and filter packages based on a VLAN tag. With MACVLAN, you can create multiple interfaces with different Layer 2 (that is, Ethernet MAC) addresses on top of a single one.</p>
+<p>Before MACVLAN, if you wanted to connect to physical network from a VM or namespace, you would have needed to create TAP&#x2F;VETH devices and attach one side to a bridge and attach a physical interface to the bridge on the host at the same time, as shown below.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/br_ns.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/br_ns.png"
+                      alt="Configuration before MACVLAN"
+                ></a></p>
+<p>Now, with MACVLAN, you can bind a physical interface that is associated with a MACVLAN directly to namespaces, without the need for a bridge.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan.png"
+                      alt="Configuration with MACVLAN"
+                ></a></p>
+<p>There are five MACVLAN types:</p>
+<p>\1. Private: doesn’t allow communication between MACVLAN instances on the same physical interface, even if the external switch supports hairpin mode.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_01.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_01.png"
+                      alt="Private MACVLAN configuration"
+                ></a></p>
+<p>\2. VEPA: data from one MACVLAN instance to the other on the same physical interface is transmitted over the physical interface. Either the attached switch needs to support hairpin mode or there must be a TCP&#x2F;IP router forwarding the packets in order to allow communication.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_02.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_02.png"
+                      alt="VEPA MACVLAN configuration"
+                ></a></p>
+<p>\3. Bridge: all endpoints are directly connected to each other with a simple bridge via the physical interface.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_03.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_03.png"
+                      alt="Bridge MACVLAN configuration"
+                ></a></p>
+<p>\4. Passthru: allows a single VM to be connected directly to the physical interface.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_04.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_04.png"
+                      alt="Passthru MACVLAN configuration"
+                ></a></p>
+<p>\5. Source: the source mode is used to filter traffic based on a list of allowed source MAC addresses to create MAC-based VLAN associations. Please see the <a class="link"   target="_blank" rel="noopener" href="https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/commit/?id=79cf79abce71" >commit message <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>The type is chosen according to different needs. Bridge mode is the most commonly used.</p>
+<p>Use a MACVLAN when you want to connect directly to a physical network from containers.</p>
+<p>Here’s how to set up a MACVLAN:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ip link add macvlan1 link eth0 type macvlan mode bridge</span><br><span class="line"># ip link add macvlan2 link eth0 type macvlan mode bridge</span><br><span class="line"># ip netns add net1</span><br><span class="line"># ip netns add net2</span><br><span class="line"># ip link set macvlan1 netns net1</span><br><span class="line"># ip link set macvlan2 netns net2</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates two new MACVLAN devices in bridge mode and assigns these two devices to two different namespaces.</p>
+<h2 id="IPVLAN"><a href="#IPVLAN" class="headerlink" title="IPVLAN"></a>IPVLAN</h2><p>IPVLAN is similar to MACVLAN with the difference being that the endpoints have the same MAC address.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan.png"
+                      alt="IPVLAN configuration"
+                ></a></p>
+<p>IPVLAN supports L2 and L3 mode. IPVLAN L2 mode acts like a MACVLAN in bridge mode. The parent interface looks like a bridge or switch.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_01.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_01.png"
+                      alt="IPVLAN L2 mode"
+                ></a></p>
+<p>In IPVLAN L3 mode, the parent interface acts like a router and packets are routed between endpoints, which gives better scalability.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_02.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_02.png"
+                      alt="IPVLAN L3 mode"
+                ></a></p>
+<p>Regarding when to use an IPVLAN, the <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/ipvlan.txt" >IPVLAN kernel documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> says that MACVLAN and IPVLAN “are very similar in many regards and the specific use case could very well define which device to choose. if one of the following situations defines your use case then you can choose to use ipvlan -<br>(a) The Linux host that is connected to the external switch &#x2F; router has policy configured that allows only one mac per port.<br>(b) No of virtual devices created on a master exceed the mac capacity and puts the NIC in promiscuous mode and degraded performance is a concern.<br>(c) If the slave device is to be put into the hostile &#x2F; untrusted network namespace where L2 on the slave could be changed &#x2F; misused.”</p>
+<p>Here’s how to set up an IPVLAN instance:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ip netns add ns0</span><br><span class="line"># ip link add name ipvl0 link eth0 type ipvlan mode l2</span><br><span class="line"># ip link set dev ipvl0 netns ns0</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates an IPVLAN device named <code>ipvl0</code> with mode L2, assigned to namespace <code>ns0</code>.</p>
+<h2 id="MACVTAP-IPVTAP"><a href="#MACVTAP-IPVTAP" class="headerlink" title="MACVTAP&#x2F;IPVTAP"></a>MACVTAP&#x2F;IPVTAP</h2><p>MACVTAP&#x2F;IPVTAP is a new device driver meant to simplify virtualized bridged networking. When a MACVTAP&#x2F;IPVTAP instance is created on top of a physical interface, the kernel also creates a character device&#x2F;dev&#x2F;tapX to be used just like a <a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/TUN/TAP" >TUN&#x2F;TAP <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> device, which can be directly used by KVM&#x2F;QEMU.</p>
+<p>With MACVTAP&#x2F;IPVTAP, you can replace the combination of TUN&#x2F;TAP and bridge drivers with a single module:</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvtap.png"><img src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvtap.png" alt="MACVTAP/IPVTAP instance"></a></p>
+<p>Typically, MACVLAN&#x2F;IPVLAN is used to make both the guest and the host show up directly on the switch to which the host is connected. The difference between MACVTAP and IPVTAP is same as with MACVLAN&#x2F;IPVLAN.</p>
+<p>Here’s how to create a MACVTAP instance:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link add link eth0 name macvtap0 type macvtap</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="MACsec"><a href="#MACsec" class="headerlink" title="MACsec"></a>MACsec</h2><p>MACsec (Media Access Control Security) is an IEEE standard for security in wired Ethernet LANs. Similar to IPsec, as a layer 2 specification, MACsec can protect not only IP traffic but also ARP, neighbor discovery, and DHCP. The MACsec headers look like this:</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec_01.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec_01.png"
+                      alt="MACsec header"
+                ></a></p>
+<p>The main use case for MACsec is to secure all messages on a standard LAN including ARP, NS, and DHCP messages.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec.png"
+                      alt="MACsec configuration"
+                ></a></p>
+<p>Here’s how to set up a MACsec configuration:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link add macsec0 link eth1 type macsec</span><br></pre></td></tr></table></figure></div>
+
+<p>*<strong>Note*</strong>: This only adds a MACsec device called <code>macsec0</code> on interface <code>eth1</code>. For more detailed configurations, please see the “Configuration example” section in this <a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2016/10/14/macsec-a-different-solution-to-encrypt-network-traffic/" >MACsec introduction by Sabrina Dubroca <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="VETH"><a href="#VETH" class="headerlink" title="VETH"></a>VETH</h2><p>The VETH (virtual Ethernet) device is a local Ethernet tunnel. Devices are created in pairs, as shown in the diagram below.</p>
+<p>Packets transmitted on one device in the pair are immediately received on the other device. When either device is down, the link state of the pair is down.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/wp-content/uploads/2018/10/veth.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developers.redhat.com/blog/wp-content/uploads/2018/10/veth.png"
+                      alt="Pair of VETH devices"
+                ></a></p>
+<p>Use a VETH configuration when namespaces need to communicate to the main host namespace or between each other.</p>
+<p>Here’s how to set up a VETH configuration:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ip netns add net1</span><br><span class="line"># ip netns add net2</span><br><span class="line"># ip link add veth1 netns net1 type veth peer name veth2 netns net2</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates two namespaces, <code>net1</code> and <code>net2</code>, and a pair of VETH devices, and it assigns <code>veth1</code> to namespace <code>net1</code> and <code>veth2</code> to namespace <code>net2</code>. These two namespaces are connected with this VETH pair. Assign a pair of IP addresses, and you can ping and communicate between the two namespaces.</p>
+<h2 id="VCAN"><a href="#VCAN" class="headerlink" title="VCAN"></a>VCAN</h2><p>Similar to the network loopback devices, the VCAN (virtual CAN) driver offers a virtual local CAN (Controller Area Network) interface, so users can send&#x2F;receive CAN messages via a VCAN interface. CAN is mostly used in the automotive field nowadays.</p>
+<p>For more CAN protocol information, please refer to the <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/can.txt" >kernel CAN documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>Use a VCAN when you want to test a CAN protocol implementation on the local host.</p>
+<p>Here’s how to create a VCAN:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link add dev vcan1 type vcan</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="VXCAN"><a href="#VXCAN" class="headerlink" title="VXCAN"></a>VXCAN</h2><p>Similar to the VETH driver, a VXCAN (Virtual CAN tunnel) implements a local CAN traffic tunnel between two VCAN network devices. When you create a VXCAN instance, two VXCAN devices are created as a pair. When one end receives the packet, the packet appears on the device’s pair and vice versa. VXCAN can be used for cross-namespace communication.</p>
+<p>Use a VXCAN configuration when you want to send CAN message across namespaces.</p>
+<p>Here’s how to set up a VXCAN instance:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ip netns add net1</span><br><span class="line"># ip netns add net2</span><br><span class="line"># ip link add vxcan1 netns net1 type vxcan peer name vxcan2 netns net2</span><br></pre></td></tr></table></figure></div>
+
+<p>*<strong>Note*</strong>: VXCAN is not yet supported in Red Hat Enterprise Linux.</p>
+<h2 id="IPOIB"><a href="#IPOIB" class="headerlink" title="IPOIB"></a>IPOIB</h2><p>An IPOIB device supports the IP-over-InfiniBand protocol. This transports IP packets over InfiniBand (IB) so you can use your IB device as a fast NIC.</p>
+<p>The IPoIB driver supports two modes of operation: datagram and connected. In datagram mode, the IB UD (Unreliable Datagram) transport is used. In connected mode, the IB RC (Reliable Connected) transport is used. The connected mode takes advantage of the connected nature of the IB transport and allows an MTU up to the maximal IP packet size of 64K.</p>
+<p>For more details, please see the <a class="link"   target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/infiniband/ipoib.txt" >IPOIB kernel documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<p>Use an IPOIB device when you have an IB device and want to communicate with a remote host via IP.</p>
+<p>Here’s how to create an IPOIB device:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link add ib0 name ipoib0 type ipoib pkey IB_PKEY mode connected</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="NLMON"><a href="#NLMON" class="headerlink" title="NLMON"></a>NLMON</h2><p>NLMON is a Netlink monitor device.</p>
+<p>Use an NLMON device when you want to monitor system Netlink messages.</p>
+<p>Here’s how to create an NLMON device:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ip link add nlmon0 type nlmon</span><br><span class="line"># ip link set nlmon0 up</span><br><span class="line"># tcpdump -i nlmon0 -w nlmsg.pcap</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates an NLMON device named <code>nlmon0</code> and sets it up. Use a packet sniffer (for example, <code>tcpdump</code>) to capture Netlink messages. Recent versions of Wireshark feature decoding of Netlink messages.</p>
+<h2 id="Dummy-interface"><a href="#Dummy-interface" class="headerlink" title="Dummy interface"></a>Dummy interface</h2><p>A dummy interface is entirely virtual like, for example, the loopback interface. The purpose of a dummy interface is to provide a device to route packets through without actually transmitting them.</p>
+<p>Use a dummy interface to make an inactive SLIP (Serial Line Internet Protocol) address look like a real address for local programs. Nowadays, a dummy interface is mostly used for testing and debugging.</p>
+<p>Here’s how to create a dummy interface:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ip link add dummy1 type dummy</span><br><span class="line"># ip addr add 1.1.1.1/24 dev dummy1</span><br><span class="line"># ip link set dummy1 up</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="IFB"><a href="#IFB" class="headerlink" title="IFB"></a>IFB</h2><p>The IFB (Intermediate Functional Block) driver supplies a device that allows the concentration of traffic from several sources and the shaping incoming traffic instead of dropping it.</p>
+<p>Use an IFB interface when you want to queue and shape incoming traffic.</p>
+<p>Here’s how to create an IFB interface:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ip link add ifb0 type ifb</span><br><span class="line"># ip link set ifb0 up</span><br><span class="line"># tc qdisc add dev ifb0 root sfq</span><br><span class="line"># tc qdisc add dev eth0 handle ffff: ingress</span><br><span class="line"># tc filter add dev eth0 parent ffff: u32 match u32 0 0 action mirred egress redirect dev ifb0</span><br></pre></td></tr></table></figure></div>
+
+<p>This creates an IFB device named <code>ifb0</code> and replaces the root qdisc scheduler with SFQ (Stochastic Fairness Queueing), which is a classless queueing scheduler. Then it adds an ingress qdisc scheduler on <code>eth0</code> and redirects all ingress traffic to <code>ifb0</code>.</p>
+<p>For more IFB qdisc use cases, please refer to this <a class="link"   target="_blank" rel="noopener" href="https://wiki.linuxfoundation.org/networking/ifb" >Linux Foundation wiki on IFB <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Additional-resources"><a href="#Additional-resources" class="headerlink" title="Additional resources"></a>Additional resources</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/search?t=Virtual+networking+articles" >Virtual networking articles <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on the Red Hat Developer blog</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/09/03/ovn-dynamic-ip-address-management/" >Dynamic IP Address Management in Open Virtual Network (OVN) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/03/23/non-root-open-vswitch-rhel/" >Non-root Open vSwitch in Red Hat Enterprise Linux <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/search?t=Open+vSwitch" >Open vSwitch articles <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> on the Red hat Developer Blog</li>
+</ul>
+<h2 id="netdevsim-interface"><a href="#netdevsim-interface" class="headerlink" title="netdevsim interface"></a>netdevsim interface</h2><p>netdevsim is a simulated networking device which is used for testing various networking APIs. At this time it is particularly focused on testing hardware<br>offloading, tc&#x2F;XDP BPF and SR-IOV.</p>
+<p>A netdevsim device can be created as follows</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ip link add dev sim0 type netdevsim</span><br><span class="line"># ip link set dev sim0 up</span><br></pre></td></tr></table></figure></div>
+
+<p>To enable tc offload:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ethtool -K sim0 hw-tc-offload on</span><br></pre></td></tr></table></figure></div>
+
+<p>To load XDP BPF or tc BPF programs:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link set dev sim0 xdpoffload obj prog.o</span><br></pre></td></tr></table></figure></div>
+
+<p>To add VFs for SR-IOV testing:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo 3 &gt; /sys/class/net/sim0/device/sriov_numvfs</span><br><span class="line"># ip link set sim0 vf 0 mac </span><br></pre></td></tr></table></figure></div>
+
+<p>To change the vf numbers, you need to disable them completely first:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo 0 &gt; /sys/class/net/sim0/device/sriov_numvfs</span><br><span class="line"># echo 5 &gt; /sys/class/net/sim0/device/sriov_numvfs</span><br></pre></td></tr></table></figure></div>
+
+<p><code>Note</code>: netdevsim is not compiled in RHEL by default</p>
+<p><em>Last updated: November 3, 2021</em></p>
+<h2 id="Recent-Articles"><a href="#Recent-Articles" class="headerlink" title="Recent Articles"></a>Recent Articles</h2><ul>
+<li><h3 id="Filter-unwanted-notifications-in-Cryostat-2-1"><a href="#Filter-unwanted-notifications-in-Cryostat-2-1" class="headerlink" title="Filter unwanted notifications in Cryostat 2.1"></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/articles/2022/05/26/filter-unwanted-notifications-cryostat-21" >Filter unwanted notifications in Cryostat 2.1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3></li>
+<li><h3 id="Access-JFR-data-faster-with-Cryostat-2-1’s-new-download-APIs"><a href="#Access-JFR-data-faster-with-Cryostat-2-1’s-new-download-APIs" class="headerlink" title="Access JFR data faster with Cryostat 2.1’s new download APIs"></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/articles/2022/05/25/access-jfr-data-faster-cryostat-21s-new-download-apis" >Access JFR data faster with Cryostat 2.1’s new download APIs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3></li>
+<li><h3 id="Eat-up-fewer-resources-in-Cryostat-2-1-with-sidecar-reports"><a href="#Eat-up-fewer-resources-in-Cryostat-2-1-with-sidecar-reports" class="headerlink" title="Eat up fewer resources in Cryostat 2.1 with sidecar reports"></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/articles/2022/05/25/eat-fewer-resources-cryostat-21-sidecar-reports" >Eat up fewer resources in Cryostat 2.1 with sidecar reports <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3></li>
+<li><h3 id="Managed-Kafka-services-Which-is-right-for-you"><a href="#Managed-Kafka-services-Which-is-right-for-you" class="headerlink" title="Managed Kafka services: Which is right for you?"></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/articles/2022/05/24/managed-kafka-services-which-right-you" >Managed Kafka services: Which is right for you? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3></li>
+<li><h3 id="Create-AWS-resources-with-Kubernetes-and"><a href="#Create-AWS-resources-with-Kubernetes-and" class="headerlink" title="Create AWS resources with Kubernetes and"></a><a class="link"   target="_blank" rel="noopener" href="https://developers.redhat.com/articles/2022/05/24/create-aws-resources-kubernetes-and-operators" >Create AWS resources with Kubernetes and <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Introduction to Linux interfaces for virtual networking</li>
+        <li><strong>Author:</strong> Lechance</li>
+        <li><strong>Created at
+                :</strong> 2011-03-11 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-20 10:19:27
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://lechance.github.io/2011/03/11/Linux-interfaces-ip-link/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/linux/">#linux</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ip/">#ip</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/interface/">#interface</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2011/05/11/raid/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">RAID</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2011/03/11/linux-iptables/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Linux Iptables</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Introduction to Linux interfaces for virtual networking</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bridge"><span class="nav-text">Bridge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonded-interface"><span class="nav-text">Bonded interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Team-device"><span class="nav-text">Team device</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN"><span class="nav-text">VLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VXLAN"><span class="nav-text">VXLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACVLAN"><span class="nav-text">MACVLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPVLAN"><span class="nav-text">IPVLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACVTAP-IPVTAP"><span class="nav-text">MACVTAP&#x2F;IPVTAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACsec"><span class="nav-text">MACsec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VETH"><span class="nav-text">VETH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VCAN"><span class="nav-text">VCAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VXCAN"><span class="nav-text">VXCAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPOIB"><span class="nav-text">IPOIB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NLMON"><span class="nav-text">NLMON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dummy-interface"><span class="nav-text">Dummy interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFB"><span class="nav-text">IFB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Additional-resources"><span class="nav-text">Additional resources</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netdevsim-interface"><span class="nav-text">netdevsim interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recent-Articles"><span class="nav-text">Recent Articles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter-unwanted-notifications-in-Cryostat-2-1"><span class="nav-text">Filter unwanted notifications in Cryostat 2.1 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-JFR-data-faster-with-Cryostat-2-1%E2%80%99s-new-download-APIs"><span class="nav-text">Access JFR data faster with Cryostat 2.1’s new download APIs </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eat-up-fewer-resources-in-Cryostat-2-1-with-sidecar-reports"><span class="nav-text">Eat up fewer resources in Cryostat 2.1 with sidecar reports </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managed-Kafka-services-Which-is-right-for-you"><span class="nav-text">Managed Kafka services: Which is right for you? </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-AWS-resources-with-Kubernetes-and"><span class="nav-text">Create AWS resources with Kubernetes and </span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lechance</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        64 posts in total
+                    </span>
+                    
+                        <span>
+                            58k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
